@@ -8,4 +8,6 @@ class environment{
 	description();
 	enter();
 	go_back();
-}
+};
+
+#endif
