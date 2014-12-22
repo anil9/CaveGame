@@ -1,19 +1,29 @@
-class environment{
+#include "environment.h"
+#include <iostream>
+#include <string>
 
-	directions(){
+	void environment::directions(){
 		//TODO
 	}
-	neighbor(){
+	void environment::neighbor(){
 		//TODO
 	}
-	description(){
-		//TODO
+
+	/*
+	* Returns the description for the specific environment
+	*/
+	std::string environment::description(std::string env){
+
+		return descriptions[env]; 
 	}
-	enter(){
+	void environment::enter(){
 		//TODO med parameter env.
 	}
-	go_back(){
+	void environment::go_back(){
 		//TODO
 	}
 
+int main(){
+
+	return 1;
 }
