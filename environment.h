@@ -4,7 +4,8 @@
 #include <map>
 
 class environment{
-
+ public:
+	environment(); 
 	void directions();
 	void neighbor();
 	std::string description(std::string);

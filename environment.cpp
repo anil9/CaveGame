@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 
+	environment::environment(){
+		//TODO
+	}
 	void environment::directions(){
 		//TODO
 	}
@@ -24,6 +27,6 @@
 	}
 
 int main(){
-
+	environment(); 
 	return 1;
 }
