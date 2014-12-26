@@ -1,7 +1,8 @@
 #include "environment.h"
 #include <iostream>
 #include <string>
-namespace lab3{
+using namespace lab3;
+
 	environment::environment(){
 		//TODO
 	}
@@ -19,11 +20,13 @@ namespace lab3{
 
 		return descriptions[env]; 
 	}
-	void environment::enter(){
-		//TODO med parameter env.
+	void environment::enter(std::string env){
+		//TODO med parameter env. 
 	}
 	void environment::go_back(){
 		///TODO
 	}
 
+int main(){
+	return 0;
 }
