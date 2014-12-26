@@ -8,16 +8,17 @@ namespace lab3{
 class environment{
  public:
 	environment(); 
-	void directions();
-	void neighbor();
+	std::string directions();
+	std::string neighbors();
+
+	//description ska vara pure virtual, är inte det nu pga testning.
 	std::string description(std::string);
 	void enter(std::string);
 	void go_back();
 
 private:
-	std::map<std::string, std::string> descriptions;
-	const std::vector<std::string>  env_types = {"woods", "cave", "swamp", "cabin"};  
-
+	bool south = false, north = false, east = false, west = false; 
+	std::vector<std::string> env_neighbors;
 };
 }
 
