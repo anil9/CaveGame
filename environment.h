@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 
+namespace lab3{
 class environment{
  public:
 	environment(); 
@@ -16,5 +17,6 @@ private:
 	std::map<std::string, std::string> descriptions; 
 
 };
+}
 
 #endif
