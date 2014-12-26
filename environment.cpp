@@ -1,7 +1,7 @@
 #include "environment.h"
 #include <iostream>
 #include <string>
-
+namespace lab3{
 	environment::environment(){
 		//TODO
 	}
@@ -26,7 +26,4 @@
 		///TODO
 	}
 
-int main(){
-	environment(); 
-	return 1;
 }
