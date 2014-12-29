@@ -2,59 +2,59 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-actor::actor() {
+Actor::Actor() {
 
 	//TODO
 }
-std::string actor::get_type() {
+std::string Actor::get_type() {
 	//TODO
 	return type;
 }
 
-void actor::action() {
+void Actor::action() {
 	//TODO
 }
 
-void actor::go(std::string direction) {
+void Actor::go(std::string direction) {
 	//TODO
 }
 
-void actor::fight(actor& target) {
+void Actor::fight(Actor& target) {
 	target.remove_health(get_attack_points());
 }
 
-std::string actor::sense() {
+std::string Actor::sense() {
 	//TODO
 	return "you sense nothing"; //TODO
 }
 
-void actor::use_special() {
+void Actor::use_special() {
 	//TODO
 }
 
-void actor::dead() {
+void Actor::dead() {
 	//TODO
 }
 
-void actor::set_hp(int hp) {
+void Actor::set_hp(int hp) {
 
 	health = hp;
 }
 
-void actor::set_attack_points(int attack_points) {
+void Actor::set_attack_points(int attack_points) {
 	default_attack_points = attack_points;
 }
 
-int actor::get_attack_points() {
+int Actor::get_attack_points() {
 	return default_attack_points;
 }
-int actor::get_hp() {
+int Actor::get_hp() {
 
 	return health;
 }
 
 // Private:
-void actor::remove_health(int dmg){
+void Actor::remove_health(int dmg){
 	if(health <= dmg) {
 		health = 0;
 		dead();
@@ -65,9 +65,9 @@ void actor::remove_health(int dmg){
 
 
 int main() {
-	actor test1;
+	Actor test1;
 	test1.set_attack_points(4);
-	actor test2;
+	Actor test2;
 	test2.set_hp(10);
 	test1.fight(test2);
 	std::cout << test2.get_hp() << std::endl;

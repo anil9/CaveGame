@@ -3,13 +3,13 @@
 #include <string>
 
 namespace lab3{
-class actor{
+class Actor{
  public:
-	actor(); 
+	Actor(); 
 	std::string get_type();
 	void action();
 	void go(std::string);
-	void fight(actor&);
+	void fight(Actor&);
 	std::string sense();
 	void use_special();		// TODO: Should be pure virtual.
 	void dead();
