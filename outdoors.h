@@ -4,7 +4,14 @@
 #include <string>
 
 namespace lab3{
-	class outdoors{
+	class Outdoors: public Environment{
+	public:	
+		Outdoors(); 
 		std::string weather();
+	
+	private:
+		std::vector<std::string> weather_description;
+
 	};
 }
+#endif

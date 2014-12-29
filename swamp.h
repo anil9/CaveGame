@@ -3,8 +3,9 @@
 #include "outdoors.h"
 
 namespace lab3{
-	class swamp{
+	class Swamp: public Outdoors{
 	public:
+		Swamp();
 		void sink();
 
 	};

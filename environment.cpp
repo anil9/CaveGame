@@ -3,14 +3,14 @@
 #include <string>
 using namespace lab3;
 
-	environment::environment(){
+	Environment::Environment(){
 		//TODO
 	}
 
 	/*
 	* appends the string with the available directions and returns the string. 
 	*/ 
-	std::string environment::directions(){
+	std::string Environment::directions(){
 		std::string directions;
 		if(south == true){
 			directions.append(" south");
@@ -31,7 +31,7 @@ using namespace lab3;
 	/*
 	* Appends the neighbors to the environment and returns the string.
 	*/ 
-	std::string environment::neighbors(){
+	std::string Environment::neighbors(){
 		std::string temp;
 		for(unsigned int i = 0; i< env_neighbors.size(); ++i){
 			temp.append(env_neighbors.at(i));
@@ -40,16 +40,18 @@ using namespace lab3;
 		return temp;
 	}
 
-	void environment::enter(std::string env){
+	void Environment::enter(std::string env){
 		//TODO med parameter env. 
 	}
-	void environment::go_back(){
+	void Environment::go_back(){
 		///TODO
 	}
 
-int main(){
-	environment e;
-	std::cout << e.directions() << std::endl;
+	void Environment::drop(std::string item){
 
-	return 0;
-}
+	}
+
+	void Environment::pick_up(std::string item){
+
+	}
+

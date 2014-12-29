@@ -5,9 +5,11 @@
 #include <vector>
 
 namespace lab3{
-class environment{
+class Environment{
+ protected:
+ 	Environment(); 
+	
  public:
-	environment(); 
 	std::string directions();
 	std::string neighbors();
 
@@ -15,10 +17,14 @@ class environment{
 	std::string description(std::string);
 	void enter(std::string);
 	void go_back();
+	void drop(std::string);
+	void pick_up(std::string); 
 
 private:
 	bool south = false, north = false, east = false, west = false; 
 	std::vector<std::string> env_neighbors;
+	std::vector<std::string> items_in_env; 
+	std::map<std::string, std::string> env_description;
 };
 }
 
