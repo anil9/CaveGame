@@ -4,7 +4,7 @@
 using namespace lab3;
 Actor::Actor() {
 
-	//TODO
+	//TODO location?
 }
 std::string Actor::get_type() {
 	//TODO
