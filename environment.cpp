@@ -28,6 +28,10 @@ using namespace lab3;
 		return directions;
 	}
 
+	std::string Environment::description(){
+		return env_description;
+	}
+
 	/*
 	* Appends the neighbors to the environment and returns the string.
 	*/ 

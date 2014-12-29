@@ -5,8 +5,11 @@
 namespace lab3{
 	class Swamp: public Outdoors{
 	public:
-		Swamp();
+		Swamp(bool, bool, bool, bool, std::string);
 		void sink();
+
+	private: 
+
 
 	};
 
