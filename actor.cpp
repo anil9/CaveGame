@@ -63,7 +63,7 @@ void Actor::remove_health(int dmg){
 	}
 }
 
-
+/*
 int main() {
 	Actor test1;
 	test1.set_attack_points(4);
@@ -74,3 +74,4 @@ int main() {
 
 	return 0;
 }
+*/

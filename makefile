@@ -1,6 +1,11 @@
+FLAGS = -W -g -std=c++11
 environment:
-	g++ -Wall -g -std=c++11 environment.cpp
+	g++ $(FLAGS) environment.cpp
 actor:
-	g++ -Wall -g -std=c++11 actor.cpp
+	g++ $(FLAGS) actor.cpp
 item:
-	g++ -Wall -g -std=c++11 item.cpp
+	g++ $(FLAGS) item.cpp
+monster: obj_actor monster.cpp
+	g++ $(FLAGS) monster.cpp actor.o
+obj_actor: actor.cpp
+	g++ $(FLAGS) -c actor.cpp
