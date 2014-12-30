@@ -7,7 +7,7 @@
 namespace lab3{
 class Environment{
  protected:
- 	Environment(); 
+ 	Environment(std::string); 
 	
  public:
 	std::string directions();

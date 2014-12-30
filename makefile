@@ -1,6 +1,5 @@
 FLAGS = -W -g -std=c++11
 environment:
-<<<<<<< HEAD
 	g++ $(FLAGS) environment.cpp
 actor:
 	g++ $(FLAGS) actor.cpp
