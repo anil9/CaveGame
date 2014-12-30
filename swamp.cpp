@@ -4,15 +4,8 @@
 
 using namespace lab3; 
 
-Swamp::Swamp(bool _south, bool _north, bool _west, bool _east, std::string _description){
-	south = _south;
-	north = _north;
-	west = _west;
-	east = _east; 
-
+Swamp::Swamp(std::string _description){
 	env_description = _description;
-
-
 }
 
 void Swamp::sink(){
@@ -20,7 +13,7 @@ void Swamp::sink(){
 }
 
 int main(){
-	Swamp s = Swamp(false, false, false, false, "detta är ett träsk"); 
+	Swamp s = Swamp("detta är ett träsk"); 
 	std::cout<< s.weather() << std::endl;
 	std::cout<< s.description() << std::endl;
 	return 1;
