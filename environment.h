@@ -11,17 +11,18 @@ class Environment{
 	
  public:
 	std::string directions();
-	std::string neighbors();
+	void neighbors();
 
 	std::string description();
-	void enter(std::string);
+	void enter(Environment*);
 	void go_back();
 	void drop(std::string);
 	void pick_up(std::string); 
+	void setDirection(std::string, Environment*);
+	Environment* getDirection(std::string);
 
 protected:
-	bool south = false, north = false, east = false, west = false; 
-	std::vector<std::string> env_neighbors;
+	std::map<std::string, Environment*> env_neighbors;
 	std::vector<std::string> items_in_env; 
 	std::string env_description; 
 };
