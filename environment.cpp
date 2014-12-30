@@ -3,8 +3,8 @@
 #include <string>
 using namespace lab3;
 
-	Environment::Environment(){
-		//TODO
+	Environment::Environment(std::string description){
+		env_description = description;
 	}
 
 	/*

@@ -4,14 +4,10 @@
 
 using namespace lab3;
 
-Indoors::Indoors(std::string _description){
-	env_description = _description;
-
-}
+Indoors::Indoors(std::string _description): Environment(_description){}
 
 
-Indoors::Indoors(std::string _description, std::initializer_list<std::string> items){
-	env_description = _description;
+Indoors::Indoors(std::string _description, std::initializer_list<std::string> items): Environment(_description){
 	items_in_env = items; 
 }
 

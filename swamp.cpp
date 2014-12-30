@@ -4,9 +4,7 @@
 
 using namespace lab3; 
 
-Swamp::Swamp(std::string _description){
-	env_description = _description;
-}
+Swamp::Swamp(std::string _description): Environment(_description){}
 
 void Swamp::sink(){
  //TODO when a character is in the swamp it's slowly sinking.  
