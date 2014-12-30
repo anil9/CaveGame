@@ -1,0 +1,10 @@
+Setup and use github ubuntu:
+http://www.ubuntumanual.org/posts/393/how-to-setup-and-use-github-in-ubuntu
+
+Skapa branch: git checkout -b [name_of_your_new_branch]
+			  git push origin [name_of_your_new_branch]
+			  (https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches)
+
+Ignoring files: https://help.github.com/articles/ignoring-files/
+
+Patcha en branch från t.ex master (med rebase): http://git-scm.com/book/ch3-6.html
