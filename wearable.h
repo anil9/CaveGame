@@ -1,3 +1,5 @@
+#ifndef WEARABLE_H
+#define WEARABLE_H
 #include "pickup_able.h"
 #include <string>
 
@@ -11,3 +13,4 @@ namespace lab3{
 
 	};
 }
+#endif
