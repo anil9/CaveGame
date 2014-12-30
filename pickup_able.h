@@ -1,5 +1,6 @@
 #ifndef PICKUP_ABLE
 #define PICKUP_ABLE
+#include "item.h"
 #include <string>
 namespace lab3{
 
