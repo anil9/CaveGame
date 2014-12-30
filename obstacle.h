@@ -1,9 +1,10 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
+#include <string>
 namespace lab3{
-	class Obstacle{
+	class Obstacle: public Item{
 	public:
-		Obstacle(bool);
+		Obstacle(bool, std::string);
 		bool is_movable();
 
 	private:
