@@ -12,16 +12,16 @@ using namespace lab3;
 	*/ 
 	std::string Environment::directions(){
 		std::string directions;
-		if(south == true){
+		if(env_neighbors.at("south") != nullptr){
 			directions.append(" south");
-		} if(north == true){
+		} if(env_neighbors.at("north") != nullptr){
 			directions.append(" north");
-		} if(west == true){
+		} if(env_neighbors.at("west") != nullptr){
 			directions.append(" west");
-		} if(east == true){
+		} if(env_neighbors.at("east") != nullptr){
 			directions.append(" east");
 		}
-		if(south == false && north == false && west == false && east == false){
+		if(env_neighbors.at("south") == nullptr && env_neighbors.at("north") == nullptr && env_neighbors.at("west") == nullptr && env_neighbors.at("east") == nullptr){
 			directions.append(" No available directions");
 		}
 		
@@ -35,16 +35,11 @@ using namespace lab3;
 	/*
 	* Appends the neighbors to the environment and returns the string.
 	*/ 
-	std::string Environment::neighbors(){
-		std::string temp;
-		for(unsigned int i = 0; i< env_neighbors.size(); ++i){
-			temp.append(env_neighbors.at(i));
-			temp.append(" ");
-		}
-		return temp;
+	void Environment::neighbors(){
+		//TODO
 	}
 
-	void Environment::enter(std::string env){
+	void Environment::enter(Environment* env){
 		//TODO med parameter env. 
 	}
 	void Environment::go_back(){
@@ -57,5 +52,20 @@ using namespace lab3;
 
 	void Environment::pick_up(std::string item){
 
+	}
+
+
+	void Environment::setDirection(std::string direction, Environment* env){
+		//TODO checkar för om det finns en granne där redan? 		 	
+		env_neighbors.emplace(direction, env);
+		
+	}
+
+	Environment* Environment::getDirection(std::string direction){
+		try{
+			return env_neighbors.at(direction);
+		}catch(const std::out_of_range& oor){
+			return 0;
+		}
 	}
 

@@ -4,23 +4,13 @@
 
 using namespace lab3;
 
-Indoors::Indoors(bool _south, bool _north, bool _west, bool _east, std::string _description){
-	south = _south;
-	north = _north;
-	west = _west;
-	east = _east;
-
+Indoors::Indoors(std::string _description){
 	env_description = _description;
 
 }
 
 
-Indoors::Indoors(bool _south, bool _north, bool _west, bool _east, std::string _description, std::initializer_list<std::string> items){
-	south = _south;
-	north = _north;
-	west = _west;
-	east = _east;
-
+Indoors::Indoors(std::string _description, std::initializer_list<std::string> items){
 	env_description = _description;
 	items_in_env = items; 
 }
