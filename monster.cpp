@@ -4,12 +4,12 @@
 using namespace lab3;
 
 
-Monster::Monster(std::string noice): Actor(){
+Monster::Monster(std::string noise): Actor(){
 
-	this->noice = noice;
+	this->noise = noise;
 }
-std::string Monster::make_noice(){
-	return noice;
+std::string Monster::make_noise(){
+	return noise;
 }
 
 /*
@@ -17,7 +17,7 @@ int main() {
 
 	Monster last_boss("MUAHAHAHAH");
 	Monster dragon("FCHHH");
-	std::cout << last_boss.make_noice() << std::endl;
+	std::cout << last_boss.make_noise() << std::endl;
 
 	last_boss.set_attack_points(7);
 	last_boss.set_hp(10);
