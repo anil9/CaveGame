@@ -4,7 +4,6 @@
 using namespace lab3;
 
 	Environment::Environment(std::string description){
-		//TODO
 		env_description = description;
 	}
 
