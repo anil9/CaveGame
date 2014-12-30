@@ -9,11 +9,11 @@ class Monster: public Actor{
 
 public:
 	Monster(std::string);
-	std::string make_noice();
+	std::string make_noise();
 
 
 private:
-std::string noice;
+std::string noise;
 
 };
 

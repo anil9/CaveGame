@@ -1,16 +1,17 @@
 #include "item.h"
 #include <iostream>
 #include <string>
-namespace lab3{
-	item::item(){
+using namespace lab3;
+
+	Item::Item(std::string description){
+		this->description = description;
 		//TODO
 	}
 	
 	/*
-	* Returns the description for the specific environment
+	* Returns the description of the item.
 	*/
-	std::string environment::description(std::string item){
+	std::string Item::get_description(){
 
-		return descriptions[item]; 
+		return description; 
 	}
-}
