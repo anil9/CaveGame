@@ -9,11 +9,11 @@ using namespace lab3{
 	class Container: Pickup_able{
 	public:
 		Container(int capacity, int weight, std::string description);
-		vector<Pickup_able&> containing();
+		vector<Pickup_able*> containing();
 		drop(Pickup_able&);
 
 	private:
-		vector<Pickup_able&> contains;
+		vector<Pickup_able*> contains;
 
 
 	};
