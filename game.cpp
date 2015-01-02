@@ -23,16 +23,16 @@ Game::Game(){
 
 	Monster demon(demon_cave, "YOU WILL DIE HERE");
 
-	setRealPlayer(player);
+	set_real_player(player);
 
-	run();
+	run_game();
 
 }
 void Game::set_real_player(Humanoid& real_player){
 	this->real_player = &real_player;	// Can use address for equivalence check.
 }
 
-void Game::run(){
+void Game::run_game(){
 
 	while(!game_finished) {
 		for(actor*:actors) {

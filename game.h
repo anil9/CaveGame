@@ -4,6 +4,8 @@
 #include "environment.h"
 #include "item.h"
 #include "humanoid.h"
+#include "indoors.h"
+#include "outdoors.h"
 #include <vector>
 #include <string>
 
@@ -16,16 +18,16 @@ Game();
 
 
 private:
-	set_real_player(lab3::Humanoid&);
-	run();
-	execute_command(std::string)
+	void set_real_player(Humanoid&);
+	void run_game();
+	void execute_command(std::string);
 	Humanoid* real_player;
 	bool game_finished = false;
 	bool next_turn = false;
 
 
-	vector<Actor*> actors;
-	vector<Environment*> environments;
+	std::vector<Actor*> actors;
+	std::vector<Environment*> environments;
 };
 }
 #endif
