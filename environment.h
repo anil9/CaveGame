@@ -16,7 +16,6 @@ class Environment{
 
 	std::string description();
 	void enter(Environment*);
-	void go_back();
 	void remove_item(Item*);
 	void setDirection(std::string, Environment*);
 	Environment* getDirection(std::string);
