@@ -42,9 +42,7 @@ using namespace lab3;
 	void Environment::enter(Environment* env){
 		//TODO med parameter env. 
 	}
-	void Environment::go_back(){
-		///TODO
-	}
+
 
 	void Environment::remove_item(Item* item){
 		for(typename std::vector<Item*>::iterator it = items_in_env.begin(); it != items_in_env.end(); ++it){
