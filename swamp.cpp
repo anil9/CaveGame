@@ -4,11 +4,12 @@
 
 using namespace lab3; 
 
-Swamp::Swamp(std::string _description): Environment(_description){}
+Swamp::Swamp(std::string _description): Outdoors(_description){}
 
 
-void Swamp::sink(){
+void Swamp::sink(const Actor* a){
  //TODO when a character is in the swamp it's slowly sinking.  
+	//(*a).remove_health(1);
 }
 /*
 int main(){

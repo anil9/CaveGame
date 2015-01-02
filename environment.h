@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include "item.h"
+#include "actor.h"
 
 namespace lab3{
 class Environment{
