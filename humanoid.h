@@ -1,6 +1,8 @@
 #ifndef HUMANOID_H
 #define HUMANOID_H
 #include "actor.h"
+#include "wearable.h"
+#include "pickup_able.h"
 #include <string>
 #include <vector>
 
@@ -17,7 +19,7 @@ namespace lab3{
 		void set_name(std::string);
 
 	private:
-		std::vector<Pickup_able> possessions;
+		std::vector<Pickup_able*> possessions;
 		std::string name;
 	};
 }
