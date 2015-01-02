@@ -1,6 +1,8 @@
 #include "game.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <cstring>
 
 using namespace lab3;
 
@@ -57,6 +59,26 @@ void Game::run(){
 void Game::execute_command(std::string command){
 	//TODO
 	// if command should end the player's turn set next_turn = true.
+	std::transform(command.begin(), command.end(), ::tolower);
+	std::string token =" ";
+	std::vector<std::string> commands;
+	while(token != NULL){
+		token = strtok(NULL, " ");
+		commands.insert(token);
+	}
+
+	if(commands[0] == "go"){
+		set_location(real_player.get_location().env_neighbors.at(commands[1]));
+	}
+	if(commands[0] == "pick" && commands[1] == "up"){
+		
+	}
+	if(commands[0] == "drop"){
+
+	}
+	if(commands[0] == "help"){
+		
+	}
 }
 
 int main(){
