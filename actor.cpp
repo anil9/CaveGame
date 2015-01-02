@@ -58,6 +58,10 @@ void Actor::set_location(Environment& location){
 	this->location = &location;
 }
 
+Environment& Actor::get_location() {
+	return *location;
+}
+
 // Private:
 void Actor::remove_health(int dmg){
 	if(health <= dmg) {
