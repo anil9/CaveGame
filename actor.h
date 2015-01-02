@@ -18,7 +18,8 @@ class Actor{
 	void set_hp(int);
 	virtual int get_attack_points();
 	void set_attack_points(int);
-	void set_location(Environment&)
+	void set_location(Environment&);
+	Environment& get_location();
 
 
 private:
