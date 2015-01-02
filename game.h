@@ -3,6 +3,7 @@
 #include "actor.h"
 #include "environment.h"
 #include "item.h"
+#include "humanoid.h"
 #include <vector>
 #include <string>
 
