@@ -46,14 +46,13 @@ using namespace lab3;
 		///TODO
 	}
 
-	void Environment::drop(std::string item){
-
+	void Environment::remove_item(Item* item){
+		for(typename std::vector<Item*>::iterator it = items_in_env.begin(); it != items_in_env.end(); ++it){
+			if(*it == item){
+				items_in_env.erase(it);
+			}
+		}
 	}
-
-	void Environment::pick_up(std::string item){
-
-	}
-
 
 	void Environment::setDirection(std::string direction, Environment* env){
 		//TODO checkar för om det finns en granne där redan? 		 	

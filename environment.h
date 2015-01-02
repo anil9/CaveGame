@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "item.h"
 
 namespace lab3{
 class Environment{
@@ -16,14 +17,13 @@ class Environment{
 	std::string description();
 	void enter(Environment*);
 	void go_back();
-	void drop(std::string);
-	void pick_up(std::string); 
+	void remove_item(Item*);
 	void setDirection(std::string, Environment*);
 	Environment* getDirection(std::string);
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;
-	std::vector<std::string> items_in_env; 
+	std::vector<Item*> items_in_env; 
 	std::string env_description; 
 };
 }
