@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-Actor::Actor() {
+Actor::Actor(Environment& location) {
 
-	//TODO location?
+	this->location = &location;
 }
 std::string Actor::get_type() {
 	//TODO
@@ -51,6 +51,11 @@ int Actor::get_attack_points() {
 int Actor::get_hp() {
 
 	return health;
+}
+
+void Actor::set_location(Environment& location){
+
+	this->location = &location;
 }
 
 // Private:
