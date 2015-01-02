@@ -15,3 +15,7 @@ using namespace lab3;
 
 		return description; 
 	}
+
+	bool Item::operator==(const Item* it)const{
+			return (*this).description == (*it).description;
+	}

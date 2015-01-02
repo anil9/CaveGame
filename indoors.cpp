@@ -8,6 +8,6 @@ Indoors::Indoors(std::string _description): Environment(_description){}
 
 
 
-Indoors::Indoors(std::string _description, std::initializer_list<std::string> items): Environment(_description){
+Indoors::Indoors(std::string _description, std::initializer_list<Item> items): Environment(_description){
 	items_in_env = items; 
 }

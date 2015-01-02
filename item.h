@@ -7,6 +7,7 @@ class Item{
  public:
 	Item(std::string); 
 	std::string get_description();
+	bool operator==(const Item*) const;
 
 private:
 	std::string description; 
