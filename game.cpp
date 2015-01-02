@@ -26,11 +26,11 @@ Game::Game(){
 	set_real_player(player);
 
 	run_game();
-
 }
 void Game::set_real_player(Humanoid& real_player){
 	this->real_player = &real_player;	// Can use address for equivalence check.
 }
+
 
 void Game::run_game(){
 
