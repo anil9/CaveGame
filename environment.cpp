@@ -1,5 +1,6 @@
 #include "environment.h"
 #include <iostream>
+#include <map>
 #include <string>
 using namespace lab3;
 
@@ -16,16 +17,16 @@ using namespace lab3;
 	*/ 
 	std::string Environment::directions(){
 		std::string directions;
-		if(env_neighbors.at("south") != nullptr){
+		if(env_neighbors.at("south") != NULL){
 			directions.append(" south");
-		} if(env_neighbors.at("north") != nullptr){
+		} if(env_neighbors.at("north") != NULL){
 			directions.append(" north");
-		} if(env_neighbors.at("west") != nullptr){
+		} if(env_neighbors.at("west") != NULL){
 			directions.append(" west");
-		} if(env_neighbors.at("east") != nullptr){
+		} if(env_neighbors.at("east") != NULL){
 			directions.append(" east");
 		}
-		if(env_neighbors.at("south") == nullptr && env_neighbors.at("north") == nullptr && env_neighbors.at("west") == nullptr && env_neighbors.at("east") == nullptr){
+		if(env_neighbors.at("south") == NULL && env_neighbors.at("north") == NULL && env_neighbors.at("west") == NULL && env_neighbors.at("east") == NULL){
 			directions.append(" No available directions");
 		}
 		
