@@ -9,7 +9,7 @@ class Actor{
  public:
 	Actor(Environment&); 
 	std::string get_type();
-	void action();
+	std::string action();
 	void go(std::string);
 	void fight(Actor&);
 	std::string sense();

@@ -11,8 +11,10 @@ std::string Actor::get_type() {
 	return type;
 }
 
-void Actor::action() {
+std::string Actor::action() {
 	//TODO
+	//walk in direction or fight
+	//return a string of what happend.
 }
 
 void Actor::go(std::string direction) {
