@@ -8,10 +8,11 @@
 
 namespace lab3{
 class Environment{
- protected:
- 	Environment(std::string); 
+ 	 
 	
  public:
+ 	Environment(std::string);
+ 	Environment(std::string,std::vector<Item*>);
 	std::string directions();
 	void neighbors();
 

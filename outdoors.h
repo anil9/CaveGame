@@ -2,13 +2,13 @@
 #define OUTDOORS_H
 #include "environment.h"
 #include <string>
-#include <initializer_list>
+#include <vector>
 
 namespace lab3{
 	class Outdoors: public Environment{
 	public:	
 		Outdoors(std::string);
-		Outdoors(std::string, std::initializer_list<Item*>); 
+		Outdoors(std::string, std::vector<Item*>); 
 		std::string weather();
 	
 	private:
