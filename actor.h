@@ -1,6 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 #include "environment.h"
+#include "unwearable.h"
 #include <string>
 
 namespace lab3{
