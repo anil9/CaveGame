@@ -6,6 +6,10 @@ using namespace lab3;
 	Environment::Environment(std::string description){
 		env_description = description;
 	}
+	Environment::Environment(std::string description, std::vector<Item*> items){
+		env_description = description;
+		items_in_env = items;
+	}
 
 	/*
 	* appends the string with the available directions and returns the string. 

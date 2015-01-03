@@ -2,13 +2,13 @@
 #define INDOORS_H
 #include "environment.h"
 #include <string>
-#include <initializer_list>
+#include <vector>
 
 namespace lab3{
 	class Indoors: public Environment{
 	public:
 		Indoors(std::string);
-		Indoors(std::string, std::initializer_list<Item>);
+		Indoors(std::string, std::vector<Item*>);
 	private:
 	};
 }
