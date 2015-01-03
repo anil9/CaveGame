@@ -19,7 +19,7 @@ class Environment{
 	std::string description();
 	void enter(Environment*);
 	void remove_item(Item*);
-	void setDirection(std::string, Environment*);
+	void setDirection(std::string, Environment&);
 	Environment* getDirection(std::string);
 
 protected:
