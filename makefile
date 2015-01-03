@@ -34,3 +34,5 @@ object_files:
 	g++ -c unwearable.cpp
 	g++ -c weapon.cpp
 	g++ -c armor.cpp
+clear:
+	rm *.o
