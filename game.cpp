@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <cstring>
+//#include <cstring>
 
 using namespace lab3;
 
@@ -26,7 +26,7 @@ Game::Game(){
 
 	Humanoid player("Kalle", my_cabin);
 
-	Monster demon(demon_cave, "YOU WILL DIE HERE");
+	Monster demon("YOU WILL DIE HERE",demon_cave);
 
 	set_real_player(player);
 
@@ -40,8 +40,8 @@ void Game::set_real_player(Humanoid& real_player){
 void Game::run_game(){
 
 	while(!game_finished) {
-		for(actor*:actors) {
-			if(actor != &real_player){
+		for(Actor* actor:actors) {
+			if(actor != real_player){
 				actor->action();
 			} 
 			else {
@@ -49,7 +49,7 @@ void Game::run_game(){
 				next_turn = false;
 				while(!next_turn){
 					std::string command = "";
-					std::cin.getline(command, 256);	// maximum number of characters
+					std::getline(std::cin, command);	// maximum number of characters
 					execute_command(command);
 				}
 			}
@@ -62,7 +62,7 @@ void Game::run_game(){
 void Game::execute_command(std::string command){
 	//TODO
 	// if command should end the player's turn set next_turn = true.
-	std::transform(command.begin(), command.end(), ::tolower);
+	/*std::transform(command.begin(), command.end(), ::tolower);
 	std::string token =" ";
 	std::vector<std::string> commands;
 	while(token != NULL){
@@ -82,6 +82,7 @@ void Game::execute_command(std::string command){
 	if(commands[0] == "help"){
 		
 	}
+	*/
 }
 
 int main(){

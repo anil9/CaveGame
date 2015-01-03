@@ -7,6 +7,7 @@
 #include "indoors.h"
 #include "outdoors.h"
 #include "monster.h"
+#include "unwearable.h"
 #include <vector>
 #include <string>
 
