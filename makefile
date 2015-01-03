@@ -14,3 +14,6 @@ swamp:
 
 indoors:
 	g++ $(FLAGS) environment.cpp indoors.cpp 
+
+game:
+	g++ $(FLAGS) game.cpp
