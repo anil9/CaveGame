@@ -84,6 +84,15 @@ void Game::execute_command(std::string command){
 	if(commands[0] == "help"){
 		
 	}
+	if(commands[0] == "fight"){
+
+	}
+	if(commands[0] == "sense"){
+
+	}
+	if(commands[0] == "use"){
+		//kolla om commands[1] == "special"
+	}
 	
 }
 
