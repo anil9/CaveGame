@@ -6,8 +6,10 @@
 
 namespace lab3{
 	class Indoors: public Environment{
+	public:
 		Indoors(std::string);
 		Indoors(std::string, std::initializer_list<Item>);
+	private:
 	};
 }
 
