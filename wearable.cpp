@@ -1,4 +1,4 @@
-#include "wearble.h"
+#include "wearable.h"
 
 using namespace lab3;
 

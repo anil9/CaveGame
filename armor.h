@@ -6,7 +6,7 @@
 namespace lab3{
 	class Armor: public Wearable{
 	public:
-		Armor(int protection, int max_durability, int weight, std::description);
+		Armor(int protection, int max_durability, int weight, std::string description);
 		int get_max_durability();
 		int get_current_durability();
 		void set_current_durability(int);

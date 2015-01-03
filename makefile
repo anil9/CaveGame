@@ -18,21 +18,21 @@ indoors:
 game: game.cpp object_files
 	g++ $(FLAGS) game.cpp actor.o humanoid.o monster.o animal.o environment.o indoors.o outdoors.o swamp.o item.o obstacle.o pickup_able.o container.o wearable.o unwearable.o weapon.o armor.o
 object_files:
-	g++ -c actor.cpp
-	g++ -c humanoid.cpp
-	g++ -c monster.cpp
-	g++ -c animal.cpp
-	g++ -c environment.cpp
-	g++ -c indoors.cpp
-	g++ -c outdoors.cpp
-	g++ -c swamp.cpp
-	g++ -c item.cpp
-	g++ -c obstacle.cpp
-	g++ -c pickup_able.cpp
-	g++ -c container.cpp
-	g++ -c wearable.cpp
-	g++ -c unwearable.cpp
-	g++ -c weapon.cpp
-	g++ -c armor.cpp
+	g++ $(FLAGS) -c actor.cpp
+	g++ $(FLAGS) -c humanoid.cpp
+	g++ $(FLAGS) -c monster.cpp
+	g++ $(FLAGS) -c animal.cpp
+	g++ $(FLAGS) -c environment.cpp
+	g++ $(FLAGS) -c indoors.cpp
+	g++ $(FLAGS) -c outdoors.cpp
+	g++ $(FLAGS) -c swamp.cpp
+	g++ $(FLAGS) -c item.cpp
+	g++ $(FLAGS) -c obstacle.cpp
+	g++ $(FLAGS) -c pickup_able.cpp
+	g++ $(FLAGS) -c container.cpp
+	g++ $(FLAGS) -c wearable.cpp
+	g++ $(FLAGS) -c unwearable.cpp
+	g++ $(FLAGS) -c weapon.cpp
+	g++ $(FLAGS) -c armor.cpp
 clear:
 	rm *.o
