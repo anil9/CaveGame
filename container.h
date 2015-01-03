@@ -5,16 +5,17 @@
 #include <vector>
 
 
-using namespace lab3{
+ namespace lab3{
 	class Container: Pickup_able{
 	public:
 		Container(int capacity, int weight, std::string description);
-		vector<Pickup_able*> containing();
-		drop(Pickup_able&);
+		std::vector<Pickup_able*> containing();
+		void drop(Pickup_able&);
 
 	private:
-		vector<Pickup_able*> contains;
-
+		std::vector<Pickup_able*> contains;
+		int capacity;
 
 	};
 }
+#endif
