@@ -3,7 +3,7 @@
 
 using namespace lab3;
 
-Humanoid::Humanoid(std::string name): Actor() {
+Humanoid::Humanoid(std::string name, Environment& location): Actor(location) {
 	this->name = name;
 }
 void Humanoid::change_gear(Wearable& wearable) {

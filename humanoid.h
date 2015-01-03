@@ -3,6 +3,7 @@
 #include "actor.h"
 #include "wearable.h"
 #include "pickup_able.h"
+#include "environment.h"
 #include <string>
 #include <vector>
 
@@ -10,7 +11,7 @@ namespace lab3{
 
 	class Humanoid: public Actor {
 	public:
-		Humanoid(std::string);
+		Humanoid(std::string, Environment&);
 		void change_gear(Wearable&);
 		void talk_to(Actor&);
 		void pick_up(Pickup_able&);
