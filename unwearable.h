@@ -8,7 +8,7 @@ public:
 	Unwearable(std::string use_text, int weight, std::string description);
 	std::string use();
 private:
-	use_text;
+	std::string use_text;
 
 };
 }
