@@ -9,8 +9,11 @@ using namespace lab3;
 
 Game::Game(){
 
+	Unwearable coin("I see no use of this item", 4, "Just a regular coin.");
+	Unwearable* coinp = &coin;
+
 	Indoors my_cabin("This is my cabin");
-	Outdoors forest1("The forest. If I look around I might find items.", {Unwearable("I see no use of this item", 4, "Just a regular coin.")})
+	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
 
