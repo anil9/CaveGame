@@ -24,7 +24,7 @@ Game::Game(){
 	demon_cave.setDirection("east", winning_place);
 	winning_place.setDirection("west", demon_cave);
 
-	Humanoid player(my_cabin);
+	Humanoid player("Kalle", my_cabin);
 
 	Monster demon(demon_cave, "YOU WILL DIE HERE");
 

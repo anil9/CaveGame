@@ -6,6 +6,7 @@
 #include "humanoid.h"
 #include "indoors.h"
 #include "outdoors.h"
+#include "monster.h"
 #include <vector>
 #include <string>
 
