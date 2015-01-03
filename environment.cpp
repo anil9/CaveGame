@@ -74,3 +74,7 @@ using namespace lab3;
 		}
 	}
 
+	Environment* Environment::getNeighbor(std::string neighbor){
+		return env_neighbors[neighbor];
+	}
+
