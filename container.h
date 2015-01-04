@@ -8,7 +8,7 @@
  namespace lab3{
 	class Container: Pickup_able{
 	public:
-		Container(int capacity, int weight, std::string description);
+		Container(int capacity, int weight, std::string description, std::string name);
 		std::vector<Pickup_able*> containing();
 		void drop(Pickup_able&);
 

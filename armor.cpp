@@ -2,7 +2,7 @@
 #include <string>
 
 using namespace lab3;
-Armor::Armor(int protection, int max_durability, int weight, std::string description): Wearable(weight, description){
+Armor::Armor(int protection, int max_durability, int weight, std::string description, std::string name): Wearable(weight, description, name){
 	this->protection = protection;
 	this->max_durability = max_durability;
 }

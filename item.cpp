@@ -3,9 +3,10 @@
 #include <string>
 using namespace lab3;
 
-	Item::Item(std::string description){
+	Item::Item(std::string description, std::string name, bool pickup_able){
 		this->description = description;
-		//TODO
+		this->name = name;
+		this->pickup_able = pickup_able;
 	}
 	
 	/*
@@ -22,4 +23,10 @@ using namespace lab3;
 
 	std::string Item::getName(){
 		return name;
+	}
+
+	Item::~Item(){}
+
+	bool Item::isPickupable(){
+		return pickup_able;
 	}

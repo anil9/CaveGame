@@ -14,7 +14,7 @@ namespace lab3{
 		Humanoid(std::string, Environment&);
 		void change_gear(Wearable&);
 		void talk_to(Actor&);
-		void pick_up(Pickup_able&);
+		void pick_up(Item&);
 		std::string get_name();
 		void drop(Pickup_able&);
 		void set_name(std::string);

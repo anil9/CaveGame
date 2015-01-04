@@ -2,7 +2,7 @@
 
 using namespace lab3;
 
-Wearable::Wearable(int weight, std::string description) : Pickup_able(weight, description){
+Wearable::Wearable(int weight, std::string description, std::string name) : Pickup_able(weight, description, name){
 	//TODO
 }
 void Wearable::wear(){

@@ -12,9 +12,8 @@ using namespace lab3;
 
 Game::Game(){
 
-	Unwearable coin("I see no use of this item", 4, "Just a regular coin.");
+	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Unwearable* coinp = &coin;
-
 	Indoors my_cabin("This is my cabin");
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
@@ -84,13 +83,21 @@ void Game::execute_command(std::string command){
 		next_turn = true;
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-		//real_player->pick_up()
+		Item* item = (real_player->get_location()).getItem(commands[2]);
+		std::cout<< "itempekare skapad" <<std::endl;
+		if(item->isPickupable()){
+			real_player->pick_up(*item);	
+		}else{
+			std::cout << "That item is not pickupable"<< std::endl;
+		}
+		
+
 	}
 	else if(commands[0] == "drop"){
 
 	}
 	else if(commands[0] == "help"){
-		
+		std::cout << "Vilka kommandon man kan använda som spelare" << std::endl;
 	}
 	else if(commands[0] == "fight"){
 
@@ -100,6 +107,9 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
+	}
+	else if(commands[0] == "talk" && commands[1] == "to"){
+
 	}
 	
 }
