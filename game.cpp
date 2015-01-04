@@ -25,11 +25,13 @@ Game::Game(){
 	winning_place.setDirection("west", demon_cave);
 
 	Humanoid player("Kalle", my_cabin);
-
 	Monster demon("YOU WILL DIE HERE",demon_cave);
+	
+	actors.push_back(&demon);
+	actors.push_back(&player);
 
 	set_real_player(player);
-
+	std::cout <<"initialized game successfully, running game.\n"; 
 	run_game();
 }
 void Game::set_real_player(Humanoid& real_player){
@@ -42,6 +44,7 @@ void Game::run_game(){
 	while(!game_finished) {
 		for(Actor* actor:actors) {
 			if(actor != real_player){
+				std::cout << "unreal player turn:\n";
 				actor->action();
 			} 
 			else {

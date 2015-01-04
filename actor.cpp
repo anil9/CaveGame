@@ -15,6 +15,7 @@ std::string Actor::action() {
 	//TODO
 	//walk in direction or fight
 	//return a string of what happend.
+	return "";
 }
 
 void Actor::go(std::string direction) {
