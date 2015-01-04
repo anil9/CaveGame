@@ -39,17 +39,6 @@ using namespace lab3;
 		return env_description;
 	}
 
-	/*
-	* Appends the neighbors to the environment and returns the string.
-	*/ 
-	void Environment::neighbors(){
-		//TODO
-	}
-
-	void Environment::enter(Environment* env){
-		//TODO med parameter env. 
-	}
-
 
 	void Environment::remove_item(Item* item){
 		for(typename std::vector<Item*>::iterator it = items_in_env.begin(); it != items_in_env.end(); ++it){

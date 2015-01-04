@@ -12,7 +12,7 @@ namespace lab3{
 		std::string weather();
 	
 	private:
-		std::vector<std::string> weather_description;
+		const std::vector<std::string> weather_description = {"Det regnar", "Det snöar", "Vinden piskar", "Åskan mullrar", "Helt lugnt väder"};
 
 	};
 }

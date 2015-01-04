@@ -7,7 +7,7 @@ namespace lab3{
 	class Swamp: public Outdoors{
 	public:
 		Swamp(std::string);
-		void sink(const Actor*);
+		void sink(Actor*);
 
 	private: 
 

@@ -21,10 +21,10 @@ class Actor{
 	void set_attack_points(int);
 	void set_location(Environment&);
 	Environment& get_location();
-
+	void remove_health(int);
 
 private:
-	void remove_health(int);
+	
 	std::string type;
 	int health;
 	int default_attack_points;

@@ -14,10 +14,8 @@ class Environment{
  	Environment(std::string);
  	Environment(std::string,std::vector<Item*>);
 	std::string directions();
-	void neighbors();
-
+	
 	std::string description();
-	void enter(Environment*);
 	void remove_item(Item*);
 	void setDirection(std::string, Environment&);
 	Environment* getDirection(std::string);
