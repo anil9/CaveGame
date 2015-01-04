@@ -78,3 +78,11 @@ using namespace lab3;
 		return env_neighbors[neighbor];
 	}
 
+	Item* Environment::getItem(std::string item){
+		for(unsigned int i = 0; i<items_in_env.size(); ++i){
+			if((items_in_env[i])->getName() ==item){
+				return items_in_env[i];
+			}
+		}
+		return NULL;
+	}

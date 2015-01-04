@@ -22,6 +22,7 @@ class Environment{
 	void setDirection(std::string, Environment&);
 	Environment* getDirection(std::string);
 	Environment* getNeighbor(std::string);
+	Item* getItem(std::string);
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;

@@ -8,9 +8,10 @@ class Item{
 	Item(std::string); 
 	std::string get_description();
 	bool operator==(const Item*) const;
-
+	std::string getName();
 private:
 	std::string description; 
+	std::string name; 
 
 };
 }
