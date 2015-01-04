@@ -36,3 +36,4 @@ object_files:
 	g++ $(FLAGS) -c armor.cpp
 clear:
 	rm *.o
+	rm *.out
