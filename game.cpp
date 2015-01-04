@@ -1,6 +1,7 @@
 #include "game.h"
 #include <iostream>
 #include <string>
+#include <sstream>
 //#include <ctype.h>
 //#include <functional>
 #include <algorithm>
@@ -68,11 +69,14 @@ void Game::execute_command(std::string command){
 	//TODO
 	// if command should end the player's turn set next_turn = true.
 	std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-	std::string token =" ";
+	
 	std::vector<std::string> commands;
-	while(token != ""){
-		token = strtok(NULL, " ");
-		commands.push_back(token);
+	
+	std::stringstream ss(command);
+	std::string s;
+
+	while(getline(ss, s, ' ')){
+		commands.push_back(s);
 	}
 
 	if(commands[0] == "go"){
