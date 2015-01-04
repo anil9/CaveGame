@@ -29,6 +29,8 @@ private:
 	int health;
 	int default_attack_points;
 	Environment* location;
+	bool went_west = false;
+	std::string move_next = "east";
 
 
 };

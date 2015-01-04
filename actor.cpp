@@ -14,6 +14,17 @@ std::string Actor::get_type() {
 std::string Actor::action() {
 	//TODO
 	//walk in direction or fight
+	// if fight then fight else
+	set_location(*(get_location().getNeighbor(move_next)));
+	if(went_west){
+		move_next="east";
+		went_west=false;
+		return "actor went west";	
+	} else {
+		move_next="west";
+		went_west=true;
+		return "actor went east";
+	}
 	//return a string of what happend.
 	return "";
 }
