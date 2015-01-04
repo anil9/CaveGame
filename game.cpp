@@ -47,7 +47,8 @@ void Game::run_game(){
 		for(Actor* actor:actors) {
 			if(actor != real_player){
 				std::cout << "unreal player turn:\n";
-				actor->action();
+				std::cout << actor->action() << std::endl;
+
 			} 
 			else {
 				std::cout << "your turn\n";
