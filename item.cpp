@@ -19,3 +19,7 @@ using namespace lab3;
 	bool Item::operator==(const Item* it)const{
 			return (*this).description == (*it).description;
 	}
+
+	std::string Item::getName(){
+		return name;
+	}
