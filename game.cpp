@@ -77,6 +77,7 @@ void Game::execute_command(std::string command){
 
 	if(commands[0] == "go"){
 		real_player->set_location(*(real_player->get_location().getNeighbor(commands[1])));
+		next_turn = true;
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
 		//real_player->pick_up()

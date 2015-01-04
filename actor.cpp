@@ -57,7 +57,6 @@ int Actor::get_hp() {
 }
 
 void Actor::set_location(Environment& location){
-
 	this->location = &location;
 }
 
