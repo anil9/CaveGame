@@ -2,7 +2,7 @@
 #include <string>
 using namespace lab3;
 
-Weapon::Weapon(int dmg, int weight, std::string description): Wearable(weight, description){
+Weapon::Weapon(int dmg, int weight, std::string description, std::string name): Wearable(weight, description, name){
 	damage = dmg;
 }
 std::string Weapon::get_effect(){

@@ -12,7 +12,7 @@ void Humanoid::change_gear(Wearable& wearable) {
 void Humanoid::talk_to(Actor& actor) {
 	//todo
 }
-void Humanoid::pick_up(Pickup_able& picked_up) {
+void Humanoid::pick_up(Item& item) {
 	// convert "pick up <sword of awesome>"-string to instance: Weapon awesome_sword
 	// then add to possession vector
 }

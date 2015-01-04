@@ -6,7 +6,7 @@
 namespace lab3{
 	class Weapon: public Wearable{
 	public:
-		Weapon(int dmg, int weight, std::string description);
+		Weapon(int dmg, int weight, std::string description, std::string name);
 		int get_damage();
 		std::string get_effect();
 		void set_effect(std::string);
