@@ -51,12 +51,17 @@ std::string Actor::sense() {
 	retString += this->get_location()->getDescription();
 	std::vector<Item*> items = this->get_location()->getItems();
 	if(items.begin() != items.end()){
-			retString += "\n Oh look there is some random items in this env! \n";
-			for(auto i = items.begin(); i!=items.end();++i){
-				retString += (*i)->getName();
+		retString += "Oh look there is some random items in this env!";
+		for(auto i = items.begin(); i!=items.end();++i){
 				retString += "\n";
-			}
-		} 
+				retString += (*i)->getName();
+		}
+		retString += "\n";
+	}
+	Actor* another_actor = another_actor_in_range();
+	if(another_actor != NULL) {
+		retString += "There's another actor here: " + another_actor->get_type();
+	} 
 	return retString; //TODO
 }
 
@@ -81,7 +86,6 @@ int Actor::get_attack_points() {
 	return default_attack_points;
 }
 int Actor::get_hp() {
-
 	return health;
 }
 
@@ -105,18 +109,14 @@ void Actor::remove_health(int dmg){
 }
 
 Actor* Actor::another_actor_in_range(){
-	for(Actor* actor:get_location()->get_actors()){
+	std::vector<Actor*> other_actors = get_location()->get_actors(); 
+	for(Actor* actor:other_actors){
 		if(actor != this) {
 			return actor;
 		}
-		else{
-			return NULL;
-		}
 	}
-	std::cout <<"fel i actor:another_actor_in_range"<< std::endl;
 	return NULL;
 }
-
 /*
 int main() {
 	Actor test1;
