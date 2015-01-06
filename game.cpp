@@ -55,7 +55,7 @@ void Game::run_game(){
 				next_turn = false;
 				while(!next_turn){
 					std::string command = "";
-					std::getline(std::cin, command);	// maximum number of characters
+					std::getline(std::cin, command);
 					execute_command(command);
 				}
 			}
@@ -84,7 +84,9 @@ void Game::execute_command(std::string command){
 		next_turn = true;
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-		Item* item = (real_player->get_location())->getItem(commands[2]);
+
+		Item* item = real_player->get_location()->getItem(commands[2]);
+
 		if(item->isPickupable()){
 			real_player->pick_up(item);	
 		}else{
@@ -105,6 +107,7 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "sense"){
 		std::cout<< real_player->sense() << std::endl;
+		next_turn = true;		// Shouldn't end turn, this is only for testing.
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"

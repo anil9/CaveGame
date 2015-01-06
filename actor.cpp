@@ -5,6 +5,7 @@ using namespace lab3;
 Actor::Actor(Environment& location) {
 
 	this->location = &location;
+	get_location()->add_actor(this);
 }
 std::string Actor::get_type() {
 	//TODO
@@ -15,15 +16,22 @@ std::string Actor::action() {
 	//TODO
 	//walk in direction or fight
 	// if fight then fight else
-	set_location(*(get_location()->getNeighbor(move_next)));
-	if(went_west){
-		move_next="east";
-		went_west=false;
-		return "actor went west";	
-	} else {
-		move_next="west";
-		went_west=true;
-		return "actor went east";
+	Actor* another_actor = another_actor_in_range();
+	if(another_actor != NULL){
+		fight(another_actor);
+		return "Actor fought another actor";
+	}
+	else {
+		set_location(*(get_location()->getNeighbor(move_next)));
+		if(went_west){
+			move_next="east";
+			went_west=false;
+			return "actor went west";	
+		} else {
+			move_next="west";
+			went_west=true;
+			return "actor went east";
+		}
 	}
 	//return a string of what happend.
 	return "";
@@ -33,8 +41,8 @@ void Actor::go(std::string direction) {
 	//TODO
 }
 
-void Actor::fight(Actor& target) {
-	target.remove_health(get_attack_points());
+void Actor::fight(Actor* target) {
+	target->remove_health(get_attack_points());
 }
 
 std::string Actor::sense() {
@@ -43,12 +51,17 @@ std::string Actor::sense() {
 	retString += this->get_location()->getDescription();
 	std::vector<Item*> items = this->get_location()->getItems();
 	if(items.begin() != items.end()){
-			retString += "\n Oh look there is some random items in this env! \n";
-			for(auto i = items.begin(); i!=items.end();++i){
-				retString += (*i)->getName();
+		retString += "Oh look there is some random items in this env!";
+		for(auto i = items.begin(); i!=items.end();++i){
 				retString += "\n";
-			}
-		} 
+				retString += (*i)->getName();
+		}
+		retString += "\n";
+	}
+	Actor* another_actor = another_actor_in_range();
+	if(another_actor != NULL) {
+		retString += "There's another actor here: " + another_actor->get_type();
+	} 
 	return retString; //TODO
 }
 
@@ -73,12 +86,13 @@ int Actor::get_attack_points() {
 	return default_attack_points;
 }
 int Actor::get_hp() {
-
 	return health;
 }
 
 void Actor::set_location(Environment& location){
+	get_location()->remove_actor(this);
 	this->location = &location;
+	get_location()->add_actor(this);
 }
 
 Environment* Actor::get_location() {
@@ -94,15 +108,12 @@ void Actor::remove_health(int dmg){
 	}
 }
 
-/*
-int main() {
-	Actor test1;
-	test1.set_attack_points(4);
-	Actor test2;
-	test2.set_hp(10);
-	test1.fight(test2);
-	std::cout << test2.get_hp() << std::endl;
-
-	return 0;
+Actor* Actor::another_actor_in_range(){
+	std::vector<Actor*> other_actors = get_location()->get_actors(); 
+	for(Actor* actor:other_actors){
+		if(actor != this) {
+			return actor;
+		}
+	}
+	return NULL;
 }
-*/

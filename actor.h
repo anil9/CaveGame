@@ -11,7 +11,7 @@ class Actor{
 	std::string get_type();
 	std::string action();
 	void go(std::string);
-	void fight(Actor&);
+	void fight(Actor*);
 	std::string sense();
 	void use_special();		// TODO: Should be pure virtual.
 	void dead();
@@ -22,10 +22,11 @@ class Actor{
 	void set_location(Environment&);
 	Environment* get_location();
 	void remove_health(int);
+	Actor* another_actor_in_range();
 
 private:
 	
-	std::string type;
+	std::string type="";
 	int health;
 	int default_attack_points;
 	Environment* location;
