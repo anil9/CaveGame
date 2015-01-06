@@ -87,7 +87,7 @@ void Game::execute_command(std::string command){
 		Item* item = (real_player->get_location())->getItem(commands[2]);
 		
 		if(item->isPickupable()){
-			real_player->pick_up(*item);	
+			real_player->pick_up(item);	
 		}else{
 			std::cout << "That item is not pickupable"<< std::endl;
 		}
@@ -104,14 +104,7 @@ void Game::execute_command(std::string command){
 
 	}
 	else if(commands[0] == "sense"){
-		std::cout<< real_player->get_location()->getDescription()<<std::endl;
-		std::vector<Item*> items = real_player->get_location()->getItems();
-		if(items.begin() != items.end()){
-			std::cout<<"Oh look there is some random items in this env!"<<std::endl;
-			for(auto i = items.begin(); i!=items.end();++i){
-				std::cout<<(*i)->getName()<<std::endl;
-			}
-		} 
+		std::cout<< real_player->sense() << std::endl;
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
