@@ -55,7 +55,7 @@ void Game::run_game(){
 				next_turn = false;
 				while(!next_turn){
 					std::string command = "";
-					std::getline(std::cin, command);	// maximum number of characters
+					std::getline(std::cin, command);
 					execute_command(command);
 				}
 			}
