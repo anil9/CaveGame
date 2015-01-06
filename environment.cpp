@@ -75,3 +75,11 @@ using namespace lab3;
 		}
 		return NULL;
 	}
+
+	std::string Environment::getDescription(){
+		return env_description;
+	}
+
+	std::vector<Item*> Environment::getItems(){
+		return items_in_env;
+	}

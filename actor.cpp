@@ -15,7 +15,7 @@ std::string Actor::action() {
 	//TODO
 	//walk in direction or fight
 	// if fight then fight else
-	set_location(*(get_location().getNeighbor(move_next)));
+	set_location(*(get_location()->getNeighbor(move_next)));
 	if(went_west){
 		move_next="east";
 		went_west=false;
@@ -71,8 +71,8 @@ void Actor::set_location(Environment& location){
 	this->location = &location;
 }
 
-Environment& Actor::get_location() {
-	return *location;
+Environment* Actor::get_location() {
+	return location;
 }
 
 void Actor::remove_health(int dmg){
