@@ -6,15 +6,17 @@
 
 
  namespace lab3{
-	class Container: Pickup_able{
+	class Container: public Item{
 	public:
-		Container(int capacity, int weight, std::string description, std::string name);
+		Container(int capacity);
 		std::vector<Pickup_able*> containing();
-		void drop(Pickup_able&);
+		bool drop(Pickup_able*);
+		bool pick_up(Pickup_able*);
 
 	private:
 		std::vector<Pickup_able*> contains;
 		int capacity;
+		int used;
 
 	};
 }

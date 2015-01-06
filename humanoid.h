@@ -4,11 +4,11 @@
 #include "wearable.h"
 #include "pickup_able.h"
 #include "environment.h"
+#include "container.h"
 #include <string>
 #include <vector>
 
 namespace lab3{
-
 	class Humanoid: public Actor {
 	public:
 		Humanoid(std::string, Environment&);
@@ -16,12 +16,12 @@ namespace lab3{
 		void talk_to(Actor&);
 		void pick_up(Item*);
 		std::string get_name();
-		void drop(Pickup_able&);
+		void drop(Item*);
 		void set_name(std::string);
-
+		Container* get_container();
 	private:
-		std::vector<Pickup_able*> possessions;
 		std::string name;
+		Container mybag;
 	};
 }
 #endif
