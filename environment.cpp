@@ -42,11 +42,14 @@ using namespace lab3;
 
 
 	void Environment::remove_item(Item* item){
-		for(typename std::vector<Item*>::iterator it = items_in_env.begin(); it != items_in_env.end(); ++it){
-			if(*it == item){
-				items_in_env.erase(it);
+		for(int i=0; i< items_in_env.size();++i){
+			if(items_in_env[i] == item){
+				items_in_env.erase(items_in_env.begin() + i);
 			}
 		}
+	}
+	void Environment::add_item(Item* item){
+		items_in_env.push_back(item);
 	}
 
 	void Environment::setDirection(std::string direction, Environment& env){

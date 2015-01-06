@@ -3,7 +3,7 @@
 
 using namespace lab3;
 
-Humanoid::Humanoid(std::string name, Environment& location): Actor(location) {
+Humanoid::Humanoid(std::string name, Environment& location): Actor(location), mybag(50) {
 	this->name = name;
 }
 void Humanoid::change_gear(Wearable& wearable) {
@@ -13,14 +13,21 @@ void Humanoid::talk_to(Actor& actor) {
 	//todo
 }
 void Humanoid::pick_up(Item* item) {
-	// convert "pick up <sword of awesome>"-string to instance: Weapon awesome_sword
-	// then add to possession vector
+	
+	get_location()->remove_item(item);
+	Pickup_able* pa = dynamic_cast<Pickup_able*>(item); 
+	mybag.pick_up(pa);
+		
+
 }
 std::string Humanoid::get_name() {
 	return name;
 }
-void Humanoid::drop(Pickup_able& dropping_item){
+void Humanoid::drop(Item* dropping_item){
 	//convert "drop <sword of awesome>"-string to instance: Weapon awesome_sword
+	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 
+	mybag.drop(pa);
+	get_location()->add_item(dropping_item);
 }
 
 
