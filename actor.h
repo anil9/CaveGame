@@ -26,7 +26,7 @@ class Actor{
 
 private:
 	
-	std::string type;
+	std::string type="";
 	int health;
 	int default_attack_points;
 	Environment* location;

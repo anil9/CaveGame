@@ -105,6 +105,7 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "sense"){
 		std::cout<< real_player->sense() << std::endl;
+		next_turn = true;		// Shouldn't end turn, this is only for testing.
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
