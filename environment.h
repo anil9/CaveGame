@@ -22,10 +22,12 @@ class Environment{
 	void setDirection(std::string, Environment&);
 	Environment* getDirection(std::string);
 	Environment* getNeighbor(std::string);
+	std::string getDescription();
 	Item* getItem(std::string);
 	void add_actor(Actor*);
 	void remove_actor(Actor*);
 	std::vector<Actor*> get_actors();
+	std::vector<Item*> getItems();
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;

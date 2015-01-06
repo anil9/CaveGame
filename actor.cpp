@@ -47,7 +47,17 @@ void Actor::fight(Actor* target) {
 
 std::string Actor::sense() {
 	//TODO
-	return "you sense nothing"; //TODO
+	std::string retString = ""; 
+	retString += this->get_location()->getDescription();
+	std::vector<Item*> items = this->get_location()->getItems();
+	if(items.begin() != items.end()){
+			retString += "\n Oh look there is some random items in this env! \n";
+			for(auto i = items.begin(); i!=items.end();++i){
+				retString += (*i)->getName();
+				retString += "\n";
+			}
+		} 
+	return retString; //TODO
 }
 
 void Actor::use_special() {
@@ -106,16 +116,3 @@ Actor* Actor::another_actor_in_range(){
 	std::cout <<"fel i actor:another_actor_in_range"<< std::endl;
 	return NULL;
 }
-
-/*
-int main() {
-	Actor test1;
-	test1.set_attack_points(4);
-	Actor test2;
-	test2.set_hp(10);
-	test1.fight(test2);
-	std::cout << test2.get_hp() << std::endl;
-
-	return 0;
-}
-*/

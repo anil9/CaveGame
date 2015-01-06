@@ -88,3 +88,11 @@ using namespace lab3;
 	std::vector<Actor*> Environment::get_actors() {
 		return actors_in_env;
 	}
+
+	std::string Environment::getDescription(){
+		return env_description;
+	}
+
+	std::vector<Item*> Environment::getItems(){
+		return items_in_env;
+	}
