@@ -22,8 +22,8 @@ std::string Actor::action() {
 	// if fight then fight else
 	Actor* another_actor = another_actor_in_range();
 	if(another_actor != NULL){
-		fight(another_actor);
-		return get_name() + " fought " + another_actor->get_name() + ".";
+		
+		return fight(another_actor);
 	}
 	else {
 		set_location(*(get_location()->getNeighbor(move_next)));
@@ -45,8 +45,9 @@ void Actor::go(std::string direction) {
 	//TODO
 }
 
-void Actor::fight(Actor* target) {
+std::string Actor::fight(Actor* target) {
 	target->remove_health(get_attack_points());
+	return get_name() + " fought " + target->get_name(); 
 }
 
 std::string Actor::sense() {

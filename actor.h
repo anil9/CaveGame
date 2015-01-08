@@ -5,6 +5,7 @@
 #include <string>
 
 namespace lab3{
+	class Environment;
 class Actor{
  public:
 	Actor(std::string, Environment&); 
@@ -12,7 +13,7 @@ class Actor{
 	std::string action();
 	std::string get_name();
 	void go(std::string);
-	virtual void fight(Actor*);
+	virtual std::string fight(Actor*);
 	std::string sense();
 	void use_special();		// TODO: Should be pure virtual.
 	void dead();

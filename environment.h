@@ -4,11 +4,12 @@
 #include <map>
 #include <vector>
 #include "item.h"
+#include "actor.h"
 
 
 
 namespace lab3{
-class Actor;
+	class Actor;
 class Environment{
  	 
 	
@@ -28,6 +29,7 @@ class Environment{
 	std::vector<Item*> getItems();
 	void add_actor(Actor*);
 	void remove_actor(Actor*);
+	Actor* get_actor(std::string);
 	std::vector<Actor*> get_actors();
 
 protected:
