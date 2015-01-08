@@ -25,12 +25,10 @@ bool Container::drop(Pickup_able* pickup_able){
 
 bool Container::pick_up(Pickup_able* pickup_able){
 	if(capacity >= used + pickup_able->get_weight()){
-		std::cout<<"You just picked up " + pickup_able->getName()<<std::endl;
 		used += pickup_able->get_weight();
 		contains.push_back(pickup_able);
 		return true;
 	}
-	std::cout<<"You can not picked that up, bag gets to heavy!"<<std::endl;
 	return false;
 }
 
@@ -52,8 +50,10 @@ std::string Container::get_items(){
 	}
 	for(Pickup_able* item: contains){
 		ret += item->getName();
-		ret += " ";
+		ret += "   ";
 		ret += std::to_string(item->get_weight());
+		ret += "   ";
+		ret += item->get_description();
 		ret += "\n";
 		total_weight += item->get_weight();
 	}

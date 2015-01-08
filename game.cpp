@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-//#include <ctype.h>
-//#include <functional>
+#include <stdlib.h>
+#include <time.h>
 #include <algorithm>
 #include <cstring>
 #include <exception>
@@ -16,9 +16,10 @@ Game::Game(){
 	//Setup items
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Unwearable* coinp = &coin;
-	Weapon axe(2, 10, "The great axe of the deamon", "deamonslayer");
+	Weapon axe(2, 10, "The great axe of the demon", "demonslayer");
 	Weapon* axep = &axe;
-
+	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
+	Unwearable* toothp = &tooth;
 	//Setup environment
 	Indoors my_cabin("This is my cabin");
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
@@ -35,7 +36,8 @@ Game::Game(){
 	//Setup actors
 	Humanoid player("Kalle", my_cabin);
 	Monster demon("Demon", "YOU WILL DIE HERE",demon_cave);
-	demon.set_container(axep);
+	demon.get_container().pick_up(axep);
+	demon.get_container().pick_up(toothp);
 	Humanoid inkeeper("inkeeper", my_cabin);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
 
@@ -59,6 +61,16 @@ void Game::run_game(){
 		for(Actor* actor:actors) {
 
 			if(actor->is_dead()){
+				auto loot = actor->get_container().containing();
+				int num_of_loots = loot.size();
+				if(num_of_loots!=0){
+					srand(time(NULL));
+					int i = rand()% num_of_loots+1;
+					std::cout<<i<<std::endl;
+					auto item = loot.at(i-1);
+					actor->get_container().drop(item);
+					actor->get_location()->add_item(item);
+				}
 				dead_list.push_back(actor);
 				continue;
 
@@ -144,8 +156,9 @@ void Game::execute_command(std::string command){
 			Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
 			if(talk_to == NULL){
 				std::cout<<"Can not talk to that actor"<<std::endl;
-			}
+			}else{
 			std::cout<<talk_to->get_answer()<<std::endl;
+			}
 			next_turn = true;
 	}
 	else if(commands[0] == "bag"){

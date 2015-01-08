@@ -27,7 +27,6 @@ class Actor{
 	void remove_health(int);
 	Actor* another_actor_in_range();
 	Container& get_container();
-	void set_container(Pickup_able*);
 	bool is_dead();
 
 private:

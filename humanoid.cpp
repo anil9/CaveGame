@@ -4,7 +4,7 @@
 using namespace lab3;
 
 Humanoid::Humanoid(std::string name, Environment& location): Actor(name,location) {
-	set_attack_points(5);
+	set_attack_points(25);
 	set_hp(30);
 }
 void Humanoid::change_gear(Wearable& wearable) {

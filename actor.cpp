@@ -130,9 +130,6 @@ Container& Actor::get_container(){
 	return bag;
 }
 
-void Actor::set_container(Pickup_able* item){
-	bag.pick_up(item);
-}
 bool Actor::is_dead(){
 	return dead;
 }
