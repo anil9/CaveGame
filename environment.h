@@ -6,7 +6,9 @@
 #include "item.h"
 
 
+
 namespace lab3{
+class Actor;
 class Environment{
  	 
 	
@@ -23,11 +25,16 @@ class Environment{
 	std::string getDescription();
 	Item* getItem(std::string);
 	std::vector<Item*> getItems();
+	void add_actor(Actor*);
+	void remove_actor(Actor*);
+	std::vector<Actor*> get_actors();
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;
 	std::vector<Item*> items_in_env; 
-	std::string env_description; 
+	std::vector<Actor*> actors_in_env;
+	std::string env_description;
+
 };
 }
 

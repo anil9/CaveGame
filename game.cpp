@@ -84,8 +84,9 @@ void Game::execute_command(std::string command){
 		next_turn = true;
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-		Item* item = (real_player->get_location())->getItem(commands[2]);
-		
+
+		Item* item = real_player->get_location()->getItem(commands[2]);
+		std::cout<< "itempekare skapad" <<std::endl;
 		if(item->isPickupable()){
 			real_player->pick_up(item);	
 		}else{

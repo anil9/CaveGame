@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
 using namespace lab3;
 
@@ -82,4 +83,15 @@ using namespace lab3;
 
 	std::vector<Item*> Environment::getItems(){
 		return items_in_env;
+	}
+	void Environment::add_actor(Actor* actor) {
+		actors_in_env.push_back(actor);
+
+	}
+	void Environment::remove_actor(Actor* actor){
+		actors_in_env.erase(std::remove(actors_in_env.begin(), actors_in_env.end(), actor), actors_in_env.end());
+
+	}
+	std::vector<Actor*> Environment::get_actors() {
+		return actors_in_env;
 	}
