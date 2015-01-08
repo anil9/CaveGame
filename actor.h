@@ -26,6 +26,7 @@ class Actor{
 	Environment* get_location();
 	void remove_health(int);
 	Actor* another_actor_in_range();
+	std::string other_actors_in_range();
 	Container& get_container();
 	void set_container(Pickup_able*);
 	bool is_dead();

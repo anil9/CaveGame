@@ -9,6 +9,7 @@
 #include "monster.h"
 #include "unwearable.h"
 #include "weapon.h"
+#include "animal.h"
 #include <vector>
 #include <string>
 
