@@ -58,6 +58,7 @@ void Game::run_game(){
 
 			} 
 			else {
+				std::cout << "===============\n";
 				std::cout << "your turn\n";
 				next_turn = false;
 				while(!next_turn){
@@ -65,6 +66,7 @@ void Game::run_game(){
 					std::getline(std::cin, command);
 					execute_command(command);
 				}
+				std::cout << "===============\n";
 			}
 		}
 			remove_dead(dead_list);
