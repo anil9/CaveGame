@@ -1,7 +1,8 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 #include "environment.h"
-#include "unwearable.h"
+#include "item.h"
+#include "container.h"
 #include <string>
 
 namespace lab3{
@@ -25,6 +26,8 @@ class Actor{
 	Environment* get_location();
 	void remove_health(int);
 	Actor* another_actor_in_range();
+	Container& get_container();
+	void set_container(Pickup_able*);
 	bool is_dead();
 
 private:
@@ -36,6 +39,7 @@ private:
 	bool went_west = true;
 	std::string move_next = "west";
 	std::string name;
+	Container bag;
 
 
 };
