@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-Actor::Actor(Environment& location) {
-
+Actor::Actor(std::string name, Environment& location) {
+	this->name = name;
 	this->location = &location;
 	get_location()->add_actor(this);
 }
@@ -12,25 +12,28 @@ std::string Actor::get_type() {
 	return type;
 }
 
+std::string Actor::get_name(){
+	return name;
+}
+
 std::string Actor::action() {
 	//TODO
 	//walk in direction or fight
 	// if fight then fight else
 	Actor* another_actor = another_actor_in_range();
-	if(another_actor != NULL){
-		fight(another_actor);
-		return "Actor fought another actor";
+	if(another_actor != NULL){	
+		return fight(another_actor);
 	}
 	else {
 		set_location(*(get_location()->getNeighbor(move_next)));
 		if(went_west){
 			move_next="east";
 			went_west=false;
-			return "actor went west";	
+			return get_name() + " went west";	
 		} else {
 			move_next="west";
 			went_west=true;
-			return "actor went east";
+			return get_name() + " went east";
 		}
 	}
 	//return a string of what happend.
@@ -41,8 +44,9 @@ void Actor::go(std::string direction) {
 	//TODO
 }
 
-void Actor::fight(Actor* target) {
+std::string Actor::fight(Actor* target) {
 	target->remove_health(get_attack_points());
+	return get_name() + " fought " + target->get_name(); 
 }
 
 std::string Actor::sense() {
@@ -61,7 +65,7 @@ std::string Actor::sense() {
 	}
 	Actor* another_actor = another_actor_in_range();
 	if(another_actor != NULL) {
-		retString += "There's another actor here: " + another_actor->get_type();
+		retString += "There's someone here: " + another_actor->get_name();
 	} 
 	return retString; //TODO
 }
@@ -117,4 +121,5 @@ Actor* Actor::another_actor_in_range(){
 		}
 	}
 	return NULL;
+
 }

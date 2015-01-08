@@ -15,12 +15,10 @@ namespace lab3{
 		void change_gear(Wearable&);
 		void talk_to(Actor&);
 		void pick_up(Item*);
-		std::string get_name();
 		void drop(Item*);
-		void set_name(std::string);
 		Container& get_container();
+
 	private:
-		std::string name;
 		Container mybag;
 	};
 }

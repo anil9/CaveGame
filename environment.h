@@ -4,6 +4,8 @@
 #include <map>
 #include <vector>
 #include "item.h"
+#include "actor.h"
+
 
 
 
@@ -25,10 +27,11 @@ class Environment{
 	Environment* getNeighbor(std::string);
 	std::string getDescription();
 	Item* getItem(std::string);
+	std::vector<Item*> getItems();
 	void add_actor(Actor*);
 	void remove_actor(Actor*);
+	Actor* get_actor(std::string);
 	std::vector<Actor*> get_actors();
-	std::vector<Item*> getItems();
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;

@@ -9,8 +9,9 @@ namespace lab3 {
 class Monster: public Actor{
 
 public:
-	Monster(std::string, Environment&);
+	Monster(std::string,std::string, Environment&);
 	std::string make_noise();
+	std::string fight(Actor*) override;
 
 
 private:

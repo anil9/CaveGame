@@ -3,8 +3,7 @@
 
 using namespace lab3;
 
-Humanoid::Humanoid(std::string name, Environment& location): Actor(location), mybag(50) {
-	this->name = name;
+Humanoid::Humanoid(std::string name, Environment& location): Actor(name,location), mybag(50) {
 }
 void Humanoid::change_gear(Wearable& wearable) {
 	//todo
@@ -20,9 +19,7 @@ void Humanoid::pick_up(Item* item) {
 	}
 
 }
-std::string Humanoid::get_name() {
-	return name;
-}
+		
 void Humanoid::drop(Item* dropping_item){
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 
 	if(mybag.drop(pa)){

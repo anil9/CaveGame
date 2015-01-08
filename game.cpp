@@ -27,7 +27,7 @@ Game::Game(){
 	winning_place.setDirection("west", demon_cave);
 
 	Humanoid player("Kalle", my_cabin);
-	Monster demon("YOU WILL DIE HERE",demon_cave);
+	Monster demon("Demon", "YOU WILL DIE HERE",demon_cave);
 	
 	actors.push_back(&demon);
 	actors.push_back(&player);
@@ -46,7 +46,7 @@ void Game::run_game(){
 	while(!game_finished) {
 		for(Actor* actor:actors) {
 			if(actor != real_player){
-				std::cout << "unreal player turn:\n";
+				std::cout << actor->get_name() + "'s turn:\n";
 				std::cout << actor->action() << std::endl;
 
 			} 
@@ -86,7 +86,6 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "pick" && commands[1] == "up"){
 
 		Item* item = real_player->get_location()->getItem(commands[2]);
-
 		if(item->isPickupable()){
 			real_player->pick_up(item); 
 
@@ -106,6 +105,14 @@ void Game::execute_command(std::string command){
 		std::cout << "Vilka kommandon man kan använda som spelare" << std::endl;
 	}
 	else if(commands[0] == "fight"){
+		Actor* target = real_player->get_location()->get_actor(commands[1]);
+		if(target != NULL){
+			
+			std::cout << real_player->fight(target) << "\n";
+			next_turn = true; 
+		} else {
+			std::cout << "You can't fight that target\n";
+		}
 
 	}
 	else if(commands[0] == "sense"){

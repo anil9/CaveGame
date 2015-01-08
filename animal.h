@@ -6,7 +6,7 @@
 namespace lab3{
 	class Animal: public Actor{
 	public:
-		Animal(Environment&);
+		Animal(std::string, Environment&);
 		void eat();
 
 	private:

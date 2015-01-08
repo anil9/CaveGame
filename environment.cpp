@@ -79,6 +79,13 @@ using namespace lab3;
 		return NULL;
 	}
 
+	std::string Environment::getDescription(){
+		return env_description;
+	}
+
+	std::vector<Item*> Environment::getItems(){
+		return items_in_env;
+	}
 	void Environment::add_actor(Actor* actor) {
 		actors_in_env.push_back(actor);
 
@@ -87,14 +94,18 @@ using namespace lab3;
 		actors_in_env.erase(std::remove(actors_in_env.begin(), actors_in_env.end(), actor), actors_in_env.end());
 
 	}
+
+	Actor* Environment::get_actor(std::string actor_name){
+		for(Actor* actor: actors_in_env){
+			std::string name = actor->get_name();
+			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+			if(name == actor_name){
+				return actor;
+			}
+		}
+		return NULL;
+	}
+
 	std::vector<Actor*> Environment::get_actors() {
 		return actors_in_env;
-	}
-
-	std::string Environment::getDescription(){
-		return env_description;
-	}
-
-	std::vector<Item*> Environment::getItems(){
-		return items_in_env;
 	}

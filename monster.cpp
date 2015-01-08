@@ -4,12 +4,18 @@
 using namespace lab3;
 
 
-Monster::Monster(std::string noise, Environment& location): Actor(location){
+Monster::Monster(std::string name, std::string noise, Environment& location): Actor(name,location){
 
 	this->noise = noise;
 }
 std::string Monster::make_noise(){
 	return noise;
+}
+
+std::string Monster::fight(Actor* actor){
+	std::string ret_string =Actor::fight(actor);
+	ret_string+= "\n"+ get_name() + " says " + make_noise();
+	return ret_string;
 }
 
 /*
