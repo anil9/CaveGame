@@ -64,7 +64,7 @@ std::string Actor::sense() {
 	}
 	Actor* another_actor = another_actor_in_range();
 	if(another_actor != NULL) {
-		retString += "There's another actor here: " + another_actor->get_type();
+		retString += "There's another actor here: " + another_actor->get_name();
 	} 
 	return retString; //TODO
 }
