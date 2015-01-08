@@ -40,9 +40,23 @@ Game::Game(){
 	demon.get_container().pick_up(toothp);
 	Humanoid inkeeper("inkeeper", my_cabin);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
+	Animal rabbit("Rabbit", forest1);
+	Animal moose("Moose", forest1);
+	moose.set_hp(35);
+	moose.set_attack_points(7);
+	Animal lion("Lion", forest1);
+	lion.set_attack_points(10);
+	Animal turtle("Turtle", forest1);
+	turtle.set_hp(45);
+
 
 	actors.push_back(&demon);
 	actors.push_back(&player);
+	actors.push_back(&rabbit);
+	actors.push_back(&moose);
+	actors.push_back(&lion);
+	actors.push_back(&turtle);
+
 
 	set_real_player(player);
 	std::cout <<"initialized game successfully, running game.\n"; 
@@ -81,6 +95,7 @@ void Game::run_game(){
 
 			} 
 			else {
+				std::cout << "===============\n";
 				std::cout << "your turn\n";
 				next_turn = false;
 				while(!next_turn){
@@ -88,6 +103,7 @@ void Game::run_game(){
 					std::getline(std::cin, command);
 					execute_command(command);
 				}
+				std::cout << "===============\n";
 			}
 		}
 			remove_dead(dead_list);

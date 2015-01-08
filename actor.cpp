@@ -46,7 +46,12 @@ void Actor::go(std::string direction) {
 
 std::string Actor::fight(Actor* target) {
 	target->remove_health(get_attack_points());
-	return get_name() + " fought " + target->get_name(); 
+	std::string ret_string = get_name() + " fought " + target->get_name() + "\n";
+	ret_string+= get_name() + "'s hp: " + std::to_string(get_hp()) + " " + target->get_name() + "'s hp: " + std::to_string(target->get_hp()) + "\n";
+	if(target->get_hp() == 0) {
+		ret_string+= target->get_name() + " is dead.\n";
+	}
+	return ret_string; 
 }
 
 std::string Actor::sense() {
@@ -61,11 +66,10 @@ std::string Actor::sense() {
 				retString += "\n";
 				retString += (*i)->getName();
 		}
-		retString += "\n";
 	}
-	Actor* another_actor = another_actor_in_range();
-	if(another_actor != NULL) {
-		retString += "There's someone here: " + another_actor->get_name();
+	std::string other_actors = other_actors_in_range();
+	if(other_actors != "") {
+		retString += "\nThere's someone here: " + other_actors;
 	} 
 	return retString; //TODO
 }
@@ -75,7 +79,6 @@ void Actor::use_special() {
 }
 
 void Actor::die() {
-	std::cout << get_name() + " is dead.\n";
 	get_location()->remove_actor(this);
 	dead = true;
 }
@@ -124,6 +127,17 @@ Actor* Actor::another_actor_in_range(){
 	}
 	return NULL;
 
+}
+
+std::string Actor::other_actors_in_range(){
+	std::vector<Actor*> other_actors = get_location()->get_actors();
+	std::string ret_string ="";
+	for(Actor* actor:other_actors){
+		if(actor != this) {
+			ret_string+= actor->get_name() + " ";
+		}
+	}
+	return ret_string;
 }
 
 Container& Actor::get_container(){
