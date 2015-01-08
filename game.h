@@ -8,6 +8,7 @@
 #include "outdoors.h"
 #include "monster.h"
 #include "unwearable.h"
+#include "weapon.h"
 #include <vector>
 #include <string>
 
@@ -23,6 +24,7 @@ private:
 	void set_real_player(Humanoid&);
 	void run_game();
 	void execute_command(std::string);
+	std::string get_adventure_intro();
 	Humanoid* real_player;
 	bool game_finished = false;
 	bool next_turn = false;

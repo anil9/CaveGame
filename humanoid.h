@@ -4,7 +4,7 @@
 #include "wearable.h"
 #include "pickup_able.h"
 #include "environment.h"
-#include "container.h"
+//#include "container.h"
 #include <string>
 #include <vector>
 
@@ -16,10 +16,12 @@ namespace lab3{
 		void talk_to(Actor&);
 		void pick_up(Item*);
 		void drop(Item*);
-		Container& get_container();
+		std::string get_answer();
+		void set_answer(std::string);
 
 	private:
-		Container mybag;
+		//Container mybag;
+		std::string answer = "";
 	};
 }
 #endif

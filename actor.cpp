@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-Actor::Actor(std::string name, Environment& location) {
+Actor::Actor(std::string name, Environment& location): bag(50) {
 	this->name = name;
 	this->location = &location;
 	get_location()->add_actor(this);
@@ -122,4 +122,12 @@ Actor* Actor::another_actor_in_range(){
 	}
 	return NULL;
 
+}
+
+Container& Actor::get_container(){
+	return bag;
+}
+
+void Actor::set_container(Pickup_able* item){
+	bag.pick_up(item);
 }

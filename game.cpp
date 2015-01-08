@@ -6,14 +6,20 @@
 //#include <functional>
 #include <algorithm>
 #include <cstring>
+#include <exception>
 
 using namespace lab3;
 
 
 Game::Game(){
 
+	//Setup items
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Unwearable* coinp = &coin;
+	Weapon axe(2, 10, "The great axe of the deamon", "deamonslayer");
+	Weapon* axep = &axe;
+
+	//Setup environment
 	Indoors my_cabin("This is my cabin");
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
@@ -26,14 +32,19 @@ Game::Game(){
 	demon_cave.setDirection("east", winning_place);
 	winning_place.setDirection("west", demon_cave);
 
+	//Setup actors
 	Humanoid player("Kalle", my_cabin);
 	Monster demon("Demon", "YOU WILL DIE HERE",demon_cave);
-	
+	demon.set_container(axep);
+	Humanoid inkeeper("inkeeper", my_cabin);
+	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
+
 	actors.push_back(&demon);
 	actors.push_back(&player);
 
 	set_real_player(player);
 	std::cout <<"initialized game successfully, running game.\n"; 
+	std::cout<<get_adventure_intro()<<std::endl;
 	run_game();
 }
 void Game::set_real_player(Humanoid& real_player){
@@ -123,13 +134,28 @@ void Game::execute_command(std::string command){
 		//kolla om commands[1] == "special"
 	}
 	else if(commands[0] == "talk" && commands[1] == "to"){
-
+			Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
+			if(talk_to == NULL){
+				std::cout<<"Can not talk to that actor"<<std::endl;
+			}
+			std::cout<<talk_to->get_answer()<<std::endl;
+			next_turn = true;
 	}
 	else if(commands[0] == "bag"){
 		std::cout<<real_player->get_container().get_items()<<std::endl;
 		next_turn = true;
 	}
 
+}
+
+std::string Game::get_adventure_intro(){
+	std::string intro = "";
+	intro += "################################################\n";
+	intro += "#         Our game intro                       #\n";
+	intro += "#         You are an Elf LOL                   #\n";
+	intro += "#  Kill the Demon and be nice to the inkeeper! #\n";
+	intro += "################################################\n";
+	return intro;
 }
 
 int main(){
