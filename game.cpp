@@ -44,7 +44,14 @@ void Game::set_real_player(Humanoid& real_player){
 void Game::run_game(){
 
 	while(!game_finished) {
+		std::vector<Actor*> dead_list;
 		for(Actor* actor:actors) {
+
+			if(actor->is_dead()){
+				dead_list.push_back(actor);
+				continue;
+
+			}
 			if(actor != real_player){
 				std::cout << actor->get_name() + "'s turn:\n";
 				std::cout << actor->action() << std::endl;
@@ -59,8 +66,8 @@ void Game::run_game(){
 					execute_command(command);
 				}
 			}
-
 		}
+			remove_dead(dead_list);
 
 	}
 }
@@ -128,6 +135,15 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "bag"){
 		std::cout<<real_player->get_container().get_items()<<std::endl;
 		next_turn = true;
+	}
+
+}
+
+void Game::remove_dead(std::vector<Actor*>& dead_list){
+	if(dead_list.size() > 0){
+		for(Actor* actor: dead_list){
+			actors.erase(std::find(actors.begin(), actors.end(), actor));
+		}
 	}
 
 }

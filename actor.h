@@ -16,7 +16,7 @@ class Actor{
 	virtual std::string fight(Actor*);
 	std::string sense();
 	void use_special();		// TODO: Should be pure virtual.
-	void dead();
+	void die();
 	int get_hp();
 	void set_hp(int);
 	virtual int get_attack_points();
@@ -25,9 +25,10 @@ class Actor{
 	Environment* get_location();
 	void remove_health(int);
 	Actor* another_actor_in_range();
+	bool is_dead();
 
 private:
-	
+	bool dead = false;
 	std::string type="";
 	int health;
 	int default_attack_points;
