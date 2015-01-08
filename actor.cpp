@@ -23,18 +23,18 @@ std::string Actor::action() {
 	Actor* another_actor = another_actor_in_range();
 	if(another_actor != NULL){
 		fight(another_actor);
-		return "Actor fought another actor";
+		return get_name() + " fought " + another_actor->get_name() + ".";
 	}
 	else {
 		set_location(*(get_location()->getNeighbor(move_next)));
 		if(went_west){
 			move_next="east";
 			went_west=false;
-			return "actor went west";	
+			return get_name() + " went west";	
 		} else {
 			move_next="west";
 			went_west=true;
-			return "actor went east";
+			return get_name() + " went east";
 		}
 	}
 	//return a string of what happend.
@@ -64,7 +64,7 @@ std::string Actor::sense() {
 	}
 	Actor* another_actor = another_actor_in_range();
 	if(another_actor != NULL) {
-		retString += "There's another actor here: " + another_actor->get_name();
+		retString += "There's someone here: " + another_actor->get_name();
 	} 
 	return retString; //TODO
 }

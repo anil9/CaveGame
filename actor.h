@@ -12,7 +12,7 @@ class Actor{
 	std::string action();
 	std::string get_name();
 	void go(std::string);
-	void fight(Actor*);
+	virtual void fight(Actor*);
 	std::string sense();
 	void use_special();		// TODO: Should be pure virtual.
 	void dead();
@@ -31,8 +31,8 @@ private:
 	int health;
 	int default_attack_points;
 	Environment* location;
-	bool went_west = false;
-	std::string move_next = "east";
+	bool went_west = true;
+	std::string move_next = "west";
 	std::string name;
 
 

@@ -11,6 +11,7 @@ class Monster: public Actor{
 public:
 	Monster(std::string,std::string, Environment&);
 	std::string make_noise();
+	virtual void fight(Actor*);
 
 
 private:

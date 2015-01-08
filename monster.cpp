@@ -12,6 +12,11 @@ std::string Monster::make_noise(){
 	return noise;
 }
 
+void Monster::fight(Actor* actor){
+	Actor::fight(actor);
+	std::cout << get_name() << " says " << make_noise() << "\n";
+}
+
 /*
 int main() {
 
