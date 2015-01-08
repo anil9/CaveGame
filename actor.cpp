@@ -49,9 +49,10 @@ std::string Actor::sense() {
 	//TODO
 	std::string retString = ""; 
 	retString += this->get_location()->getDescription();
-	std::vector<Item*> items = this->get_location()->getItems();
+	auto items = this->get_location()->getItems();
 	if(items.begin() != items.end()){
 		retString += "Oh look there is some random items in this env!";
+		
 		for(auto i = items.begin(); i!=items.end();++i){
 				retString += "\n";
 				retString += (*i)->getName();

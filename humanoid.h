@@ -18,7 +18,7 @@ namespace lab3{
 		std::string get_name();
 		void drop(Item*);
 		void set_name(std::string);
-		Container* get_container();
+		Container& get_container();
 	private:
 		std::string name;
 		Container mybag;

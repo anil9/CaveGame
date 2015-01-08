@@ -12,11 +12,13 @@
 		std::vector<Pickup_able*> containing();
 		bool drop(Pickup_able*);
 		bool pick_up(Pickup_able*);
+		Pickup_able* get_item(std::string);
+		std::string get_items();
 
 	private:
 		std::vector<Pickup_able*> contains;
 		int capacity;
-		int used;
+		int used = 0;
 
 	};
 }

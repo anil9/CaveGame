@@ -88,7 +88,8 @@ void Game::execute_command(std::string command){
 		Item* item = real_player->get_location()->getItem(commands[2]);
 
 		if(item->isPickupable()){
-			real_player->pick_up(item);	
+			real_player->pick_up(item); 
+
 		}else{
 			std::cout << "That item is not pickupable"<< std::endl;
 		}
@@ -96,8 +97,10 @@ void Game::execute_command(std::string command){
 
 	}
 	else if(commands[0] == "drop"){
-		//Item* item = (real_player->get_container())->getItem(commands[2]);
-		//real_player->drop(item);
+		Item* item = real_player->get_container().get_item(commands[1]);
+		real_player->drop(item);
+		next_turn = true;
+
 	}
 	else if(commands[0] == "help"){
 		std::cout << "Vilka kommandon man kan använda som spelare" << std::endl;
@@ -116,7 +119,8 @@ void Game::execute_command(std::string command){
 
 	}
 	else if(commands[0] == "bag"){
-
+		std::cout<<real_player->get_container().get_items()<<std::endl;
+		next_turn = true;
 	}
 
 }

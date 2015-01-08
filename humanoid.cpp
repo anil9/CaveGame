@@ -14,20 +14,23 @@ void Humanoid::talk_to(Actor& actor) {
 }
 void Humanoid::pick_up(Item* item) {
 	
-	get_location()->remove_item(item);
-	Pickup_able* pa = dynamic_cast<Pickup_able*>(item); 
-	mybag.pick_up(pa);
-		
+	Pickup_able* pa = dynamic_cast<Pickup_able*>(item);
+	if(mybag.pick_up(pa)){
+		get_location()->remove_item(item); 
+	}
 
 }
 std::string Humanoid::get_name() {
 	return name;
 }
 void Humanoid::drop(Item* dropping_item){
-	//convert "drop <sword of awesome>"-string to instance: Weapon awesome_sword
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 
-	mybag.drop(pa);
-	get_location()->add_item(dropping_item);
+	if(mybag.drop(pa)){
+		get_location()->add_item(dropping_item);
+	}	
 }
 
+Container& Humanoid::get_container(){
+	return mybag;
+}
 
