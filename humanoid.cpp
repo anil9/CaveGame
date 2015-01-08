@@ -16,9 +16,8 @@ void Humanoid::pick_up(Item* item) {
 	get_location()->remove_item(item);
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(item); 
 	mybag.pick_up(pa);
-		
-
 }
+		
 void Humanoid::drop(Item* dropping_item){
 	//convert "drop <sword of awesome>"-string to instance: Weapon awesome_sword
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 

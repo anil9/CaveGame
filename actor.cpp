@@ -21,8 +21,7 @@ std::string Actor::action() {
 	//walk in direction or fight
 	// if fight then fight else
 	Actor* another_actor = another_actor_in_range();
-	if(another_actor != NULL){
-		
+	if(another_actor != NULL){	
 		return fight(another_actor);
 	}
 	else {
@@ -121,16 +120,5 @@ Actor* Actor::another_actor_in_range(){
 		}
 	}
 	return NULL;
-}
-/*
-int main() {
-	Actor test1;
-	test1.set_attack_points(4);
-	Actor test2;
-	test2.set_hp(10);
-	test1.fight(test2);
-	std::cout << test2.get_hp() << std::endl;
 
-	return 0;
 }
-*/

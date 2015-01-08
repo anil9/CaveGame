@@ -8,8 +8,9 @@
 
 
 
+
 namespace lab3{
-	class Actor;
+class Actor;
 class Environment{
  	 
 	
