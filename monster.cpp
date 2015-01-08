@@ -4,7 +4,7 @@
 using namespace lab3;
 
 
-Monster::Monster(std::string noise, Environment& location): Actor(location){
+Monster::Monster(std::string name, std::string noise, Environment& location): Actor(name,location){
 
 	this->noise = noise;
 }

@@ -7,9 +7,10 @@
 namespace lab3{
 class Actor{
  public:
-	Actor(Environment&); 
+	Actor(std::string, Environment&); 
 	std::string get_type();
 	std::string action();
+	std::string get_name();
 	void go(std::string);
 	void fight(Actor*);
 	std::string sense();
@@ -32,6 +33,7 @@ private:
 	Environment* location;
 	bool went_west = false;
 	std::string move_next = "east";
+	std::string name;
 
 
 };

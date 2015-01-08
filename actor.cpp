@@ -2,14 +2,18 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-Actor::Actor(Environment& location) {
-
+Actor::Actor(std::string name, Environment& location) {
+	this->name = name;
 	this->location = &location;
 	get_location()->add_actor(this);
 }
 std::string Actor::get_type() {
 	//TODO
 	return type;
+}
+
+std::string Actor::get_name(){
+	return name;
 }
 
 std::string Actor::action() {
