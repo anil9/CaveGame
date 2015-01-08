@@ -74,8 +74,10 @@ void Actor::use_special() {
 	//TODO
 }
 
-void Actor::dead() {
-	//TODO
+void Actor::die() {
+	std::cout << get_name() + " is dead.\n";
+	get_location()->remove_actor(this);
+	dead = true;
 }
 
 void Actor::set_hp(int hp) {
@@ -107,7 +109,7 @@ Environment* Actor::get_location() {
 void Actor::remove_health(int dmg){
 	if(health <= dmg) {
 		health = 0;
-		dead();
+		die();
 	} else {
 		health -= dmg;
 	}
@@ -130,4 +132,7 @@ Container& Actor::get_container(){
 
 void Actor::set_container(Pickup_able* item){
 	bag.pick_up(item);
+}
+bool Actor::is_dead(){
+	return dead;
 }

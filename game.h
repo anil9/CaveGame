@@ -28,7 +28,7 @@ private:
 	Humanoid* real_player;
 	bool game_finished = false;
 	bool next_turn = false;
-
+	void remove_dead(std::vector<Actor*>&);
 
 	std::vector<Actor*> actors;
 	std::vector<Environment*> environments;
