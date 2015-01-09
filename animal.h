@@ -8,6 +8,8 @@ namespace lab3{
 	public:
 		Animal(std::string, Environment&);
 		void eat();
+		std::string use_special();
+		std::string action();
 
 	private:
 

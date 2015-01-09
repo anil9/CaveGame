@@ -74,7 +74,7 @@ std::string Actor::sense() {
 	return retString; //TODO
 }
 
-void Actor::use_special() {
+std::string Actor::use_special() {
 	//TODO
 }
 
@@ -86,6 +86,10 @@ void Actor::die() {
 void Actor::set_hp(int hp) {
 
 	health = hp;
+}
+
+void Actor::increase_hp(int hp){
+	health+=hp;
 }
 
 void Actor::set_attack_points(int attack_points) {

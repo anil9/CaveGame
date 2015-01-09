@@ -11,8 +11,7 @@ class Monster: public Actor{
 public:
 	Monster(std::string,std::string, Environment&);
 	std::string make_noise();
-	std::string fight(Actor*) override;
-
+	std::string fight(Actor*);
 
 private:
 std::string noise;
