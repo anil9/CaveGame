@@ -88,6 +88,7 @@ void Game::run_game(){
 
 	while(!game_finished) {
 		std::vector<Actor*> dead_list;
+		srand(time(0));
 		for(Actor* actor:actors) {
 
 			swamp_sink(actor);
@@ -96,7 +97,6 @@ void Game::run_game(){
 				auto loot = actor->get_container().containing();
 				int num_of_loots = loot.size();
 				if(num_of_loots!=0){
-					srand(time(NULL));
 					int i = rand()% num_of_loots+1;
 					auto item = loot.at(i-1);
 					actor->get_container().drop(item);
