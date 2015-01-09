@@ -2,6 +2,7 @@
 #define MONSTER_H
 #include "actor.h"
 #include "environment.h"
+#include "humanoid.h"
 #include <string>
 
 namespace lab3 {
@@ -11,10 +12,13 @@ class Monster: public Actor{
 public:
 	Monster(std::string,std::string, Environment&);
 	std::string make_noise();
-	std::string fight(Actor*);
+	std::string fight(Humanoid*);
+	std::string action();
+
 
 private:
-std::string noise;
+	Humanoid* humanoid_in_range();
+	std::string noise;
 
 };
 

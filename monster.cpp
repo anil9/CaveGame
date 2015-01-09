@@ -14,10 +14,34 @@ std::string Monster::make_noise(){
 	return noise;
 }
 
-std::string Monster::fight(Actor* actor){
+std::string Monster::fight(Humanoid* humanoid){
+	Actor* actor = dynamic_cast<Actor*>(humanoid);
 	std::string ret_string =Actor::fight(actor);
-	ret_string+= "\n"+ get_name() + " says " + make_noise();
+	ret_string+= "\n"+ get_name() + ": " + make_noise();
 	return ret_string;
+}
+
+std::string Monster::action(){
+	Humanoid* humanoid = humanoid_in_range();
+	if(humanoid != NULL){
+		return fight(humanoid);
+	} 
+	else {
+		return Actor::action();
+
+	}
+}
+
+Humanoid* Monster::humanoid_in_range(){
+
+	std::vector<Actor*> other_actors = get_location()->get_actors(); 
+		for(Actor* actor:other_actors){
+			Humanoid* humanoid = dynamic_cast<Humanoid*>(actor);
+			if(humanoid != NULL) {
+				return humanoid;
+			}
+		}
+	return NULL;
 }
 
 /*
