@@ -59,7 +59,12 @@ using namespace lab3;
 	}
 
 	Environment* Environment::getNeighbor(std::string neighbor){
-		return env_neighbors[neighbor];
+		if(env_neighbors.find(neighbor) != env_neighbors.end()){
+			return env_neighbors[neighbor];
+		}
+		else{
+			return NULL;
+		}
 	}
 
 	Item* Environment::getItem(std::string item){
