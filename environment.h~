@@ -23,6 +23,7 @@ class Environment{
 	void remove_item(Item*);
 	void add_item(Item*);
 	void setDirection(std::string, Environment&);
+	Environment* getDirection(std::string);
 	Environment* getNeighbor(std::string);
 	std::string getDescription();
 	Item* getItem(std::string);

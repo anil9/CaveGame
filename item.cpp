@@ -1,10 +1,12 @@
 #include "item.h"
 #include <iostream>
+#include <algorithm>
 #include <string>
 using namespace lab3;
 
 	Item::Item(std::string description, std::string name, bool pickup_able){
 		this->description = description;
+		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 		this->name = name;
 		this->pickup_able = pickup_able;
 	}

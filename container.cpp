@@ -60,7 +60,7 @@ std::string Container::get_items(){
 	ret += "Total weight of bag is ";
 	ret += std::to_string(total_weight);
 	ret += "\nThe capacity of the bag is: ";
-	ret += capacity;
+	ret += std::to_string(capacity);
 
 	return ret;
 

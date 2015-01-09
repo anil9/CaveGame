@@ -4,16 +4,18 @@
 #include "wearable.h"
 #include "pickup_able.h"
 #include "environment.h"
-//#include "container.h"
+#include "weapon.h"
+#include "armor.h"
 #include <string>
 #include <vector>
+#include <map>
 
 namespace lab3{
 	class Humanoid: public Actor {
 	public:
 		Humanoid(std::string, Environment&);
-		void change_gear(Wearable&);
-		void talk_to(Actor&);
+		void change_gear(Wearable*);
+		void get_gear();
 		void pick_up(Item*);
 		void drop(Item*);
 		std::string get_answer();
@@ -22,6 +24,7 @@ namespace lab3{
 	private:
 		//Container mybag;
 		std::string answer = "";
+		std::map<std::string,Wearable*> gear = {{"armor", NULL},{"weapon", NULL}}; 
 	};
 }
 #endif

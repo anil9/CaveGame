@@ -58,19 +58,12 @@ using namespace lab3;
 		
 	}
 
-	Environment* Environment::getDirection(std::string direction){
-		try{
-			return env_neighbors.at(direction);
-		}catch(const std::out_of_range& oor){
-			return 0;
-		}
-	}
-
 	Environment* Environment::getNeighbor(std::string neighbor){
 		return env_neighbors[neighbor];
 	}
 
 	Item* Environment::getItem(std::string item){
+		
 		for(unsigned int i = 0; i<items_in_env.size(); ++i){
 			if((items_in_env[i])->getName() ==item){
 				return items_in_env[i];

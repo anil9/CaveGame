@@ -2,12 +2,9 @@
 
 using namespace lab3;
 
-Wearable::Wearable(int weight, std::string description, std::string name) : Pickup_able(weight, description, name){
-	//TODO
+Wearable::Wearable(int weight, std::string description, std::string name, std::string type) : Pickup_able(weight, description, name){
+	this->type = type;
 }
-void Wearable::wear(){
-	//what TODO here?
-}
-void Wearable::unwear(){
-	//what TODO here?
+std::string Wearable::get_type(){
+	return type;
 }

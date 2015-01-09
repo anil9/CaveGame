@@ -16,12 +16,16 @@ Game::Game(){
 	//Setup items
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Unwearable* coinp = &coin;
-	Weapon axe(2, 10, "The great axe of the demon", "demonslayer");
+	Weapon axe(2, 10, "The great axe of the demon", "demonslayer", "weapon");
 	Weapon* axep = &axe;
+	Weapon knife(2, 10, "Just a simple knife", "knify", "weapon");
+	Weapon* knifep = &knife;
+	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
+	Weapon* swordp = &sword;
 	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
 	Unwearable* toothp = &tooth;
 	//Setup environment
-	Indoors my_cabin("This is my cabin");
+	Indoors my_cabin("This is my cabin", {knifep, swordp});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
@@ -80,7 +84,6 @@ void Game::run_game(){
 				if(num_of_loots!=0){
 					srand(time(NULL));
 					int i = rand()% num_of_loots+1;
-					std::cout<<i<<std::endl;
 					auto item = loot.at(i-1);
 					actor->get_container().drop(item);
 					actor->get_location()->add_item(item);
@@ -132,7 +135,7 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "pick" && commands[1] == "up"){
 
 		Item* item = real_player->get_location()->getItem(commands[2]);
-		if(item->isPickupable()){
+		if(item != NULL && item->isPickupable()){
 			real_player->pick_up(item); 
 
 		}else{
@@ -163,7 +166,7 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "sense"){
 		std::cout<< real_player->sense() << std::endl;
-		next_turn = true;		// Shouldn't end turn, this is only for testing.
+		//next_turn = true;		// Shouldn't end turn, this is only for testing.
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
@@ -180,6 +183,17 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "bag"){
 		std::cout<<real_player->get_container().get_items()<<std::endl;
 		next_turn = true;
+	}
+	else if(commands[0] == "equip"){
+		auto item = real_player->get_container().get_item(commands[1]);
+		if(item!=NULL){
+			Wearable* gear_item = dynamic_cast<Wearable*>(item); 
+			real_player->change_gear(gear_item);
+			real_player->get_container().drop(item);
+		}
+	}
+	else{
+		std::cout<<"That is not a command, try again!"<<std::endl;
 	}
 
 }
