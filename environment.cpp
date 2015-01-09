@@ -53,9 +53,9 @@ using namespace lab3;
 		items_in_env.push_back(item);
 	}
 
-	void Environment::setDirection(std::string direction, Environment& env){
+	void Environment::setDirection(std::string direction, Environment* env){
 		//TODO checkar för om det finns en granne där redan? 		 	
-		env_neighbors[direction]=&env;
+		env_neighbors[direction]=env;
 		
 	}
 

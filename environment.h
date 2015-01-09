@@ -22,7 +22,7 @@ class Environment{
 	std::string description();
 	void remove_item(Item*);
 	void add_item(Item*);
-	void setDirection(std::string, Environment&);
+	void setDirection(std::string, Environment*);
 	Environment* getNeighbor(std::string);
 	std::string getDescription();
 	Item* getItem(std::string);

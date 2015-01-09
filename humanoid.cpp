@@ -5,10 +5,12 @@
 
 using namespace lab3;
 
-Humanoid::Humanoid(std::string name, Environment& location): Actor(name,location) {
+Humanoid::Humanoid(std::string name, Environment* location): Actor(name,location) {
 	set_attack_points(10);
 	set_hp(30);
 }
+Humanoid::~Humanoid(){}
+
 void Humanoid::change_gear(Wearable* wearable) {
 	if(wearable->get_type() == "weapon"){
 		Weapon* weapon = dynamic_cast<Weapon*>(wearable);
@@ -78,5 +80,10 @@ std::string Humanoid::get_answer(){
 }
 void Humanoid::set_answer(std::string new_answer){
 	answer = new_answer;
+}
+
+std::string Humanoid::use_special() {
+	//TODO
+	return "";
 }
 

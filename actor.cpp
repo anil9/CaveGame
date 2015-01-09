@@ -2,11 +2,12 @@
 #include <iostream>
 #include <string>
 using namespace lab3;
-Actor::Actor(std::string name, Environment& location): bag(50) {
+Actor::Actor(std::string name, Environment* location): bag(50) {
 	this->name = name;
-	this->location = &location;
+	this->location = location;
 	get_location()->add_actor(this);
 }
+Actor::~Actor(){}
 std::string Actor::get_type() {
 	//TODO
 	return type;
@@ -25,7 +26,7 @@ std::string Actor::action() {
 		return fight(another_actor);
 	}
 	else {
-		set_location(*(get_location()->getNeighbor(move_next)));
+		set_location(get_location()->getNeighbor(move_next));
 		if(went_west){
 			move_next="east";
 			went_west=false;
@@ -75,10 +76,6 @@ std::string Actor::sense() {
 	return retString; //TODO
 }
 
-std::string Actor::use_special() {
-	//TODO
-}
-
 void Actor::die() {
 	get_location()->remove_actor(this);
 	dead = true;
@@ -104,9 +101,9 @@ int Actor::get_hp() {
 	return health;
 }
 
-void Actor::set_location(Environment& location){
+void Actor::set_location(Environment* location){
 	get_location()->remove_actor(this);
-	this->location = &location;
+	this->location = location;
 	get_location()->add_actor(this);
 }
 

@@ -13,13 +13,15 @@
 namespace lab3{
 	class Humanoid: public Actor {
 	public:
-		Humanoid(std::string, Environment&);
+		Humanoid(std::string, Environment*);
+		~Humanoid();
 		void change_gear(Wearable*);
 		std::string get_gear();
 		void pick_up(Item*);
 		void drop(Item*);
 		std::string get_answer();
 		void set_answer(std::string);
+		std::string use_special();
 
 	private:
 		//Container mybag;

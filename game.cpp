@@ -31,29 +31,29 @@ Game::Game(){
 	Outdoors winning_place("Goal!");
 	Swamp swamp("Euuhw smelly mud everywhere!");
 
-	my_cabin.setDirection("east", forest1);
-	forest1.setDirection("west", my_cabin);
-	forest1.setDirection("east", demon_cave);
-	forest1.setDirection("south", swamp);
-	swamp.setDirection("north", forest1);
-	demon_cave.setDirection("west", forest1);
-	demon_cave.setDirection("east", winning_place);
-	winning_place.setDirection("west", demon_cave);
+	my_cabin.setDirection("east", &forest1);
+	forest1.setDirection("west", &my_cabin);
+	forest1.setDirection("east", &demon_cave);
+	forest1.setDirection("south", &swamp);
+	swamp.setDirection("north", &forest1);
+	demon_cave.setDirection("west", &forest1);
+	demon_cave.setDirection("east", &winning_place);
+	winning_place.setDirection("west", &demon_cave);
 
 	//Setup actors
-	Humanoid player("Kalle", my_cabin);
-	Monster demon("Demon", "YOU WILL DIE HERE",demon_cave);
+	Humanoid player("Kalle", &my_cabin);
+	Monster demon("Demon", "YOU WILL DIE HERE",&demon_cave);
 	demon.get_container().pick_up(axep);
 	demon.get_container().pick_up(toothp);
-	Humanoid inkeeper("inkeeper", my_cabin);
+	Humanoid inkeeper("inkeeper", &my_cabin);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
-	Animal rabbit("Rabbit", forest1);
-	Animal moose("Moose", forest1);
+	Animal rabbit("Rabbit", &forest1);
+	Animal moose("Moose", &forest1);
 	moose.set_hp(35);
 	moose.set_attack_points(7);
-	Animal lion("Lion", forest1);
+	Animal lion("Lion", &forest1);
 	lion.set_attack_points(10);
-	Animal turtle("Turtle", forest1);
+	Animal turtle("Turtle", &forest1);
 	turtle.set_hp(45);
 
 
@@ -150,7 +150,7 @@ void Game::execute_command(std::string command){
 	if(commands[0] == "go"){
 		Environment* neighbor = real_player->get_location()->getNeighbor(commands[1]);
 		if(neighbor != NULL){
-			real_player->set_location(*(neighbor));
+			real_player->set_location(neighbor);
 			next_turn = true;
 		} 
 		else {

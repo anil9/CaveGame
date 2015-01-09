@@ -10,7 +10,7 @@ namespace lab3 {
 class Monster: public Actor{
 
 public:
-	Monster(std::string,std::string, Environment&);
+	Monster(std::string,std::string, Environment*);
 	std::string use_special();
 	std::string fight(Humanoid*);
 	std::string action();
