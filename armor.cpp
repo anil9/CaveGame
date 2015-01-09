@@ -24,3 +24,7 @@ void Armor::set_current_durability(int durability) {
 		current_durability = durability;
 	}
 }
+
+std::string Armor::get_stats(){
+	return " hp: " + std::to_string(get_protection());
+}

@@ -11,6 +11,7 @@ namespace lab3{
 		int get_current_durability();
 		void set_current_durability(int);
 		int get_protection();
+		std::string get_stats()override;
 	private:
 		int protection;
 		int max_durability;	//TODO: maybe const?

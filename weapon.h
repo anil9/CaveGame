@@ -10,6 +10,7 @@ namespace lab3{
 		int get_damage();
 		std::string get_effect();
 		void set_effect(std::string);
+		std::string get_stats() override;
 	private:
 		int damage;
 		std::string effect;

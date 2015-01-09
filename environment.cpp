@@ -14,6 +14,7 @@ using namespace lab3;
 		env_description = description;
 		items_in_env = items;
 	}
+	Environment::~Environment(){}
 
 	/*
 	* appends the string with the available directions and returns the string. 

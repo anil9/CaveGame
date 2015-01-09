@@ -14,3 +14,6 @@ void Weapon::set_effect(std::string effect){
 int Weapon::get_damage(){
 	return damage;
 }
+std::string Weapon::get_stats(){
+	return " ap: " + std::to_string(get_damage());
+}

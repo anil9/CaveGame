@@ -17,6 +17,7 @@ class Environment{
  public:
  	Environment(std::string);
  	Environment(std::string,std::vector<Item*>);
+ 	virtual ~Environment();
 	std::string directions();
 	
 	std::string description();

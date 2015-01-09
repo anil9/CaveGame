@@ -6,8 +6,10 @@
 #include "humanoid.h"
 #include "indoors.h"
 #include "outdoors.h"
+#include "swamp.h"
 #include "monster.h"
 #include "unwearable.h"
+#include "wearable.h"
 #include "weapon.h"
 #include "animal.h"
 #include <vector>
@@ -30,6 +32,7 @@ private:
 	bool game_finished = false;
 	bool next_turn = false;
 	void remove_dead(std::vector<Actor*>&);
+	void swamp_sink(Actor*);
 
 	std::vector<Actor*> actors;
 	std::vector<Environment*> environments;

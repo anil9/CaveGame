@@ -1,5 +1,6 @@
 #include "humanoid.h"
 #include <iostream>
+#include <algorithm>
 #include <string>
 
 using namespace lab3;
@@ -40,6 +41,22 @@ void Humanoid::change_gear(Wearable* wearable) {
 	
 		
 }
+std::string Humanoid::get_gear(){
+	std::string ret = "";
+		for(auto i = gear.begin(); i!=gear.end();++i){
+			if(i->second != NULL){
+				ret += i->second->getName();
+				ret += i->second->get_stats();
+				ret += "\n";
+			}
+		}
+		ret += "Totalt stats: hp = ";
+		ret += std::to_string(get_hp());
+		ret += "  and ap = ";
+		ret += std::to_string(get_attack_points());
+		ret += "\n";
+		return ret;
+	}
 void Humanoid::pick_up(Item* item) {
 	
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(item);

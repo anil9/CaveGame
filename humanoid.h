@@ -15,7 +15,7 @@ namespace lab3{
 	public:
 		Humanoid(std::string, Environment&);
 		void change_gear(Wearable*);
-		void get_gear();
+		std::string get_gear();
 		void pick_up(Item*);
 		void drop(Item*);
 		std::string get_answer();

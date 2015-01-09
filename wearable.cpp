@@ -8,3 +8,6 @@ Wearable::Wearable(int weight, std::string description, std::string name, std::s
 std::string Wearable::get_type(){
 	return type;
 }
+std::string Wearable::get_stats(){
+	return "";
+}

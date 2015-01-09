@@ -8,6 +8,7 @@ namespace lab3{
 	public:
 		Wearable(int weight, std::string description, std::string names, std::string type);
 		std::string get_type();
+		virtual std::string get_stats();
 	private:
 		std::string type;
 	};

@@ -29,10 +29,13 @@ Game::Game(){
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
+	Swamp swamp("Euuhw smelly mud everywhere!");
 
 	my_cabin.setDirection("east", forest1);
 	forest1.setDirection("west", my_cabin);
 	forest1.setDirection("east", demon_cave);
+	forest1.setDirection("south", swamp);
+	swamp.setDirection("north", forest1);
 	demon_cave.setDirection("west", forest1);
 	demon_cave.setDirection("east", winning_place);
 	winning_place.setDirection("west", demon_cave);
@@ -71,6 +74,15 @@ void Game::set_real_player(Humanoid& real_player){
 	this->real_player = &real_player;	// Can use address for equivalence check.
 }
 
+void Game::swamp_sink(Actor* actor){
+	Outdoors* outdoors = dynamic_cast<Outdoors*>(actor->get_location());
+			Swamp* swamp = dynamic_cast<Swamp*>(outdoors);
+			if(swamp != NULL){
+				swamp->sink(actor);
+				std::cout<<actor->get_name() + " loosing health while sinking in the swamp"<<std::endl;
+			}
+}
+
 
 void Game::run_game(){
 
@@ -78,6 +90,8 @@ void Game::run_game(){
 		std::vector<Actor*> dead_list;
 		for(Actor* actor:actors) {
 
+			swamp_sink(actor);
+			
 			if(actor->is_dead()){
 				auto loot = actor->get_container().containing();
 				int num_of_loots = loot.size();
@@ -180,10 +194,6 @@ void Game::execute_command(std::string command){
 			}
 			next_turn = true;
 	}
-	else if(commands[0] == "bag"){
-		std::cout<<real_player->get_container().get_items()<<std::endl;
-		next_turn = true;
-	}
 	else if(commands[0] == "equip"){
 		auto item = real_player->get_container().get_item(commands[1]);
 		if(item!=NULL){
@@ -192,6 +202,13 @@ void Game::execute_command(std::string command){
 			real_player->get_container().drop(item);
 		}
 	}
+	else if(commands[0] == "show"){
+		if(commands[1] == "bag"){
+			std::cout<<real_player->get_container().get_items()<<std::endl;
+		}else if(commands[1] == "gear"){
+			std::cout<<real_player->get_gear()<<std::endl;
+		}
+	}	
 	else{
 		std::cout<<"That is not a command, try again!"<<std::endl;
 	}
