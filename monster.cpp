@@ -10,14 +10,14 @@ Monster::Monster(std::string name, std::string noise, Environment& location): Ac
 	set_attack_points(8);
 	set_hp(25);
 }
-std::string Monster::make_noise(){
+std::string Monster::use_special(){
 	return noise;
 }
 
 std::string Monster::fight(Humanoid* humanoid){
 	Actor* actor = dynamic_cast<Actor*>(humanoid);
 	std::string ret_string =Actor::fight(actor);
-	ret_string+= "\n"+ get_name() + ": " + make_noise();
+	ret_string+= "\n"+ get_name() + ": " + use_special();
 	return ret_string;
 }
 

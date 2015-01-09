@@ -107,8 +107,13 @@ void Game::run_game(){
 
 			}
 			if(actor != real_player){
-				std::cout << actor->get_name() + "'s turn:\n";
-				std::cout << actor->action() + "\n\n";
+				if(real_player_close(actor)){
+					std::cout << actor->get_name() + "'s turn:\n";
+					std::cout << actor->action() + "\n\n";
+				} 
+				else {
+					actor->action();
+				}
 
 			} 
 			else {
@@ -143,8 +148,14 @@ void Game::execute_command(std::string command){
 	}
 
 	if(commands[0] == "go"){
-		real_player->set_location(*(real_player->get_location()->getNeighbor(commands[1])));
-		next_turn = true;
+		Environment* neighbor = real_player->get_location()->getNeighbor(commands[1]);
+		if(neighbor != NULL){
+			real_player->set_location(*(neighbor));
+			next_turn = true;
+		} 
+		else {
+			std::cout << "You can't go that way! Type sense for possible directions.\n";
+		}
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
 
@@ -230,7 +241,10 @@ void Game::remove_dead(std::vector<Actor*>& dead_list){
 			actors.erase(std::find(actors.begin(), actors.end(), actor));
 		}
 	}
+}
 
+bool Game::real_player_close(Actor* actor){
+	return actor->get_location() == real_player->get_location();
 }
 
 int main(){

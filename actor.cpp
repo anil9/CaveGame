@@ -70,7 +70,8 @@ std::string Actor::sense() {
 	std::string other_actors = other_actors_in_range();
 	if(other_actors != "") {
 		retString += "\nThere's someone here: " + other_actors;
-	} 
+	}
+	retString+= "\nPossible directions:" + get_location()->directions(); 
 	return retString; //TODO
 }
 

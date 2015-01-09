@@ -20,18 +20,18 @@ using namespace lab3;
 	* appends the string with the available directions and returns the string. 
 	*/ 
 	std::string Environment::directions(){
-		std::string directions;
-		if(env_neighbors.at("south") != NULL){
-			directions.append(" south");
-		} if(env_neighbors.at("north") != NULL){
-			directions.append(" north");
-		} if(env_neighbors.at("west") != NULL){
-			directions.append(" west");
-		} if(env_neighbors.at("east") != NULL){
-			directions.append(" east");
+		std::string directions="";
+		if(env_neighbors.find("south") != env_neighbors.end()){
+			directions+=" south";
+		} if(env_neighbors.find("north") != env_neighbors.end()){
+			directions+=" north";
+		} if(env_neighbors.find("west") != env_neighbors.end()){
+			directions+=" west";
+		} if(env_neighbors.find("east") != env_neighbors.end()){
+			directions+=" east";
 		}
-		if(env_neighbors.at("south") == NULL && env_neighbors.at("north") == NULL && env_neighbors.at("west") == NULL && env_neighbors.at("east") == NULL){
-			directions.append(" No available directions");
+		if(directions==""){
+			directions+=" No available directions";
 		}
 		
 		return directions;
@@ -43,7 +43,7 @@ using namespace lab3;
 
 
 	void Environment::remove_item(Item* item){
-		for(int i=0; i< items_in_env.size();++i){
+		for(unsigned int i=0; i< items_in_env.size();++i){
 			if(items_in_env[i] == item){
 				items_in_env.erase(items_in_env.begin() + i);
 			}
@@ -60,7 +60,12 @@ using namespace lab3;
 	}
 
 	Environment* Environment::getNeighbor(std::string neighbor){
-		return env_neighbors[neighbor];
+		if(env_neighbors.find(neighbor) != env_neighbors.end()){
+			return env_neighbors[neighbor];
+		}
+		else{
+			return NULL;
+		}
 	}
 
 	Item* Environment::getItem(std::string item){
