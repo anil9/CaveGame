@@ -42,7 +42,7 @@ using namespace lab3;
 
 
 	void Environment::remove_item(Item* item){
-		for(int i=0; i< items_in_env.size();++i){
+		for(unsigned int i=0; i< items_in_env.size();++i){
 			if(items_in_env[i] == item){
 				items_in_env.erase(items_in_env.begin() + i);
 			}

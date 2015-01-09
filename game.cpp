@@ -93,8 +93,13 @@ void Game::run_game(){
 
 			}
 			if(actor != real_player){
-				std::cout << actor->get_name() + "'s turn:\n";
-				std::cout << actor->action() + "\n\n";
+				if(real_player_close(actor)){
+					std::cout << actor->get_name() + "'s turn:\n";
+					std::cout << actor->action() + "\n\n";
+				} 
+				else {
+					actor->action();
+				}
 
 			} 
 			else {
@@ -213,7 +218,10 @@ void Game::remove_dead(std::vector<Actor*>& dead_list){
 			actors.erase(std::find(actors.begin(), actors.end(), actor));
 		}
 	}
+}
 
+bool Game::real_player_close(Actor* actor){
+	return actor->get_location() == real_player->get_location();
 }
 
 int main(){

@@ -30,6 +30,7 @@ private:
 	bool game_finished = false;
 	bool next_turn = false;
 	void remove_dead(std::vector<Actor*>&);
+	bool real_player_close(Actor*);
 
 	std::vector<Actor*> actors;
 	std::vector<Environment*> environments;

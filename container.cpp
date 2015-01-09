@@ -12,7 +12,7 @@ std::vector<Pickup_able*> Container::containing(){		// TODO: return value. Shoul
 }
 bool Container::drop(Pickup_able* pickup_able){
 	
-	for(int i=0; i<contains.size(); ++i){
+	for(unsigned int i=0; i<contains.size(); ++i){
 		if(pickup_able==contains[i]){
 			contains.erase(contains.begin()+i);
 			used -= pickup_able->get_weight();
