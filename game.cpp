@@ -171,8 +171,14 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "drop"){
 		Item* item = real_player->get_container().get_item(commands[1]);
-		real_player->drop(item);
-		next_turn = true;
+		if(item != NULL){
+			real_player->drop(item);
+			std::cout << "You dropped " << commands[1]<< "\n";
+			next_turn = true;
+		} 
+		else {
+			std::cout << "You don't have that item.\n";	
+		}
 
 	}
 	else if(commands[0] == "help"){
