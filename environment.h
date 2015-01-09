@@ -18,7 +18,6 @@ class Environment{
  	Environment(std::string);
  	Environment(std::string,std::vector<Item*>);
 	std::string directions();
-	
 	std::string description();
 	void remove_item(Item*);
 	void add_item(Item*);
