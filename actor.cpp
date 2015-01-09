@@ -47,9 +47,9 @@ void Actor::go(std::string direction) {
 std::string Actor::fight(Actor* target) {
 	target->remove_health(get_attack_points());
 	std::string ret_string = get_name() + " fought " + target->get_name() + "\n";
-	ret_string+= get_name() + "'s hp: " + std::to_string(get_hp()) + " " + target->get_name() + "'s hp: " + std::to_string(target->get_hp()) + "\n";
+	ret_string+= get_name() + "'s hp: " + std::to_string(get_hp()) + " " + target->get_name() + "'s hp: " + std::to_string(target->get_hp());
 	if(target->get_hp() == 0) {
-		ret_string+= target->get_name() + " is dead.\n";
+		ret_string+= "\n"+target->get_name() + " is dead.";
 	}
 	return ret_string; 
 }
@@ -74,7 +74,7 @@ std::string Actor::sense() {
 	return retString; //TODO
 }
 
-void Actor::use_special() {
+std::string Actor::use_special() {
 	//TODO
 }
 
@@ -86,6 +86,10 @@ void Actor::die() {
 void Actor::set_hp(int hp) {
 
 	health = hp;
+}
+
+void Actor::increase_hp(int hp){
+	health+=hp;
 }
 
 void Actor::set_attack_points(int attack_points) {

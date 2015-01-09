@@ -94,7 +94,7 @@ void Game::run_game(){
 			}
 			if(actor != real_player){
 				std::cout << actor->get_name() + "'s turn:\n";
-				std::cout << actor->action() << std::endl;
+				std::cout << actor->action() + "\n\n";
 
 			} 
 			else {
