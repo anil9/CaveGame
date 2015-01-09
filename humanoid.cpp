@@ -62,17 +62,26 @@ std::string Humanoid::get_gear(){
 void Humanoid::pick_up(Item* item) {
 	
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(item);
-	if(get_container().pick_up(pa)){
+	if(pa != NULL && get_container().pick_up(pa)){
 		get_location()->remove_item(item); 
+	}
+	else{
+		std::cout<<"Where did you see that item?!"<<std::endl;
 	}
 
 }
 		
 void Humanoid::drop(Item* dropping_item){
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 
-	if(get_container().drop(pa)){
-		get_location()->add_item(dropping_item);
-	}	
+	if(pa!=NULL && get_container().drop(pa)){
+		Outdoors* outdoors = dynamic_cast<Outdoors*>(get_location()); 
+		Swamp* swamp = dynamic_cast<Swamp*>(outdoors); 
+			if(swamp == NULL){
+				get_location()->add_item(dropping_item);
+			}
+	}else{
+		std::cout<<"You do not have that item in you bag"<<std::endl;
+	}
 }
 
 std::string Humanoid::get_answer(){

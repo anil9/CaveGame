@@ -4,6 +4,8 @@
 #include "wearable.h"
 #include "pickup_able.h"
 #include "environment.h"
+#include "outdoors.h"
+#include "swamp.h"
 #include "weapon.h"
 #include "armor.h"
 #include <string>
