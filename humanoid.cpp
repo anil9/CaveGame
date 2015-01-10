@@ -19,8 +19,7 @@ void Humanoid::change_gear(Wearable* wearable) {
 		}else{
 			auto to_change = gear.at("weapon");
 			Weapon* wp = dynamic_cast<Weapon*>(to_change);
-			Pickup_able* pp = dynamic_cast<Pickup_able*>(to_change);
-			get_container().pick_up(pp);
+			get_container().pick_up(wp);
 			set_attack_points(get_attack_points()-wp->get_damage()+weapon->get_damage());
 		}
 		gear.at("weapon")=wearable;
@@ -33,8 +32,7 @@ void Humanoid::change_gear(Wearable* wearable) {
 		else{
 			auto to_change = gear.at("armor");
 			Armor* ap = dynamic_cast<Armor*>(to_change);
-			Pickup_able* pp = dynamic_cast<Pickup_able*>(to_change);
-			get_container().pick_up(pp);
+			get_container().pick_up(ap);
 			set_hp(get_hp()-ap->get_protection()+armor->get_protection());	
 		}	
 		gear.at("armor")=wearable;
@@ -71,17 +69,21 @@ void Humanoid::pick_up(Item* item) {
 }
 		
 void Humanoid::drop(Item* dropping_item){	
-			
+	
 	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item);
 	Wearable* wp = dynamic_cast<Wearable*>(pa); 
-	std::string type = wp->get_type();
+	
 	if(pa!=NULL && get_container().drop(pa)){
 		Outdoors* outdoors = dynamic_cast<Outdoors*>(get_location()); 
 		Swamp* swamp = dynamic_cast<Swamp*>(outdoors); 
 			if(swamp == NULL){
 				get_location()->add_item(dropping_item);
 			}
-	}else if(wp != NULL && gear.find(type) != gear.end()){
+	}else if(wp != NULL){ 
+	
+		std::string type = wp->get_type();
+	
+		if(gear.find(type) != gear.end()){
 		auto dropping_gear = gear.find(type);
 		if(type == "weapon"){	
 			Weapon* weapon = dynamic_cast<Weapon*>(gear.at(type));
@@ -99,6 +101,7 @@ void Humanoid::drop(Item* dropping_item){
 				get_location()->add_item(dropping_item);
 			}
 		}
+	}
 	} 
 	else{
 		std::cout<<"You do not have that item in you bag"<<std::endl;

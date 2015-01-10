@@ -22,10 +22,12 @@ Game::Game(){
 	Weapon* knifep = &knife;
 	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
 	Weapon* swordp = &sword;
+	Armor armor(2, 10, "Good armor", "armor", "armor");
+	Armor* armorp = &armor;
 	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
 	Unwearable* toothp = &tooth;
 	//Setup environment
-	Indoors my_cabin("This is my cabin", {knifep, swordp});
+	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
@@ -180,10 +182,9 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "drop"){
 		Item* item = real_player->get_container().get_item(commands[1]);
 		if(item == NULL){
-			Wearable* wp = real_player->get_equipped(commands[1]);
-			Pickup_able* pp = dynamic_cast<Pickup_able*>(wp);
-			item = dynamic_cast<Item*>(wp);	
-		} else if(item != NULL){
+			item = real_player->get_equipped(commands[1]);
+		}
+		if(item != NULL){
 			real_player->drop(item);
 			std::cout << "You dropped " << commands[1]<< "\n";
 			next_turn = true;
@@ -224,7 +225,9 @@ void Game::execute_command(std::string command){
 			}else if(real_player->get_container().get_item(commands[1]) != NULL){
 				auto use_able = real_player->get_container().get_item(commands[1]);
 				Unwearable* up = dynamic_cast<Unwearable*>(use_able);
-				
+				if(up != NULL){
+					up->use();
+				}
 			}
 		}else{
 			std::cout<<"What to use?"<<std::endl;
@@ -247,7 +250,7 @@ void Game::execute_command(std::string command){
 		if(item!=NULL){
 			Wearable* gear_item = dynamic_cast<Wearable*>(item); 
 			real_player->change_gear(gear_item);
-			real_player->get_container().drop(item);
+			real_player->get_container().drop(gear_item);
 		}
 	}
 	else if(commands[0] == "show"){
