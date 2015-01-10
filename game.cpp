@@ -159,14 +159,16 @@ void Game::execute_command(std::string command){
 		}
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-		Item* item = real_player->get_location()->getItem(commands[2]);
-		if(item != NULL && item->isPickupable()){
-			real_player->pick_up(item); 
+		if(commands.size()> 2){
+			Item* item = real_player->get_location()->getItem(commands[2]);
+			if(item != NULL && item->isPickupable()){
+				real_player->pick_up(item); 
 
+			}
 		}else{
-			std::cout << "That item is not pickupable"<< std::endl;
+				std::cout << "That item is not pickupable"<< std::endl;
 		}
-		next_turn = true;
+			next_turn = true;
 
 	}
 	else if(commands[0] == "drop"){
@@ -216,13 +218,16 @@ void Game::execute_command(std::string command){
 		}
 	}
 	else if(commands[0] == "talk" && commands[1] == "to"){
-			Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
-			if(talk_to == NULL){
-				std::cout<<"Can not talk to that actor"<<std::endl;
-			}else{
-			std::cout<<talk_to->get_answer()<<std::endl;
+			if(commands.size()>2){
+				Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
+				if(talk_to == NULL){
+					std::cout<<"Can not talk to that actor"<<std::endl;
+				}else{
+					std::cout<<talk_to->get_answer()<<std::endl;
+					next_turn = true;
+				}
 			}
-			next_turn = true;
+				
 	}
 	else if(commands[0] == "equip"){
 		auto item = real_player->get_container().get_item(commands[1]);
