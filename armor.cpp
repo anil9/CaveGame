@@ -6,13 +6,13 @@ Armor::Armor(int protection, int max_durability, int weight, std::string descrip
 	this->protection = protection;
 	this->max_durability = max_durability;
 }
-int Armor::get_max_durability(){
+int Armor::get_max_durability()const{
 	return max_durability;
 }
-int Armor::get_current_durability(){
+int Armor::get_current_durability()const{
 	return current_durability;
 }
-int Armor::get_protection(){
+int Armor::get_protection()const{
 	if(current_durability > 0) {
 		return protection;
 	} else {
@@ -25,6 +25,6 @@ void Armor::set_current_durability(int durability) {
 	}
 }
 
-std::string Armor::get_stats(){
+std::string Armor::get_stats()const{
 	return " hp: " + std::to_string(get_protection());
 }

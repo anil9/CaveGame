@@ -32,7 +32,7 @@ std::string Monster::action(){
 	}
 }
 
-Humanoid* Monster::humanoid_in_range(){
+Humanoid* Monster::humanoid_in_range()const{
 
 	std::vector<Actor*> other_actors = get_location()->get_actors(); 
 		for(Actor* actor:other_actors){

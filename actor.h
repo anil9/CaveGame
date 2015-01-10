@@ -13,24 +13,24 @@ class Actor{
 	virtual ~Actor(); 
 	std::string get_type();
 	virtual std::string action();
-	std::string get_name();
+	std::string get_name()const;
 	void go(std::string);
 	virtual std::string fight(Actor*);
-	std::string sense();
+	std::string sense()const;
 	virtual std::string use_special()=0;		// TODO: Should be pure virtual.
 	void die();
-	int get_hp();
+	int get_hp()const;
 	void set_hp(int);
 	void increase_hp(int);
-	virtual int get_attack_points();
+	virtual int get_attack_points()const;
 	void set_attack_points(int);
 	void set_location(Environment*);
-	Environment* get_location();
+	Environment* get_location()const;
 	void remove_health(int);
-	Actor* another_actor_in_range();
-	std::string other_actors_in_range();
+	Actor* another_actor_in_range() const;
+	std::string other_actors_in_range()const;
 	Container& get_container();
-	bool is_dead();
+	bool is_dead()const;
 
 private:
 	bool dead = false;

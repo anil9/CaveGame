@@ -6,7 +6,7 @@ namespace lab3{
 	class Obstacle: public Item{
 	public:
 		Obstacle(bool, std::string, std::string);
-		bool is_movable();
+		bool is_movable()const;
 
 	private:
 		bool movable;

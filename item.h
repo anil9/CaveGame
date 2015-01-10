@@ -6,11 +6,11 @@ namespace lab3{
 class Item{
  public:
 	Item(std::string, std::string, bool); 
-	std::string get_description();
+	std::string get_description()const;
 	bool operator==(const Item*) const;
-	std::string getName();
+	std::string getName()const;
 	virtual ~Item();
-	bool isPickupable();
+	bool isPickupable()const;
 
 private:
 	std::string description; 

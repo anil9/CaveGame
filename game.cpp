@@ -65,13 +65,13 @@ Game::Game(){
 	actors.push_back(&turtle);
 
 
-	set_real_player(player);
+	set_real_player(&player);
 	std::cout <<"initialized game successfully, running game.\n"; 
 	std::cout<<get_adventure_intro()<<std::endl;
 	run_game();
 }
-void Game::set_real_player(Humanoid& real_player){
-	this->real_player = &real_player;	// Can use address for equivalence check.
+void Game::set_real_player(Humanoid* real_player){
+	this->real_player = real_player;	// Can use address for equivalence check.
 }
 
 void Game::swamp_sink(Actor* actor){
@@ -232,7 +232,7 @@ void Game::execute_command(std::string command){
 
 }
 
-std::string Game::get_adventure_intro(){
+std::string Game::get_adventure_intro()const{
 	std::string intro = "";
 	intro += "################################################\n";
 	intro += "#         Our game intro                       #\n";
@@ -241,7 +241,7 @@ std::string Game::get_adventure_intro(){
 	intro += "################################################\n";
 	return intro;
 }
-void Game::remove_dead(std::vector<Actor*>& dead_list){
+void Game::remove_dead(const std::vector<Actor*>& dead_list){
 	if(dead_list.size() > 0){
 		for(Actor* actor: dead_list){
 			actors.erase(std::find(actors.begin(), actors.end(), actor));
@@ -249,7 +249,7 @@ void Game::remove_dead(std::vector<Actor*>& dead_list){
 	}
 }
 
-bool Game::real_player_close(Actor* actor){
+bool Game::real_player_close(const Actor* actor){
 	return actor->get_location() == real_player->get_location();
 }
 

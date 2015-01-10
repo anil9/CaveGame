@@ -14,7 +14,7 @@ using namespace lab3;
 	/*
 	* Returns the description of the item.
 	*/
-	std::string Item::get_description(){
+	std::string Item::get_description()const{
 
 		return description; 
 	}
@@ -23,12 +23,12 @@ using namespace lab3;
 			return (*this).description == (*it).description;
 	}
 
-	std::string Item::getName(){
+	std::string Item::getName()const{
 		return name;
 	}
 
 	Item::~Item(){}
 
-	bool Item::isPickupable(){
+	bool Item::isPickupable()const{
 		return pickup_able;
 	}

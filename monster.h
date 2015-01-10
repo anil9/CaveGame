@@ -17,7 +17,7 @@ public:
 
 
 private:
-	Humanoid* humanoid_in_range();
+	Humanoid* humanoid_in_range()const;
 	std::string noise;
 
 };

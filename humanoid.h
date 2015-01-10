@@ -18,10 +18,10 @@ namespace lab3{
 		Humanoid(std::string, Environment*);
 		~Humanoid();
 		void change_gear(Wearable*);
-		std::string get_gear();
+		std::string get_gear()const;
 		void pick_up(Item*);
 		void drop(Item*);
-		std::string get_answer();
+		std::string get_answer()const;
 		void set_answer(std::string);
 		std::string use_special();
 
