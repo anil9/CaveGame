@@ -4,8 +4,7 @@
 #include <time.h>
 #include <string>
 using namespace lab3;
-Actor::Actor(std::string name, Environment* location): bag(50) {
-	this->name = name;
+Actor::Actor(const std::string _name, Environment* location): bag(50),name(_name) {
 	this->location = location;
 	get_location()->add_actor(this);
 }
@@ -15,7 +14,7 @@ std::string Actor::get_type() {
 	return type;
 }
 
-std::string Actor::get_name()const{
+const std::string Actor::get_name()const{
 	return name;
 }
 

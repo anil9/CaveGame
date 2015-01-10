@@ -5,7 +5,7 @@
 
 using namespace lab3;
 
-Humanoid::Humanoid(std::string name, Environment* location): Actor(name,location) {
+Humanoid::Humanoid(const std::string name, Environment* location): Actor(name,location) {
 	set_attack_points(10);
 	set_hp(30);
 }
@@ -84,10 +84,10 @@ void Humanoid::drop(Item* dropping_item){
 	}
 }
 
-std::string Humanoid::get_answer()const{
+const std::string Humanoid::get_answer()const{
 	return answer;
 }
-void Humanoid::set_answer(std::string new_answer){
+void Humanoid::set_answer(const std::string new_answer){
 	answer = new_answer;
 }
 

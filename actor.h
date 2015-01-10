@@ -9,11 +9,11 @@ namespace lab3{
 	class Environment;
 class Actor{
  public:
-	Actor(std::string, Environment*);
+	Actor(const std::string, Environment*);
 	virtual ~Actor(); 
 	std::string get_type();
 	virtual std::string action();
-	std::string get_name()const;
+	const std::string get_name()const;
 	void go(std::string);
 	virtual std::string fight(Actor*);
 	std::string sense()const;
@@ -40,7 +40,7 @@ private:
 	Environment* location;
 	bool went_west = true;
 	std::string move_next = "west";
-	std::string name;
+	const std::string name;
 	Container bag;
 
 

@@ -4,7 +4,7 @@
 using namespace lab3;
 
 
-Monster::Monster(std::string name, std::string noise, Environment* location): Actor(name,location){
+Monster::Monster(const std::string name, std::string noise, Environment* location): Actor(name,location){
 
 	this->noise = noise;
 	set_attack_points(8);
