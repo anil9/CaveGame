@@ -126,6 +126,7 @@ void Game::run_game(){
 					execute_command(command);
 				}
 				std::cout << "===============\n";
+				real_player->increase_buff_tick();
 			}
 		}
 			remove_dead(dead_list);
@@ -158,7 +159,6 @@ void Game::execute_command(std::string command){
 		}
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-
 		Item* item = real_player->get_location()->getItem(commands[2]);
 		if(item != NULL && item->isPickupable()){
 			real_player->pick_up(item); 
@@ -171,6 +171,11 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "drop"){
 		Item* item = real_player->get_container().get_item(commands[1]);
+		if(item == NULL){
+			Wearable* wp = real_player->get_equipped(commands[1]);
+			Pickup_able* pp = dynamic_cast<Pickup_able*>(wp);
+			item = dynamic_cast<Item*>(wp);	
+		}
 		if(item != NULL){
 			real_player->drop(item);
 			std::cout << "You dropped " << commands[1]<< "\n";
@@ -201,6 +206,14 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
+		if(commands[1] == "special"){
+			std::string special = real_player->use_special();
+			if(special == ""){
+				std::cout<<"You can't renew your buff"<<std::endl;
+			}else{
+				std::cout<<special<<std::endl;
+			}
+		}
 	}
 	else if(commands[0] == "talk" && commands[1] == "to"){
 			Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
@@ -224,6 +237,9 @@ void Game::execute_command(std::string command){
 			std::cout<<real_player->get_container().get_items()<<std::endl;
 		}else if(commands[1] == "gear"){
 			std::cout<<real_player->get_gear()<<std::endl;
+			if(real_player->is_buffed()){
+				std::cout<<"Buff: Great buff of Thais"<<std::endl;
+			}
 		}
 	}	
 	else{

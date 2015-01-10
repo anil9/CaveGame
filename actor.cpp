@@ -52,7 +52,6 @@ std::string Actor::fight(Actor* target) {
 	int lower = get_attack_points() - 2;
 	int damage = rand()% (upper - lower + 1) + lower;
 	target->remove_health(damage);
-	std::cout<<this->get_name() + " does " + std::to_string(damage) + " damage"<<std::endl;
 	std::string ret_string = get_name() + " fought " + target->get_name() + "\n";
 	ret_string+= get_name() + "'s hp: " + std::to_string(get_hp()) + " " + target->get_name() + "'s hp: " + std::to_string(target->get_hp());
 	if(target->get_hp() == 0) {

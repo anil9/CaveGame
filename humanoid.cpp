@@ -56,7 +56,6 @@ std::string Humanoid::get_gear(){
 		ret += std::to_string(get_hp());
 		ret += "  and ap = ";
 		ret += std::to_string(get_attack_points());
-		ret += "\n";
 		return ret;
 	}
 void Humanoid::pick_up(Item* item) {
@@ -71,15 +70,37 @@ void Humanoid::pick_up(Item* item) {
 
 }
 		
-void Humanoid::drop(Item* dropping_item){
-	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item); 
+void Humanoid::drop(Item* dropping_item){	
+			
+	Pickup_able* pa = dynamic_cast<Pickup_able*>(dropping_item);
+	Wearable* wp = dynamic_cast<Wearable*>(pa); 
+	std::string type = wp->get_type();
 	if(pa!=NULL && get_container().drop(pa)){
 		Outdoors* outdoors = dynamic_cast<Outdoors*>(get_location()); 
 		Swamp* swamp = dynamic_cast<Swamp*>(outdoors); 
 			if(swamp == NULL){
 				get_location()->add_item(dropping_item);
 			}
-	}else{
+	}else if(wp != NULL && gear.find(type) != gear.end()){
+		auto dropping_gear = gear.find(type);
+		if(type == "weapon"){	
+			Weapon* weapon = dynamic_cast<Weapon*>(gear.at(type));
+			if(weapon!=NULL){
+				set_attack_points(get_attack_points() - weapon->get_damage());
+				gear.erase(dropping_gear);
+				get_location()->add_item(dropping_item);
+			}
+		}
+		else if(type == "armor"){
+			Armor* armor = dynamic_cast<Armor*>(gear.at(type));
+			if(armor != NULL){
+				set_hp(get_hp() - armor->get_protection());
+				gear.erase(dropping_gear);
+				get_location()->add_item(dropping_item);
+			}
+		}
+	} 
+	else{
 		std::cout<<"You do not have that item in you bag"<<std::endl;
 	}
 }
@@ -92,7 +113,35 @@ void Humanoid::set_answer(std::string new_answer){
 }
 
 std::string Humanoid::use_special() {
-	//TODO
-	return "";
+	if(is_buffed()){
+		return "";
+	}
+
+	isbuffed = true;
+	set_attack_points(get_attack_points() + 2);
+	return "You are buffed with the great buff of Thais,\nincreasing your ap with 2 for 3 turns";
+}
+
+void Humanoid::increase_buff_tick(){
+	if(is_buffed()){
+		++buff_tick;
+		if(buff_tick == 3){
+			set_attack_points(get_attack_points() -2);
+			isbuffed = false;
+		}
+	}
+}
+
+bool Humanoid::is_buffed(){
+	return isbuffed;
+}
+
+Wearable* Humanoid::get_equipped(std::string name){
+	for(auto i = gear.begin(); i!=gear.end();++i){
+		if(i->second != NULL && i->second->getName() == name){
+			return gear.at(i->second->get_type());
+		}
+	}
+	return NULL;
 }
 

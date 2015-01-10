@@ -19,7 +19,6 @@ bool Container::drop(Pickup_able* pickup_able){
 			return true;
 		}
 	}
-	std::cout<<"You dont have that in your bag!"<<std::endl;
 	return false;
 }
 
@@ -38,7 +37,6 @@ Pickup_able* Container::get_item(std::string item_name){
 			return item;
 		}
 	}
-
 	return NULL;
 }
 

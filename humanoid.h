@@ -19,14 +19,18 @@ namespace lab3{
 		~Humanoid();
 		void change_gear(Wearable*);
 		std::string get_gear();
+		Wearable* get_equipped(std::string);
 		void pick_up(Item*);
 		void drop(Item*);
 		std::string get_answer();
 		void set_answer(std::string);
 		std::string use_special();
+		void increase_buff_tick();
+		bool is_buffed();
 
 	private:
-		//Container mybag;
+		bool isbuffed = false; 
+		int buff_tick = 0; 
 		std::string answer = "";
 		std::map<std::string,Wearable*> gear = {{"armor", NULL},{"weapon", NULL}}; 
 	};
