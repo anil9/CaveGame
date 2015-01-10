@@ -30,6 +30,7 @@ Game::Game(){
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
 	Swamp swamp("Euuhw smelly mud everywhere!");
+	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!", coinp);
 
 	my_cabin.setDirection("east", &forest1);
 	forest1.setDirection("west", &my_cabin);
@@ -39,6 +40,9 @@ Game::Game(){
 	demon_cave.setDirection("west", &forest1);
 	demon_cave.setDirection("east", &winning_place);
 	winning_place.setDirection("west", &demon_cave);
+	locked_area.set_backtrack_direction("west",&swamp);
+	locked_area.setDirection("east", &winning_place);
+	swamp.setDirection("east", &locked_area);
 
 	//Setup actors
 	Humanoid player("Kalle", &my_cabin);
@@ -68,6 +72,7 @@ Game::Game(){
 	set_real_player(&player);
 	std::cout <<"initialized game successfully, running game.\n"; 
 	std::cout<<get_adventure_intro()<<std::endl;
+	locked_area.unlock();
 	run_game();
 }
 void Game::set_real_player(Humanoid* real_player){
@@ -85,6 +90,7 @@ void Game::swamp_sink(Actor* actor){
 
 
 void Game::run_game(){
+
 
 	while(!game_finished) {
 		std::vector<Actor*> dead_list;

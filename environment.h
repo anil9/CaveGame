@@ -22,9 +22,9 @@ class Environment{
 	std::string description()const;
 	void remove_item(Item*);
 	void add_item(Item*);
-	void setDirection(std::string, Environment*);
+	virtual void setDirection(std::string, Environment*);
 	Environment* getNeighbor(std::string);
-	std::string getDescription()const;
+	virtual std::string getDescription()const;
 	Item* getItem(std::string)const;
 	std::vector<Item*> getItems()const;
 	void add_actor(Actor*);

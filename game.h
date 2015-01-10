@@ -12,6 +12,7 @@
 #include "wearable.h"
 #include "weapon.h"
 #include "animal.h"
+#include "obstacle.h"
 #include <vector>
 #include <string>
 
