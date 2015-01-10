@@ -177,8 +177,7 @@ void Game::execute_command(std::string command){
 			Wearable* wp = real_player->get_equipped(commands[1]);
 			Pickup_able* pp = dynamic_cast<Pickup_able*>(wp);
 			item = dynamic_cast<Item*>(wp);	
-		}
-		if(item != NULL){
+		} else if(item != NULL){
 			real_player->drop(item);
 			std::cout << "You dropped " << commands[1]<< "\n";
 			next_turn = true;
@@ -208,13 +207,21 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
-		if(commands[1] == "special"){
-			std::string special = real_player->use_special();
-			if(special == ""){
-				std::cout<<"You can't renew your buff"<<std::endl;
-			}else{
-				std::cout<<special<<std::endl;
+		if(commands.size()>1){
+			if(commands[1] == "special"){
+				std::string special = real_player->use_special();
+				if(special == ""){
+					std::cout<<"You can't renew your buff"<<std::endl;
+				}else{
+					std::cout<<special<<std::endl;
+				}
+			}else if(real_player->get_container().get_item(commands[1]) != NULL){
+				auto use_able = real_player->get_container().get_item(commands[1]);
+				Unwearable* up = dynamic_cast<Unwearable*>(use_able);
+				
 			}
+		}else{
+			std::cout<<"What to use?"<<std::endl;
 		}
 	}
 	else if(commands[0] == "talk" && commands[1] == "to"){
@@ -246,6 +253,10 @@ void Game::execute_command(std::string command){
 				std::cout<<"Buff: Great buff of Thais"<<std::endl;
 			}
 		}
+	}
+	else if(commands[0] == "quit"){
+		game_finished = true;
+		next_turn = true;	
 	}	
 	else{
 		std::cout<<"That is not a command, try again!"<<std::endl;

@@ -65,7 +65,7 @@ void Humanoid::pick_up(Item* item) {
 		get_location()->remove_item(item); 
 	}
 	else{
-		std::cout<<"Where did you see that item?!"<<std::endl;
+		std::cout<<"Can not pick up that item"<<std::endl;
 	}
 
 }

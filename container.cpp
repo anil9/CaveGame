@@ -28,6 +28,7 @@ bool Container::pick_up(Pickup_able* pickup_able){
 		contains.push_back(pickup_able);
 		return true;
 	}
+	std::cout<<"Your bag gets to heavy!"<<std::endl;
 	return false;
 }
 
