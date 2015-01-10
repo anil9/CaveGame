@@ -6,6 +6,6 @@ Pickup_able::Pickup_able(int weight, std::string description, std::string name) 
 	this->weight = weight;
 }
 
-int Pickup_able::get_weight() {
+int Pickup_able::get_weight()const{
 	return weight;
 }

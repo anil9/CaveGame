@@ -7,7 +7,7 @@ using namespace lab3;
 Container::Container(int capacity):Item("mybag", "bag", false){
 	this->capacity = capacity;
 }
-std::vector<Pickup_able*> Container::containing(){		// TODO: return value. Should it be a reference to a vector?
+std::vector<Pickup_able*> Container::containing()const{		// TODO: return value. Should it be a reference to a vector?
 	return contains;
 }
 bool Container::drop(Pickup_able* pickup_able){
@@ -32,7 +32,7 @@ bool Container::pick_up(Pickup_able* pickup_able){
 	return false;
 }
 
-Pickup_able* Container::get_item(std::string item_name){
+Pickup_able* Container::get_item(std::string item_name)const{
 	for(Pickup_able* item: contains){
 		if(item->getName() == item_name){
 			return item;
@@ -41,7 +41,7 @@ Pickup_able* Container::get_item(std::string item_name){
 	return NULL;
 }
 
-std::string Container::get_items(){
+std::string Container::get_items()const{
 	std::string ret = "";
 	int total_weight = 0;
 	if(contains.size() == 0){

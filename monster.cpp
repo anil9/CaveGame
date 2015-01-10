@@ -4,7 +4,7 @@
 using namespace lab3;
 
 
-Monster::Monster(std::string name, std::string noise, Environment* location): Actor(name,location){
+Monster::Monster(const std::string name, std::string noise, Environment* location): Actor(name,location){
 
 	this->noise = noise;
 	set_attack_points(8);
@@ -32,7 +32,7 @@ std::string Monster::action(){
 	}
 }
 
-Humanoid* Monster::humanoid_in_range(){
+Humanoid* Monster::humanoid_in_range()const{
 
 	std::vector<Actor*> other_actors = get_location()->get_actors(); 
 		for(Actor* actor:other_actors){

@@ -7,8 +7,8 @@ namespace lab3{
 	class Armor: public Wearable{
 	public:
 		Armor(int protection, int weight, std::string description, std::string name, std::string type);
-		int get_protection();
-		std::string get_stats()override;
+		int get_protection()const;
+		std::string get_stats()const override;
 	private:
 		int protection;
 	};

@@ -4,8 +4,7 @@
 #include <time.h>
 #include <string>
 using namespace lab3;
-Actor::Actor(std::string name, Environment* location): bag(50) {
-	this->name = name;
+Actor::Actor(const std::string _name, Environment* location): bag(50),name(_name) {
 	this->location = location;
 	get_location()->add_actor(this);
 }
@@ -15,7 +14,7 @@ std::string Actor::get_type() {
 	return type;
 }
 
-std::string Actor::get_name(){
+const std::string Actor::get_name()const{
 	return name;
 }
 
@@ -60,7 +59,7 @@ std::string Actor::fight(Actor* target) {
 	return ret_string; 
 }
 
-std::string Actor::sense() {
+std::string Actor::sense()const {
 	//TODO
 	std::string retString = ""; 
 	retString += this->get_location()->getDescription();
@@ -99,10 +98,10 @@ void Actor::set_attack_points(int attack_points) {
 	default_attack_points = attack_points;
 }
 
-int Actor::get_attack_points() {
+int Actor::get_attack_points() const{
 	return default_attack_points;
 }
-int Actor::get_hp() {
+int Actor::get_hp() const{
 	return health;
 }
 
@@ -112,7 +111,7 @@ void Actor::set_location(Environment* location){
 	get_location()->add_actor(this);
 }
 
-Environment* Actor::get_location() {
+Environment* Actor::get_location() const{
 	return location;
 }
 
@@ -125,7 +124,7 @@ void Actor::remove_health(int dmg){
 	}
 }
 
-Actor* Actor::another_actor_in_range(){
+Actor* Actor::another_actor_in_range()const{
 	std::vector<Actor*> other_actors = get_location()->get_actors(); 
 	for(Actor* actor:other_actors){
 		if(actor != this) {
@@ -136,7 +135,7 @@ Actor* Actor::another_actor_in_range(){
 
 }
 
-std::string Actor::other_actors_in_range(){
+std::string Actor::other_actors_in_range()const{
 	std::vector<Actor*> other_actors = get_location()->get_actors();
 	std::string ret_string ="";
 	for(Actor* actor:other_actors){
@@ -151,6 +150,6 @@ Container& Actor::get_container(){
 	return bag;
 }
 
-bool Actor::is_dead(){
+bool Actor::is_dead()const{
 	return dead;
 }

@@ -15,15 +15,15 @@
 namespace lab3{
 	class Humanoid: public Actor {
 	public:
-		Humanoid(std::string, Environment*);
+		Humanoid(const std::string, Environment*);
 		~Humanoid();
 		void change_gear(Wearable*);
-		std::string get_gear();
 		Wearable* get_equipped(std::string);
+		std::string get_gear()const;
 		void pick_up(Item*);
 		void drop(Item*);
-		std::string get_answer();
-		void set_answer(std::string);
+		const std::string get_answer()const;
+		void set_answer(const std::string);
 		std::string use_special();
 		void increase_buff_tick();
 		bool is_buffed();

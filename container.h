@@ -9,11 +9,11 @@
 	class Container: public Item{
 	public:
 		Container(int capacity);
-		std::vector<Pickup_able*> containing();
+		std::vector<Pickup_able*> containing()const;
 		bool drop(Pickup_able*);
 		bool pick_up(Pickup_able*);
-		Pickup_able* get_item(std::string);
-		std::string get_items();
+		Pickup_able* get_item(std::string)const;
+		std::string get_items()const;
 
 	private:
 		std::vector<Pickup_able*> contains;

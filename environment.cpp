@@ -19,7 +19,7 @@ using namespace lab3;
 	/*
 	* appends the string with the available directions and returns the string. 
 	*/ 
-	std::string Environment::directions(){
+	std::string Environment::directions()const{
 		std::string directions="";
 		if(env_neighbors.find("south") != env_neighbors.end()){
 			directions+=" south";
@@ -37,7 +37,7 @@ using namespace lab3;
 		return directions;
 	}
 
-	std::string Environment::description(){
+	std::string Environment::description()const{
 		return env_description;
 	}
 
@@ -68,7 +68,7 @@ using namespace lab3;
 		}
 	}
 
-	Item* Environment::getItem(std::string item){
+	Item* Environment::getItem(std::string item)const{
 		
 		for(unsigned int i = 0; i<items_in_env.size(); ++i){
 			if((items_in_env[i])->getName() ==item){
@@ -78,11 +78,11 @@ using namespace lab3;
 		return NULL;
 	}
 
-	std::string Environment::getDescription(){
+	std::string Environment::getDescription()const{
 		return env_description;
 	}
 
-	std::vector<Item*> Environment::getItems(){
+	std::vector<Item*> Environment::getItems()const{
 		return items_in_env;
 	}
 	void Environment::add_actor(Actor* actor) {
@@ -94,7 +94,7 @@ using namespace lab3;
 
 	}
 
-	Actor* Environment::get_actor(std::string actor_name){
+	Actor* Environment::get_actor(std::string actor_name)const{
 		for(Actor* actor: actors_in_env){
 			std::string name = actor->get_name();
 			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -105,6 +105,6 @@ using namespace lab3;
 		return NULL;
 	}
 
-	std::vector<Actor*> Environment::get_actors() {
+	std::vector<Actor*> Environment::get_actors()const{
 		return actors_in_env;
 	}

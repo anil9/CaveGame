@@ -18,19 +18,19 @@ class Environment{
  	Environment(std::string);
  	Environment(std::string,std::vector<Item*>);
  	virtual ~Environment();
-	std::string directions();
-	std::string description();
+	std::string directions()const;
+	std::string description()const;
 	void remove_item(Item*);
 	void add_item(Item*);
-	void setDirection(std::string, Environment*);
+	virtual void setDirection(std::string, Environment*);
 	Environment* getNeighbor(std::string);
-	std::string getDescription();
-	Item* getItem(std::string);
-	std::vector<Item*> getItems();
+	virtual std::string getDescription()const;
+	Item* getItem(std::string)const;
+	std::vector<Item*> getItems()const;
 	void add_actor(Actor*);
 	void remove_actor(Actor*);
-	Actor* get_actor(std::string);
-	std::vector<Actor*> get_actors();
+	Actor* get_actor(std::string)const;
+	std::vector<Actor*> get_actors()const;
 
 protected:
 	std::map<std::string, Environment*> env_neighbors;
