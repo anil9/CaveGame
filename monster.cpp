@@ -15,8 +15,7 @@ std::string Monster::use_special(){
 }
 
 std::string Monster::fight(Humanoid* humanoid){
-	Actor* actor = dynamic_cast<Actor*>(humanoid);
-	std::string ret_string =Actor::fight(actor);
+	std::string ret_string =Actor::fight(humanoid);
 	ret_string+= "\n"+ get_name() + ": " + use_special();
 	return ret_string;
 }
@@ -43,22 +42,3 @@ Humanoid* Monster::humanoid_in_range()const{
 		}
 	return NULL;
 }
-
-/*
-int main() {
-
-	Monster last_boss("MUAHAHAHAH");
-	Monster dragon("FCHHH");
-	std::cout << last_boss.make_noise() << std::endl;
-
-	last_boss.set_attack_points(7);
-	last_boss.set_hp(10);
-	dragon.set_attack_points(5);
-	dragon.set_hp(7);
-
-	last_boss.fight(dragon);
-	std::cout << "health of dragon after being hit: " << dragon.get_hp() << std::endl;
-
-	return 0;
-}
-*/
