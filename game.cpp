@@ -20,33 +20,44 @@ Game::Game(){
 	Weapon* axep = &axe;
 	Weapon knife(2, 10, "Just a simple knife", "knify", "weapon");
 	Weapon* knifep = &knife;
+	Weapon sensei(4, 5, "Samuraisword", "sensei", "weapon");
+	Weapon* senseip = &sensei;
 	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
 	Weapon* swordp = &sword;
 	Armor armor(2, 10, "Good armor", "armor", "armor");
 	Armor* armorp = &armor;
 	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
 	Unwearable* toothp = &tooth;
+	Unwearable candle("There will be light", 1, "romantic candle", "candle");
+	Unwearable* candlep = &candle;
 	//Setup environment
-	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp});
+	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
-	Outdoors demon_cave("The demon cave. Scary and stuff.");
+	Indoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
 	Swamp swamp("Euuhw smelly mud everywhere!");
 	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!");
+	Obstacle dark_cave("This is a dark cave, maybe if you have anything to light up?", "Oh look the cave is bigger!");
+	Indoors cave("random cave");
 
 	my_cabin.setDirection("east", &forest1);
 	forest1.setDirection("west", &my_cabin);
 	forest1.setDirection("east", &demon_cave);
 	forest1.setDirection("south", &swamp);
+	forest1.setDirection("north", &dark_cave);
 	swamp.setDirection("north", &forest1);
 	demon_cave.setDirection("west", &forest1);
 	demon_cave.setDirection("east", &winning_place);
 	winning_place.setDirection("west", &demon_cave);
 	locked_area.set_backtrack_direction("west",&swamp);
 	locked_area.setDirection("east", &winning_place);
+	dark_cave.set_backtrack_direction("south", &forest1);
+	dark_cave.setDirection("north", &cave);
 	swamp.setDirection("east", &locked_area);
+	cave.setDirection("south", &dark_cave);
 
 	coin.set_key(&locked_area);
+	candle.set_key(&dark_cave);
 
 	//Setup actors
 	Humanoid player("Kalle", &my_cabin);
@@ -54,7 +65,10 @@ Game::Game(){
 	demon.get_container().pick_up(axep);
 	demon.get_container().pick_up(toothp);
 	Humanoid inkeeper("inkeeper", &my_cabin);
+	Humanoid troll("sleepytroll", &cave);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
+	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!\nTake this *thorws something on the cold cavefloor*!");
+	troll.get_container().pick_up(senseip);
 	Animal rabbit("Rabbit", &forest1);
 	Animal moose("Moose", &forest1);
 	moose.set_hp(35);
@@ -247,6 +261,12 @@ void Game::execute_command(std::string command){
 					std::cout<<"Can not talk to that actor"<<std::endl;
 				}else{
 					std::cout<<talk_to->get_answer()<<std::endl;
+					if(talk_to->get_name() == "sleepytroll"){
+						auto loot = talk_to->get_container().containing();
+						auto give_item = loot.at(0);
+						talk_to->get_container().drop(give_item);
+						talk_to->get_location()->add_item(give_item);
+					}
 					next_turn = true;
 				}
 			}
