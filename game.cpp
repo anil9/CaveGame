@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <cstring>
 #include <exception>
+#include <thread>
+#include <chrono>
 
 using namespace lab3;
 
@@ -66,8 +68,8 @@ Game::Game(){
 	demon.get_container().pick_up(toothp);
 	Humanoid inkeeper("inkeeper", &my_cabin);
 	Humanoid troll("sleepytroll", &cave);
-	inkeeper.set_answer("Hello and welcome to my humble cabin! \nPlease help yourself to the items in here that you want!\n Good luck");
-	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!\nTake this *thorws something on the cold cavefloor*!");
+	inkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
+	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *thorws something on the cold cavefloor*!");
 	troll.get_container().pick_up(senseip);
 	Animal rabbit("Rabbit", &forest1);
 	Animal moose("Moose", &forest1);
@@ -260,7 +262,16 @@ void Game::execute_command(std::string command){
 				if(talk_to == NULL){
 					std::cout<<"Can not talk to that actor"<<std::endl;
 				}else{
-					std::cout<<talk_to->get_answer()<<std::endl;
+					std::string temp = talk_to->get_answer();
+					for(char c: temp){
+						std::this_thread::sleep_for(std::chrono::milliseconds(50));
+						if(c == '-'){
+							std::cout<<"\n";
+						}
+						std::cout<<c<<std::flush;
+					}
+					std::cout<<"\n";
+					//std::cout<<talk_to->get_answer()<<std::endl;
 					if(talk_to->get_name() == "sleepytroll"){
 						auto loot = talk_to->get_container().containing();
 						auto give_item = loot.at(0);
