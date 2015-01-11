@@ -30,7 +30,7 @@ Game::Game(){
 	Outdoors demon_cave("The demon cave. Scary and stuff.");
 	Outdoors winning_place("Goal!");
 	Swamp swamp("Euuhw smelly mud everywhere!");
-	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!", coinp);
+	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!");
 
 	my_cabin.setDirection("east", &forest1);
 	forest1.setDirection("west", &my_cabin);
@@ -43,6 +43,8 @@ Game::Game(){
 	locked_area.set_backtrack_direction("west",&swamp);
 	locked_area.setDirection("east", &winning_place);
 	swamp.setDirection("east", &locked_area);
+
+	coin.set_key(&locked_area);
 
 	//Setup actors
 	Humanoid player("Kalle", &my_cabin);
@@ -72,7 +74,6 @@ Game::Game(){
 	set_real_player(&player);
 	std::cout <<"initialized game successfully, running game.\n"; 
 	std::cout<<get_adventure_intro()<<std::endl;
-	locked_area.unlock();
 	run_game();
 }
 void Game::set_real_player(Humanoid* real_player){
@@ -224,6 +225,14 @@ void Game::execute_command(std::string command){
 			}else if(real_player->get_container().get_item(commands[1]) != NULL){
 				auto use_able = real_player->get_container().get_item(commands[1]);
 				Unwearable* up = dynamic_cast<Unwearable*>(use_able);
+				if(up != NULL){
+					if(up->is_key(real_player->get_location())) {
+						std::cout <<"Successfully unlocked.\n";
+
+					}
+					// useable unwearable item?
+				}
+				//useable pickup-able item?
 				
 			}
 		}else{

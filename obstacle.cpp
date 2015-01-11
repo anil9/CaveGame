@@ -2,8 +2,8 @@
 #include <string>
 using namespace lab3;
 
-Obstacle::Obstacle(std::string locked_description,std::string unlocked_description, Unwearable* key) : Environment(unlocked_description) {
-	this->key = key;
+Obstacle::Obstacle(std::string locked_description,std::string unlocked_description) : Environment(unlocked_description) {
+	
 	this->locked_description = locked_description;
 }
 bool Obstacle::is_locked()const{
@@ -22,9 +22,6 @@ void Obstacle::unlock(){
 	for(auto it = hidden_neighbors.begin(); it!=hidden_neighbors.end(); ++it){
 		Environment::setDirection(it->first,it->second);
 	}
-}
-Unwearable* Obstacle::get_key(){
-	return key;
 }
 
 std::string Obstacle::getDescription()const{
