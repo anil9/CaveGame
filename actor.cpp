@@ -26,7 +26,7 @@ std::string Actor::action() {
 	if(another_actor != NULL){	
 		return fight(another_actor);
 	}
-	else {
+	else if(get_name()!="Hoccar"){
 		set_location(get_location()->getNeighbor(move_next));
 		if(went_west){
 			move_next="east";

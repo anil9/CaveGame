@@ -36,7 +36,7 @@ Game::Game(){
 	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
 	Indoors demon_cave("The demon cave. Scary and stuff.");
-	Outdoors winning_place("Goal!");
+	Outdoors winning_place("Hoccar's cave");
 	Swamp swamp("Euuhw smelly mud everywhere!");
 	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!");
 	Obstacle dark_cave("This is a dark cave, maybe if you have anything to light up?", "Oh look the cave is bigger!");
@@ -64,6 +64,9 @@ Game::Game(){
 	//Setup actors
 	Humanoid player("Kalle", &my_cabin);
 	Monster demon("Demon", "YOU WILL DIE HERE",&demon_cave);
+	Monster hoccar("Hoccar", "I'm the Lord of Demons!", &winning_place);
+	hoccar.set_hp(80);
+	hoccar.set_attack_points(15);
 	demon.get_container().pick_up(axep);
 	demon.get_container().pick_up(toothp);
 	Humanoid inkeeper("inkeeper", &my_cabin);
@@ -87,6 +90,7 @@ Game::Game(){
 	actors.push_back(&moose);
 	actors.push_back(&lion);
 	actors.push_back(&turtle);
+	actors.push_back(&hoccar); // Ska inte kunna gå fram och tillbaka.
 
 
 	set_real_player(&player);
@@ -160,7 +164,6 @@ void Game::run_game(){
 }
 
 void Game::execute_command(std::string command){
-	//TODO
 	// if command should end the player's turn set next_turn = true.
 	std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 	
@@ -175,6 +178,7 @@ void Game::execute_command(std::string command){
 
 	if(commands[0] == "go"){
 		Environment* neighbor = real_player->get_location()->getNeighbor(commands[1]);
+
 		if(neighbor != NULL){
 			real_player->set_location(neighbor);
 			next_turn = true;
@@ -212,7 +216,9 @@ void Game::execute_command(std::string command){
 
 	}
 	else if(commands[0] == "help"){
-		std::cout << "Vilka kommandon man kan använda som spelare" << std::endl;
+		std::cout<<"===================="<<std::endl;
+		std::cout << "These are the following commands that you can use,\ngo direction\npick up itemname\ndrop itemname\nhelp\nsense\nuse special (or) itemname\nfight actorname\ntalk to actorname\nequip itemname\nshow bag (or) gear" << std::endl;
+		std::cout<<"===================="<<std::endl;
 	}
 	else if(commands[0] == "fight"){
 		Actor* target = real_player->get_location()->get_actor(commands[1]);
@@ -313,11 +319,16 @@ void Game::execute_command(std::string command){
 
 std::string Game::get_adventure_intro()const{
 	std::string intro = "";
-	intro += "################################################\n";
-	intro += "#         Our game intro                       #\n";
-	intro += "#         You are an Elf LOL                   #\n";
-	intro += "#  Kill the Demon and be nice to the inkeeper! #\n";
-	intro += "################################################\n";
+	intro += "############################################################\n";
+	intro += "#         Welcome to the world of Thargon,                 #\n";
+	intro += "#       You are an elf named Theoden from Thais,           #\n";
+	intro += "#   your objective is to defeat the Lord of Demons Hoccar, #\n";
+	intro += "#     to prove yourself worthy to the elfking Zaor.        #\n";
+    intro += "#                                                          #\n";
+	intro += "#    You have been transported to the inkeepers cabin,     #\n";
+	intro += "#         to armor up and start your adventure,            #\n";
+	intro += "#      Good luck and may the gods of Thargon be with you.  #\n";
+	intro += "############################################################\n";
 	return intro;
 }
 void Game::remove_dead(const std::vector<Actor*>& dead_list){
