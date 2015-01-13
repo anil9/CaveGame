@@ -131,6 +131,10 @@ void Game::run_game(){
 					actor->get_container().drop(item);
 					actor->get_location()->add_item(item);
 				}
+				if (actor == real_player){
+					you_lost();
+					break;
+				}
 				dead_list.push_back(actor);
 				continue;
 
@@ -259,7 +263,7 @@ void Game::execute_command(std::string command){
 							std::cout << item->getName() << ": "<< item->use() << ".\n";
 						}
 					}
-					elsse {
+					else {
 						// useable unwearable item
 						std::cout << item->getName() << ": "<< item->use() << ".\n";
 					}
@@ -357,6 +361,18 @@ void Game::remove_dead(const std::vector<Actor*>& dead_list){
 
 bool Game::real_player_close(const Actor* actor){
 	return actor->get_location() == real_player->get_location();
+}
+
+void Game::you_lost(){
+	game_finished = true;
+	std::string outro="";
+	outro += "######################################################\n";
+	outro += "#   The world of Thargon continues without Theoden.  #\n";
+	outro += "#         All the elves will live in slavery         #\n";
+	outro += "#            for yet another eternity.               #\n";
+	outro += "#               Thanks for playing!                  #\n";
+	outro += "######################################################\n";
+	std::cout << outro << std::endl;
 }
 
 int main(){
