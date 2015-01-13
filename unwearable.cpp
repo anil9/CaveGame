@@ -14,7 +14,7 @@ void Unwearable::set_key(Obstacle* unlocks){
 	this->unlocks = unlocks;
 	key = true;
 }
-bool Unwearable::is_key(Environment* location){
+bool Unwearable::open(Environment* location){
 	if(key){
 		Obstacle* obstacle = dynamic_cast<Obstacle*>(location);
 		if(obstacle!= NULL){
@@ -26,6 +26,10 @@ bool Unwearable::is_key(Environment* location){
 
 	}
 		return false;
+}
+
+bool Unwearable::is_key()const{
+	return key;
 }
 Obstacle* Unwearable::get_unlocking_obstacle()const{
 	return unlocks;

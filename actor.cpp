@@ -65,7 +65,7 @@ std::string Actor::sense()const {
 	retString += this->get_location()->getDescription();
 	auto items = this->get_location()->getItems();
 	if(items.begin() != items.end()){
-		retString += "Oh look there is some random items in this env!";
+		retString += "\nOh look there is some random items in this env!";
 		
 		for(auto i = items.begin(); i!=items.end();++i){
 				retString += "\n";

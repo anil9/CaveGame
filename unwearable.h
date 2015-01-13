@@ -10,7 +10,8 @@ public:
 	Unwearable(std::string use_text, int weight, std::string description, std::string name);
 	std::string use();
 	void set_key(Obstacle* unlocks);
-	bool is_key(Environment*);
+	bool open(Environment*);
+	bool is_key()const;
 	Obstacle* get_unlocking_obstacle()const;
 private:
 	std::string use_text;

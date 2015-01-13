@@ -72,7 +72,7 @@ Game::Game(){
 	Humanoid inkeeper("inkeeper", &my_cabin);
 	Humanoid troll("sleepytroll", &cave);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
-	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *thorws something on the cold cavefloor*!");
+	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *throws something on the cold cavefloor*!");
 	troll.get_container().pick_up(senseip);
 	Animal rabbit("Rabbit", &forest1);
 	Animal moose("Moose", &forest1);
@@ -245,17 +245,33 @@ void Game::execute_command(std::string command){
 				}else{
 					std::cout<<special<<std::endl;
 				}
-			}else if(real_player->get_container().get_item(commands[1]) != NULL){
+			}
+			else if(real_player->get_container().get_item(commands[1]) != NULL){
 				auto use_able = real_player->get_container().get_item(commands[1]);
-				Unwearable* up = dynamic_cast<Unwearable*>(use_able);
-				if(up != NULL){
-					if(up->is_key(real_player->get_location())) {
-						std::cout <<"Successfully unlocked.\n";
-
+				Unwearable* item = dynamic_cast<Unwearable*>(use_able);
+				if(item != NULL){
+					if(item->is_key()) {
+						if(item->open(real_player->get_location())){
+							std::cout << item->getName() << ": "<< item->use() << ".\n";
+							std::cout << item->getName() << ": Whoa! Something happend.\n";
+						} 
+						else {
+							std::cout << item->getName() << ": "<< item->use() << ".\n";
+						}
 					}
-					// useable unwearable item?
+					elsse {
+						// useable unwearable item
+						std::cout << item->getName() << ": "<< item->use() << ".\n";
+					}
 				}
-				//useable pickup-able item?
+				else {
+					//useable pickup-able item
+					//don't have any of those yet.
+					std::cout << "You can't use that.\n";
+				}
+			} 
+			else {
+				std::cout << "You don't have that item in your bag.\n";
 			}
 		}
 		else{
