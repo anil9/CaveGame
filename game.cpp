@@ -136,6 +136,9 @@ void Game::run_game(){
 				if (actor == real_player){
 					you_lost();
 					break;
+				} else if(actor->get_name() == "Hoccar"){
+					you_won();
+					break;
 				}
 				dead_list.push_back(actor);
 				continue;
@@ -383,6 +386,19 @@ void Game::you_lost(){
 	outro += "#         All the elves will live in slavery         #\n";
 	outro += "#            for yet another eternity.               #\n";
 	outro += "#               Thanks for playing!                  #\n";
+	outro += "######################################################\n";
+	std::cout << outro << std::endl;
+}
+
+void Game::you_won(){
+	game_finished = true;
+	std::string outro="";
+	outro += "######################################################\n";
+	outro += "#             You have done it! You won!             #\n";
+	outro += "#     The demons are weak now when Hoccar is gone.   #\n";
+	outro += "#          It'll be an easy task to clear out        #\n";
+	outro += "#                  the rest of them.                 #\n";
+	outro += "#                 Thanks for playing!                 #\n";
 	outro += "######################################################\n";
 	std::cout << outro << std::endl;
 }

@@ -36,6 +36,7 @@ private:
 	void swamp_sink(Actor*);
 	bool real_player_close(const Actor*);
 	void you_lost();
+	void you_won();
 
 	std::vector<Actor*> actors;
 	std::vector<Environment*> environments;
