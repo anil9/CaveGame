@@ -14,6 +14,20 @@ void Unwearable::set_key(Obstacle* unlocks){
 	this->unlocks = unlocks;
 	key = true;
 }
+void Unwearable::set_hp_pot(int healing_amount){
+	hp_pot = true;
+	this->healing_amount = healing_amount;
+}
+
+bool Unwearable::is_hp_pot(){
+	return hp_pot;
+}
+
+int Unwearable::get_hp_pot(){
+	return healing_amount;
+}
+
+
 bool Unwearable::open(Environment* location){
 	if(key){
 		Obstacle* obstacle = dynamic_cast<Obstacle*>(location);

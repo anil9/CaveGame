@@ -13,10 +13,15 @@ public:
 	bool open(Environment*);
 	bool is_key()const;
 	Obstacle* get_unlocking_obstacle()const;
+	void set_hp_pot(int);
+	bool is_hp_pot();
+	int get_hp_pot();
 private:
 	std::string use_text;
 	Obstacle* unlocks;
 	bool key = false;
+	bool hp_pot = false;
+	int healing_amount=0;
 
 };
 }

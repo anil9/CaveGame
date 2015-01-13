@@ -32,10 +32,12 @@ Game::Game(){
 	Unwearable* toothp = &tooth;
 	Unwearable candle("There will be light", 1, "romantic candle", "candle");
 	Unwearable* candlep = &candle;
+	Unwearable hp_pot("Ahh.. I feel much better now", 1, "potion", "potion");
+	hp_pot.set_hp_pot(10);
 	//Setup environment
 	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
-	Indoors demon_cave("The demon cave. Scary and stuff.");
+	Indoors demon_cave("The demon cave. Scary and stuff.", {&hp_pot});
 	Outdoors winning_place("Hoccar's cave");
 	Swamp swamp("Euuhw smelly mud everywhere!");
 	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!");
@@ -262,6 +264,16 @@ void Game::execute_command(std::string command){
 						else {
 							std::cout << item->getName() << ": "<< item->use() << ".\n";
 						}
+					}
+					else if(item->is_hp_pot()){
+						real_player->increase_hp(item->get_hp_pot());
+						std::cout << item->getName() << ": "<< item->use() << ".\n";
+						std::cout << "Hp increased by " << item->get_hp_pot() << "\n";
+						std::cout <<  item->getName() << " removed.\n";
+						real_player->drop(item);
+
+
+
 					}
 					else {
 						// useable unwearable item
