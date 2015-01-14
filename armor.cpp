@@ -6,6 +6,8 @@ Armor::Armor(int protection, int weight, std::string description, std::string na
 	this->protection = protection;
 }
 
+Armor::~Armor(){}
+
 int Armor::get_protection()const{
 		return protection;
 }

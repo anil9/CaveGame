@@ -8,6 +8,7 @@ namespace lab3{
 class Unwearable: public Pickup_able{
 public:
 	Unwearable(std::string use_text, int weight, std::string description, std::string name);
+	~Unwearable();
 	std::string use();
 	void set_key(Obstacle* unlocks);
 	bool open(Environment*);

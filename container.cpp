@@ -7,6 +7,8 @@ using namespace lab3;
 Container::Container(int capacity):Item("mybag", "bag", false){
 	this->capacity = capacity;
 }
+Container::~Container(){}
+
 std::vector<Pickup_able*> Container::containing()const{		// TODO: return value. Should it be a reference to a vector?
 	return contains;
 }

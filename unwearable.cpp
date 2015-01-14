@@ -7,6 +7,8 @@ Unwearable::Unwearable(std::string use_text, int weight, std::string description
 	this->use_text = use_text;
 }
 
+Unwearable::~Unwearable(){}
+
 std::string Unwearable::use() {
 	return use_text;
 }
