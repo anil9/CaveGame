@@ -10,8 +10,6 @@ using namespace lab3;
 		this->name = name;
 		this->pickup_able = pickup_able;
 	}
-
-	Item::~Item(){}
 	
 	/*
 	* Returns the description of the item.
