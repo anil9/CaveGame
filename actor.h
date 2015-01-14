@@ -22,6 +22,8 @@ class Actor{
 	int get_hp()const;
 	void set_hp(int);
 	void increase_hp(int);
+	void set_maxhp(int);
+	int get_maxhp()const;
 	virtual int get_attack_points()const;
 	void set_attack_points(int);
 	void set_location(Environment*);
@@ -37,6 +39,7 @@ private:
 	std::string type="";
 	int health;
 	int default_attack_points;
+	int maxhp; 
 	Environment* location;
 	bool went_west = true;
 	std::string move_next = "west";

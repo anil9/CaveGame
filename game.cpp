@@ -17,26 +17,21 @@ Game::Game(){
 
 	//Setup items
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
-	Unwearable* coinp = &coin;
 	Weapon axe(2, 10, "The great axe of the demon", "demonslayer", "weapon");
-	Weapon* axep = &axe;
 	Weapon knife(2, 10, "Just a simple knife", "knify", "weapon");
-	Weapon* knifep = &knife;
 	Weapon sensei(4, 5, "Samuraisword", "sensei", "weapon");
-	Weapon* senseip = &sensei;
 	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
-	Weapon* swordp = &sword;
 	Armor armor(2, 10, "Good armor", "armor", "armor");
-	Armor* armorp = &armor;
+	Armor golden(10, 10, "Golden armor", "golden armor", "armor");
 	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
-	Unwearable* toothp = &tooth;
 	Unwearable candle("There will be light", 1, "romantic candle", "candle");
-	Unwearable* candlep = &candle;
 	Unwearable hp_pot("Ahh.. I feel much better now", 1, "potion", "potion");
 	hp_pot.set_hp_pot(10);
+	Unwearable hp_pot2("Ahh.. I feel much better now", 1, "potion", "potion");
+	hp_pot2.set_hp_pot(10);
 	//Setup environment
-	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
-	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
+	Indoors my_cabin("This is my cabin", {&knife, &sword, &armor, &candle, &hp_pot2});
+	Outdoors forest1("The forest. If I look around I might find items.", {&coin});
 	Indoors demon_cave("The demon cave. Scary and stuff.", {&hp_pot});
 	Outdoors winning_place("Hoccar's cave");
 	Swamp swamp("Euuhw smelly mud everywhere!");
@@ -67,15 +62,15 @@ Game::Game(){
 	Humanoid player("Kalle", &my_cabin);
 	Monster demon("Demon", "YOU WILL DIE HERE",&demon_cave);
 	Monster hoccar("Hoccar", "I'm the Lord of Demons!", &winning_place);
-	hoccar.set_hp(80);
-	hoccar.set_attack_points(15);
-	demon.get_container().pick_up(axep);
-	demon.get_container().pick_up(toothp);
+	hoccar.set_hp(50);
+	hoccar.set_attack_points(12);
+	demon.get_container().pick_up(&axe);
+	demon.get_container().pick_up(&tooth);
 	Humanoid inkeeper("inkeeper", &my_cabin);
 	Humanoid troll("sleepytroll", &cave);
 	inkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
 	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *throws something on the cold cavefloor*!");
-	troll.get_container().pick_up(senseip);
+	troll.get_container().pick_up(&sensei);
 	Animal rabbit("Rabbit", &forest1);
 	Animal moose("Moose", &forest1);
 	moose.set_hp(35);
@@ -84,6 +79,7 @@ Game::Game(){
 	lion.set_attack_points(10);
 	Animal turtle("Turtle", &forest1);
 	turtle.set_hp(45);
+	turtle.get_container().pick_up(&golden);
 
 
 	actors.push_back(&demon);
@@ -269,11 +265,17 @@ void Game::execute_command(std::string command){
 						}
 					}
 					else if(item->is_hp_pot()){
+						int increased = real_player->get_maxhp()- real_player->get_hp();
 						real_player->increase_hp(item->get_hp_pot());
+						
+						if(increased > item->get_hp_pot()){
+							increased = item->get_hp_pot();
+						}
 						std::cout << item->getName() << ": "<< item->use() << ".\n";
-						std::cout << "Hp increased by " << item->get_hp_pot() << "\n";
-						std::cout <<  item->getName() << " removed.\n";
-						real_player->drop(item);
+						std::cout << "Hp increased by " << increased << "\n";
+						std::cout <<  item->getName() << " used.\n";
+						
+						real_player->get_container().drop(item); //Potion erased;
 
 
 
@@ -358,7 +360,7 @@ std::string Game::get_adventure_intro()const{
 	intro += "#         Welcome to the world of Thargon,                 #\n";
 	intro += "#       You are an elf named Theoden from Thais,           #\n";
 	intro += "#   your objective is to defeat the Lord of Demons Hoccar, #\n";
-	intro += "#     to prove yourself worthy to the elfking Zaor.        #\n";
+	intro += "#     to free all elves from the demons slavery.           #\n";
     intro += "#                                                          #\n";
 	intro += "#    You have been transported to the inkeepers cabin,     #\n";
 	intro += "#         to armor up and start your adventure,            #\n";

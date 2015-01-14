@@ -19,7 +19,6 @@ const std::string Actor::get_name()const{
 }
 
 std::string Actor::action() {
-	//TODO
 	//walk in direction or fight
 	// if fight then fight else
 	Actor* another_actor = another_actor_in_range();
@@ -91,7 +90,22 @@ void Actor::set_hp(int hp) {
 }
 
 void Actor::increase_hp(int hp){
-	health+=hp;
+	int temp = get_hp() + hp; 
+	if(temp > get_maxhp()){					
+		health+=(get_maxhp()-get_hp());
+	}
+	else{
+		health+=hp;
+	}
+					
+}
+
+void Actor::set_maxhp(int hp){
+	maxhp = hp; 
+}
+
+int Actor::get_maxhp()const{
+	return maxhp; 
 }
 
 void Actor::set_attack_points(int attack_points) {
