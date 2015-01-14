@@ -19,7 +19,7 @@ Game::Game(){
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Weapon axe(2, 10, "The great axe of the demon", "demonslayer", "weapon");
 	Weapon knife(2, 10, "Just a simple knife", "knify", "weapon");
-	Weapon sensei(4, 5, "Samurai sword", "sensei", "weapon");
+	Weapon sensei(5, 5, "Samurai sword", "sensei", "weapon");
 	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
 	Armor armor(2, 10, "Good armor", "armor", "armor");
 	Armor golden(10, 10, "Golden armor", "golden armor", "armor");

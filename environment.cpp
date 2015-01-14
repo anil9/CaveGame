@@ -37,11 +37,6 @@ using namespace lab3;
 		return directions;
 	}
 
-	std::string Environment::description()const{
-		return env_description;
-	}
-
-
 	void Environment::remove_item(Item* item){
 		for(unsigned int i=0; i< items_in_env.size();++i){
 			if(items_in_env[i] == item){
