@@ -9,6 +9,7 @@
 	class Container: public Item{
 	public:
 		Container(int capacity);
+		~Container();
 		std::vector<Pickup_able*> containing()const;
 		bool drop(Pickup_able*);
 		bool pick_up(Pickup_able*);

@@ -7,6 +7,7 @@ namespace lab3{
 class Pickup_able: public Item{
 public:
 	Pickup_able(int, std::string, std::string);
+	virtual ~Pickup_able();
 	int get_weight()const;
 
 

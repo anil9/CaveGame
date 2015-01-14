@@ -19,7 +19,6 @@ class Environment{
  	Environment(std::string,std::vector<Item*>);
  	virtual ~Environment();
 	std::string directions()const;
-	std::string description()const;
 	void remove_item(Item*);
 	void add_item(Item*);
 	virtual void setDirection(std::string, Environment*);

@@ -5,6 +5,7 @@ using namespace lab3;
 Weapon::Weapon(int dmg, int weight, std::string description, std::string name, std::string type): Wearable(weight, description, name, type){
 	damage = dmg;
 }
+Weapon::~Weapon(){}
 
 int Weapon::get_damage()const{
 	return damage;
