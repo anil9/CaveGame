@@ -28,18 +28,27 @@ std::string Actor::action() {
 	}
 	else if(get_name()!="Hoccar"){
 		set_location(get_location()->getNeighbor(move_next));
-		if(went_west){
+		return change_direction();
+	}
+	//return a string of what happend.
+	return "";
+}
+
+std::string Actor::change_direction(){
+	if(went_west){
 			move_next="east";
 			went_west=false;
 			return get_name() + " went west";	
-		} else {
+		} 
+		else {
 			move_next="west";
 			went_west=true;
 			return get_name() + " went east";
 		}
-	}
-	//return a string of what happend.
-	return "";
+}
+
+std::string Actor::moving_next()const{
+	return move_next;
 }
 
 void Actor::go(std::string direction) {

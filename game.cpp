@@ -37,7 +37,9 @@ Game::Game(){
 	//Setup environment
 	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
 	Outdoors forest1("The forest. If I look around I might find items.", {coinp});
+	Outdoors forest2("Deeper forest. It's darker here.");
 	Indoors demon_cave("The demon cave. Scary and stuff.", {&hp_pot});
+	Indoors demon_cave2("Deeper into the demon cave. You hear some scary noises from the east");
 	Outdoors winning_place("Hoccar's cave");
 	Swamp swamp("Euuhw smelly mud everywhere!");
 	Obstacle locked_area("This place is locked. Try to unlock it with a coin","Quick way to goal!");
@@ -46,13 +48,17 @@ Game::Game(){
 
 	my_cabin.setDirection("east", &forest1);
 	forest1.setDirection("west", &my_cabin);
-	forest1.setDirection("east", &demon_cave);
+	forest1.setDirection("east", &forest2);
 	forest1.setDirection("south", &swamp);
 	forest1.setDirection("north", &dark_cave);
 	swamp.setDirection("north", &forest1);
-	demon_cave.setDirection("west", &forest1);
-	demon_cave.setDirection("east", &winning_place);
-	winning_place.setDirection("west", &demon_cave);
+	forest2.setDirection("west", &forest1);
+	forest2.setDirection("east", &demon_cave);
+	demon_cave.setDirection("west", &forest2);
+	demon_cave.setDirection("east", &demon_cave2);
+	demon_cave2.setDirection("west", &demon_cave);
+	demon_cave2.setDirection("east", &winning_place);
+	winning_place.setDirection("west", &demon_cave2);
 	locked_area.set_backtrack_direction("west",&swamp);
 	locked_area.setDirection("east", &winning_place);
 	dark_cave.set_backtrack_direction("south", &forest1);
@@ -65,32 +71,33 @@ Game::Game(){
 
 	//Setup actors
 	Humanoid player("Kalle", &my_cabin);
-	Monster demon("Demon", "YOU WILL DIE HERE",&demon_cave);
+	Monster demon("Demon", "YOU WILL DIE HERE",&demon_cave2);
 	Monster hoccar("Hoccar", "I'm the Lord of Demons!", &winning_place);
 	hoccar.set_hp(80);
 	hoccar.set_attack_points(15);
 	demon.get_container().pick_up(axep);
 	demon.get_container().pick_up(toothp);
-	Humanoid inkeeper("inkeeper", &my_cabin);
+	Humanoid innkeeper("innkeeper", &my_cabin);
 	Humanoid troll("sleepytroll", &cave);
-	inkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
+	innkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
 	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *throws something on the cold cavefloor*!");
 	troll.get_container().pick_up(senseip);
-	Animal rabbit("Rabbit", &forest1);
+	Animal rabbit("Rabbit", &forest2);
 	Animal moose("Moose", &forest1);
 	moose.set_hp(35);
-	moose.set_attack_points(7);
-	Animal lion("Lion", &forest1);
-	lion.set_attack_points(10);
+	moose.set_attack_points(4);
+	Animal lion("Lion", &demon_cave);
+	lion.set_attack_points(7);
+	lion.set_hp(20);
 	Animal turtle("Turtle", &forest1);
 	turtle.set_hp(45);
 
 
+	actors.push_back(&lion);
 	actors.push_back(&demon);
 	actors.push_back(&player);
 	actors.push_back(&rabbit);
 	actors.push_back(&moose);
-	actors.push_back(&lion);
 	actors.push_back(&turtle);
 	actors.push_back(&hoccar); // Ska inte kunna gå fram och tillbaka.
 

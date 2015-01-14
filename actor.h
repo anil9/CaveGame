@@ -31,6 +31,8 @@ class Actor{
 	std::string other_actors_in_range()const;
 	Container& get_container();
 	bool is_dead()const;
+	std::string change_direction();
+	std::string moving_next()const;
 
 private:
 	bool dead = false;
