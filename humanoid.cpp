@@ -28,18 +28,18 @@ void Humanoid::change_gear(Wearable* wearable) {
 	else if(wearable->get_type() == "armor"){
 		Armor* armor = dynamic_cast<Armor*>(wearable);
 		if(gear.at("armor")==NULL){
-			increase_hp(armor->get_protection());
 			set_maxhp(get_maxhp() + armor->get_protection());
+			increase_hp(armor->get_protection());
 		}
 		else{
 			auto to_change = gear.at("armor");
 			Armor* ap = dynamic_cast<Armor*>(to_change);
 			get_container().pick_up(ap);
 			remove_health(ap->get_protection());
-			increase_hp(armor->get_protection());
 			set_maxhp(get_maxhp() - ap->get_protection());
 			set_maxhp(get_maxhp() + armor->get_protection());
-		
+			increase_hp(armor->get_protection());
+			
 		}	
 		gear.at("armor")=wearable;
 		
