@@ -32,7 +32,7 @@ Game::Game(){
 	Unwearable* toothp = &tooth;
 	Unwearable candle("There will be light", 1, "romantic candle", "candle");
 	Unwearable* candlep = &candle;
-	Unwearable hp_pot("Ahh.. I feel much better now", 1, "potion", "potion");
+	Unwearable hp_pot("Ahh.. I feel much better now", 1, "increases health by 10", "potion");
 	hp_pot.set_hp_pot(10);
 	//Setup environment
 	Indoors my_cabin("This is my cabin", {knifep, swordp, armorp, candlep});
