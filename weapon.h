@@ -8,8 +8,6 @@ namespace lab3{
 	public:
 		Weapon(int dmg, int weight, std::string description, std::string name, std::string type);
 		int get_damage()const;
-		std::string get_effect()const;
-		void set_effect(std::string);
 		std::string get_stats()const override;
 	private:
 		int damage;

@@ -9,10 +9,6 @@ namespace lab3{
 	public:	
 		Outdoors(std::string);
 		Outdoors(std::string, std::vector<Item*>); 
-		std::string weather()const;
-	
-	private:
-		const std::vector<std::string> weather_description = {"Det regnar", "Det snöar", "Vinden piskar", "Åskan mullrar", "Helt lugnt väder"};
 
 	};
 }
