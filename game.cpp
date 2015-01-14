@@ -361,7 +361,7 @@ void Game::execute_command(std::string command){
 					}
 					std::cout<<"\n";
 					//std::cout<<talk_to->get_answer()<<std::endl;
-					if(talk_to->get_name() == "sleepy troll"){
+					if(talk_to->get_name() == "Sleepy troll"){
 						auto loot = talk_to->get_container().containing();
 						auto give_item = loot.at(0);
 						talk_to->get_container().drop(give_item);
