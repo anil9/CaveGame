@@ -9,6 +9,7 @@ Monster::Monster(const std::string name, std::string noise, Environment* locatio
 	this->noise = noise;
 	set_attack_points(8);
 	set_hp(25);
+	set_maxhp(25);
 }
 std::string Monster::use_special(){
 	return noise;

@@ -4,6 +4,7 @@ using namespace lab3;
 Animal::Animal(std::string name, Environment* location) : Actor(name, location){
 	set_attack_points(2);
 	set_hp(10);
+	set_maxhp(10);
 }
 std::string Animal::use_special() {
 	int inc_hp_val=6;

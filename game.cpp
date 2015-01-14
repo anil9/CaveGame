@@ -19,11 +19,11 @@ Game::Game(){
 	Unwearable coin("I see no use of this item", 4, "Just a regular coin.", "coin");
 	Weapon axe(2, 10, "The great axe of the demon", "demonslayer", "weapon");
 	Weapon knife(2, 10, "Just a simple knife", "knify", "weapon");
-	Weapon sensei(4, 5, "Samuraisword", "sensei", "weapon");
+	Weapon sensei(4, 5, "Samurai sword", "sensei", "weapon");
 	Weapon sword(3, 10, "A pretty good sword", "Swordy", "weapon");
 	Armor armor(2, 10, "Good armor", "armor", "armor");
 	Armor golden(10, 10, "Golden armor", "golden armor", "armor");
-	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demontooth");
+	Unwearable tooth("Eeeeuwh its a smelly tooth", 1, "Just a old tooth.", "demon tooth");
 	Unwearable candle("There will be light", 1, "romantic candle", "candle");
 	Unwearable hp_pot("Ahh.. I feel much better now", 1, "a potion for healing", "potion");
 	hp_pot.set_hp_pot(10);
@@ -75,7 +75,7 @@ Game::Game(){
 	demon.get_container().pick_up(&axe);
 	demon.get_container().pick_up(&tooth);
 	Humanoid innkeeper("innkeeper", &my_cabin);
-	Humanoid troll("sleepytroll", &cave);
+	Humanoid troll("Sleepy troll", &cave);
 	innkeeper.set_answer("Hello and welcome to my humble cabin! -Please help yourself to the items in here that you want!-Good luck");
 	troll.set_answer("ZzZz... uhm.. arg..what..is there someone here?!-Take this *throws something on the cold cavefloor*!");
 	troll.get_container().pick_up(&sensei);
@@ -202,11 +202,19 @@ void Game::execute_command(std::string command){
 		}
 	}
 	else if(commands[0] == "pick" && commands[1] == "up"){
-		if(commands.size()> 2){
-			Item* item = real_player->get_location()->getItem(commands[2]);
+		if(commands.size() > 2){
+			std::string item_name="";
+			if(commands.size() == 3){
+				item_name = commands[2];
+			} else if(commands.size() == 4){
+				item_name = commands[2] + " " + commands[3]; 
+			}
+			Item* item = real_player->get_location()->getItem(item_name);
 			if(item != NULL && item->isPickupable()){
 				real_player->pick_up(item); 
-
+			}
+			else{
+				std::cout << "That item is not pickupable"<< std::endl;	
 			}
 		}else{
 				std::cout << "That item is not pickupable"<< std::endl;
@@ -215,13 +223,20 @@ void Game::execute_command(std::string command){
 
 	}
 	else if(commands[0] == "drop"){
-		Item* item = real_player->get_container().get_item(commands[1]);
+		std::string item_name="";
+		if(commands.size() == 2){
+			item_name = commands[1];
+		}
+		else if(commands.size() == 3){
+			item_name = commands[1]+ " "+commands[2];
+		}
+		Item* item = real_player->get_container().get_item(item_name);
 		if(item == NULL){
-			item = real_player->get_equipped(commands[1]);
+			item = real_player->get_equipped(item_name);
 		}
 		if(item != NULL){
 			real_player->drop(item);
-			std::cout << "You dropped " << commands[1]<< "\n";
+			std::cout << "You dropped " << item_name << "\n";
 			next_turn = true;
 		} 
 		else {
@@ -235,7 +250,14 @@ void Game::execute_command(std::string command){
 		std::cout<<"===================="<<std::endl;
 	}
 	else if(commands[0] == "fight"){
-		Actor* target = real_player->get_location()->get_actor(commands[1]);
+		std::string actor_name="";
+		if(commands.size() == 2){
+			actor_name = commands[1];
+		}
+		else if(commands.size() == 3){
+			actor_name = commands[1]+ " "+commands[2];
+		}
+		Actor* target = real_player->get_location()->get_actor(actor_name);
 		if(target != NULL){
 			
 			std::cout << real_player->fight(target) << "\n";
@@ -252,16 +274,24 @@ void Game::execute_command(std::string command){
 	else if(commands[0] == "use"){
 		//kolla om commands[1] == "special"
 		if(commands.size()>1){
+			std::string item_name="";
+			if(commands.size() == 2){
+				item_name = commands[1];
+			}
+			else if(commands.size() == 3){
+				item_name = commands[1]+ " "+commands[2];
+			}
 			if(commands[1] == "special"){
 				std::string special = real_player->use_special();
 				if(special == ""){
 					std::cout<<"You can't renew your buff"<<std::endl;
-				}else{
+				}
+				else{
 					std::cout<<special<<std::endl;
 				}
 			}
-			else if(real_player->get_container().get_item(commands[1]) != NULL){
-				auto use_able = real_player->get_container().get_item(commands[1]);
+			else if(real_player->get_container().get_item(item_name) != NULL){
+				auto use_able = real_player->get_container().get_item(item_name);
 				Unwearable* item = dynamic_cast<Unwearable*>(use_able);
 				if(item != NULL){
 					if(item->is_key()) {
@@ -310,7 +340,14 @@ void Game::execute_command(std::string command){
 	}
 	else if(commands[0] == "talk" && commands[1] == "to"){
 			if(commands.size()>2){
-				Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(commands[2]));
+				std::string actor_name="";
+				if(commands.size() == 3){
+					actor_name = commands[2];
+				}
+				else if(commands.size() == 4){
+					actor_name = commands[2]+ " "+commands[3];
+				}
+				Humanoid* talk_to = dynamic_cast<Humanoid*>(real_player->get_location()->get_actor(actor_name));
 				if(talk_to == NULL){
 					std::cout<<"Can not talk to that actor"<<std::endl;
 				}else{
@@ -324,7 +361,7 @@ void Game::execute_command(std::string command){
 					}
 					std::cout<<"\n";
 					//std::cout<<talk_to->get_answer()<<std::endl;
-					if(talk_to->get_name() == "sleepytroll"){
+					if(talk_to->get_name() == "sleepy troll"){
 						auto loot = talk_to->get_container().containing();
 						auto give_item = loot.at(0);
 						talk_to->get_container().drop(give_item);
@@ -336,7 +373,14 @@ void Game::execute_command(std::string command){
 				
 	}
 	else if(commands[0] == "equip"){
-		auto item = real_player->get_container().get_item(commands[1]);
+		std::string item_name="";
+		if(commands.size() == 2){
+			item_name = commands[1];
+		}
+		else if(commands.size() == 3){
+			item_name = commands[1]+ " "+commands[2];
+		}
+		auto item = real_player->get_container().get_item(item_name);
 		if(item!=NULL){
 			Wearable* gear_item = dynamic_cast<Wearable*>(item); 
 			real_player->change_gear(gear_item);
