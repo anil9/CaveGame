@@ -2,6 +2,7 @@
 #define ANIMAL_H
 #include "actor.h"
 #include "environment.h"
+#include "indoors.h"
 
 namespace lab3{
 	class Animal: public Actor{
