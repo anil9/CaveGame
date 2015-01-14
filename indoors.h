@@ -9,6 +9,7 @@ namespace lab3{
 	public:
 		Indoors(std::string);
 		Indoors(std::string, std::vector<Item*>);
+		~Indoors();
 	private:
 	};
 }

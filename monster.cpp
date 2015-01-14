@@ -11,6 +11,7 @@ Monster::Monster(const std::string name, std::string noise, Environment* locatio
 	set_hp(25);
 	set_maxhp(25);
 }
+Monster::~Monster(){}
 std::string Monster::use_special(){
 	return noise;
 }

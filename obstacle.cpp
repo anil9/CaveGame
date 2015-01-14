@@ -6,6 +6,7 @@ Obstacle::Obstacle(std::string locked_description,std::string unlocked_descripti
 	
 	this->locked_description = locked_description;
 }
+Obstacle::~Obstacle(){}
 bool Obstacle::is_locked()const{
 	return locked;
 }

@@ -8,7 +8,8 @@ namespace lab3{
 	class Outdoors: public Environment{
 	public:	
 		Outdoors(std::string);
-		Outdoors(std::string, std::vector<Item*>); 
+		Outdoors(std::string, std::vector<Item*>);
+		~Outdoors(); 
 
 	};
 }

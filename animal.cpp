@@ -6,6 +6,8 @@ Animal::Animal(std::string name, Environment* location) : Actor(name, location){
 	set_hp(10);
 	set_maxhp(10);
 }
+
+Animal::~Animal(){}
 std::string Animal::use_special() {
 	int inc_hp_val=6;
 	increase_hp(inc_hp_val);
