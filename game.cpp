@@ -453,7 +453,7 @@ void Game::you_won(){
 	outro += "#     The demons are weak now when Hoccar is gone.   #\n";
 	outro += "#          It'll be an easy task to clear out        #\n";
 	outro += "#                  the rest of them.                 #\n";
-	outro += "#                 Thanks for playing!                 #\n";
+	outro += "#                 Thanks for playing!                #\n";
 	outro += "######################################################\n";
 	std::cout << outro << std::endl;
 }
