@@ -29,15 +29,15 @@ private:
 	void run_game();
 	void execute_command(std::string);
 	std::string get_adventure_intro()const;
-	Humanoid* real_player;
-	bool game_finished = false;
-	bool next_turn = false;
 	void remove_dead(const std::vector<Actor*>&);
 	void swamp_sink(Actor*);
 	bool real_player_close(const Actor*);
 	void you_lost();
 	void you_won();
 
+	Humanoid* real_player;
+	bool game_finished = false;
+	bool next_turn = false;
 	std::vector<Actor*> actors;
 	std::vector<Environment*> environments;
 };

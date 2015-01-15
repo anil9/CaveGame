@@ -48,8 +48,7 @@ using namespace lab3;
 		items_in_env.push_back(item);
 	}
 
-	void Environment::setDirection(std::string direction, Environment* env){
-		//TODO checkar för om det finns en granne där redan? 		 	
+	void Environment::setDirection(std::string direction, Environment* env){ 		 	
 		env_neighbors[direction]=env;
 		
 	}
@@ -64,7 +63,6 @@ using namespace lab3;
 	}
 
 	Item* Environment::getItem(std::string item)const{
-		
 		for(unsigned int i = 0; i<items_in_env.size(); ++i){
 			if((items_in_env[i])->getName() ==item){
 				return items_in_env[i];

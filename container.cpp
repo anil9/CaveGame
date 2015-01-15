@@ -9,7 +9,7 @@ Container::Container(int capacity):Item("mybag", "bag", false){
 }
 Container::~Container(){}
 
-std::vector<Pickup_able*> Container::containing()const{		// TODO: return value. Should it be a reference to a vector?
+std::vector<Pickup_able*> Container::containing()const{
 	return contains;
 }
 bool Container::drop(Pickup_able* pickup_able){

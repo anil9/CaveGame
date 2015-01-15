@@ -11,13 +11,11 @@ class Actor{
  public:
 	Actor(const std::string, Environment*);
 	virtual ~Actor(); 
-	std::string get_type();
 	virtual std::string action();
 	const std::string get_name()const;
-	void go(std::string);
 	virtual std::string fight(Actor*);
 	std::string sense()const;
-	virtual std::string use_special()=0;		// TODO: Should be pure virtual.
+	virtual std::string use_special()=0;		//pure virtual.
 	void die();
 	int get_hp()const;
 	void set_hp(int);

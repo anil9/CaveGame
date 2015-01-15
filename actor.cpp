@@ -9,10 +9,6 @@ Actor::Actor(const std::string _name, Environment* location): bag(50),name(_name
 	get_location()->add_actor(this);
 }
 Actor::~Actor(){}
-std::string Actor::get_type() {
-	//TODO
-	return type;
-}
 
 const std::string Actor::get_name()const{
 	return name;
@@ -48,10 +44,6 @@ std::string Actor::change_direction(){
 
 std::string Actor::moving_next()const{
 	return move_next;
-}
-
-void Actor::go(std::string direction) {
-	//TODO
 }
 
 std::string Actor::fight(Actor* target) {
